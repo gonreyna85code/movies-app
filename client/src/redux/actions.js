@@ -14,7 +14,7 @@ export function getMovies() {
       return dispatch({ type: "GET_MOVIES", payload: json.data.items });
     } catch (error) {
       console.log(error);
-    }
+    } 
   };
 }
 export function getMovie(id) {

@@ -14,7 +14,7 @@ function rootReducer(state = initialState, action) {
   }
   if (action.type === GET_MOVIE) {
     return {
-      ...state,
+      ...state, 
       Movie: action.payload,
     };
   }

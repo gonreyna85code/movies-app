@@ -58,6 +58,6 @@ export default function Paginado() {
           </Link>
         ))}  
       </div>
-    </div>
+    </div> 
   );
 }

@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <div>
       <Navbar/>
-      <Paginado/>
+      <Paginado/> 
     </div>
   );
 }
