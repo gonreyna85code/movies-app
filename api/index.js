@@ -11,7 +11,6 @@ const MongoStore = require("connect-mongo");
 const mongoose = require("mongoose");
 const app = express();
 const routes = require("./routes");
-const port = 3001;
 
 
 app.name = "API";
@@ -62,6 +61,6 @@ app.use((err, req, res, next) => {
   res.status(status).send(message);
 });
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+app.listen(process.env.PORT, () => {
+  console.log("Server Has Started on port " + process.env.PORT);
 });
