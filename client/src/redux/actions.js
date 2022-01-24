@@ -23,8 +23,8 @@ export function getMovie(id) {
       let json = await axios.get(
         `https://imdb-api.com/en/API/Title/${API}/${id}`
       );
-      let json2 = await axios.get(`http://localhost:3001/movie/${json.data.title}`);
-      
+      let json2 = await axios.get(`https://movieon-back.herokuapp.com/movie/${json.data.title}`);
+
       json.data.torrents = json2.data;
       return dispatch({ type: "GET_MOVIE", payload: json.data });
     } catch (error) {

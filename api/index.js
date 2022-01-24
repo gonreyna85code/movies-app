@@ -16,7 +16,7 @@ const port = 3001;
 
 app.name = "API";
 
-app.use(cors({ origin: ["http://localhost:3000", "https://eventy-main.vercel.app"], credentials: true }));
+app.use(cors({ origin: ["https://movieon.vercel.app"], credentials: true }));
 
 app.set("trust proxy", 1);
 
