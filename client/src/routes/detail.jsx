@@ -24,7 +24,7 @@ export default function Detail(props) {
             <h3>{movie.plot}</h3>
         </div>
         <div>
-          {movie.torrents?.map(e => (
+          {movie.torrents === 'No Disponible' ? <h3>Login to get Premium functions</h3> : movie.torrents?.map(e => (
             <li>
             {e.title}
             <a href={e.magnet}>Magnet Link</a>
