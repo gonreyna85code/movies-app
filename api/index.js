@@ -10,7 +10,8 @@ const bodyParser = require("body-parser");
 const MongoStore = require("connect-mongo");
 const mongoose = require("mongoose");
 const app = express();
-const routes = require("./routes");
+const routes = require("./routes/routes");
+const auth = require("./routes/auth");
 
 
 app.name = "API";
@@ -53,6 +54,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use("/", routes);
+app.use("/", auth);
 
 app.use((err, req, res, next) => {
   const status = err.status || 500;
