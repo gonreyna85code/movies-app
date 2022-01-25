@@ -15,6 +15,9 @@ export default function Detail(props) {
   return (
     <div>
       <div className="detail">
+      <Link to="/">
+            <button >Volver al Home</button>
+          </Link>
         <h1>{movie?.title}</h1>
         <div>
           <img src={image} width={400} alt="" />
