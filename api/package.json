@@ -20,7 +20,7 @@
     "express": "^4.17.1",
     "express-session": "^1.17.2",
     "install": "^0.13.0",
-    "mongoose": "^5.9.12",
+    "mongoose": "^6.1.8",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.15",
     "npm": "^8.3.2",
