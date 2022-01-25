@@ -5,7 +5,6 @@ const passportLocal = require("passport-local").Strategy;
 require("dotenv").config();
 const morgan = require("morgan");
 var session = require("express-session");
-const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const MongoStore = require("connect-mongo");
 const mongoose = require("mongoose");
@@ -38,7 +37,7 @@ mongoose.connect(process.env.MONGO, () => {
 
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 app.use(bodyParser.json({ limit: "50mb" }));
-app.use(cookieParser());
+
 app.use(morgan("dev"));
 
 app.use(
