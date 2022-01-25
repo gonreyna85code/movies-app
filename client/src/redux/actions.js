@@ -78,7 +78,8 @@ export function login(login) {
         },
         withCredentials: true,
         url:  'https://movieon-back.herokuapp.com/login',
-      });         
+      });     
+      console.log(json.data);    
       return dispatch({ type: "LOGIN", payload: json.data });
     } catch (error) {
       console.log(error);
