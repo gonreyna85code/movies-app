@@ -13,7 +13,6 @@ router.get("/movie/:name", async (req, res) => {
     const magnet = await TorrentSearchApi.getMagnet(data[i]);
     data[i].magnet = magnet;
   }
-  console.log(data)
   res.send(data);
 });
 
