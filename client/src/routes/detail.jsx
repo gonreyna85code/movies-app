@@ -6,7 +6,7 @@ export default function Detail(props) {
   const id = props.match.params.id;
   console.log(id);
   const movie = useSelector((state) => state.Movie);
-  const image = movie?.poster_path;
+  const image = 'https://image.tmdb.org/t/p/w500'+ movie?.poster_path;
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getMovie(id));
