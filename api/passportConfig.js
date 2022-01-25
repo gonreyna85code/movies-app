@@ -23,14 +23,11 @@ module.exports = function (passport) {
 
   
 
-  passport.serializeUser((user, done) => {
-    console.log('SER',user);
-    done(null, user);
-    
-  });
-
-  passport.deserializeUser((user, done) => {
-    console.log('DES',user);
-    done(null, user);
-  });
-};
+  passport.serializeUser(function(user, done) {
+    done(null, user.id);
+ });
+ 
+ passport.deserializeUser(function(obj, done) {
+    done(null, obj);
+ });
+}
