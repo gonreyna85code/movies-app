@@ -31,9 +31,14 @@ app.get("/", (req, res, next) => {
   }
 });
 
-mongoose.connect(process.env.MONGO, () => {
-  console.log("Mongoose Is Connected");
-});
+mongoose.connect(
+  process.env.MONGO,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  () => {
+    console.log("Mongoose Is Connected");
+  }
+);
+mongoose.set("useCreateIndex", true);
 
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 app.use(bodyParser.json({ limit: "50mb" }));
