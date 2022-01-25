@@ -14,7 +14,7 @@ export default function Home() {
 
   return (
     <div>
-      <Link to="/">
+      <Link to="/login">
         <button>login</button>
       </Link>      
       <Navbar/>
