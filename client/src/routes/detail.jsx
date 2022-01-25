@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 export default function Detail(props) {
   const id = props.match.params.id;
+  console.log(id);
   const movie = useSelector((state) => state.Movie);
   const image = movie?.image;
   const dispatch = useDispatch();
