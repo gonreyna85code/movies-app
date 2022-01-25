@@ -30,7 +30,7 @@ export function getMovie(id) {
       console.log(json.data)
       let json2 = await axios.get(`https://movieon-back.herokuapp.com/movie/${json.data.title}`);
 
-      json.data.torrents = json2.data;
+      json.data.torrents = json2?.data;
       return dispatch({ type: "GET_MOVIE", payload: json.data });
     } catch (error) {
       console.log(error);
