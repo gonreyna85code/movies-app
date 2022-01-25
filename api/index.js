@@ -16,12 +16,20 @@ const cookieParser = require("cookie-parser");
 
 app.name = "API";
 
-app.use(cors({ origin: ["https://eventy-main.vercel.app"], credentials: true }));
+app.use(
+  cors({
+    origin: ["http://localhost:3000", "https://movieon.vercel.app"],
+    credentials: true,
+  })
+);
 
 app.set("trust proxy", 1);
 
 app.get("/", (req, res, next) => {
-  headers["Access-Control-Allow-Origin"] = ["https://eventy-main.vercel.app"];
+  headers["Access-Control-Allow-Origin"] = [
+    "http://localhost:3000",
+    "https://movieon.vercel.app",
+  ];
   headers["Access-Control-Allow-Headers"] =
     "Content-Type, Content-Length, Authorization, Accept, X-Requested-With";
   headers["Access-Contrl-Allow-Methods"] = "PUT, POST, GET, DELETE, OPTIONS";
@@ -33,13 +41,10 @@ app.get("/", (req, res, next) => {
   }
 });
 
+mongoose.connect(process.env.MONGO, () => {
+  console.log("Mongoose Is Connected");
+});
 
-mongoose.connect(
-  process.env.MONGO,  
-  () => {
-    console.log("Mongoose Is Connected");
-  }
-);
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(cookieParser());
@@ -55,11 +60,10 @@ app.use(
     cookie: {
       sameSite: "none",
       secure: true,
-      maxAge: 1000 * 60 * 60 * 24 * 7,     
+      maxAge: 1000 * 60 * 60 * 24 * 7,
     },
   })
 );
-
 
 require("./passportConfig")(passport);
 app.use(passport.initialize());
