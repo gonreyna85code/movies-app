@@ -53,7 +53,7 @@ export default function Paginado() {
       </div> 
       <div className="cards">
         {list.length === 0 ? (<div><h4>Oops!, no results</h4></div>) : list.map((e) => (
-          <Link key={e.id} to={`${e.id}`} style={{ textDecoration: 'none' }}>
+          <Link key={e.id} to={`movie/${e.id}`} style={{ textDecoration: 'none' }}>
             <Card Titulo={e.title} Imagen={e.image}/>
           </Link>
         ))}  

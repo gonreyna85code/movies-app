@@ -20,7 +20,7 @@ function App() {
           <Route exact path={"/login"} component={login}></Route>           
         </Switch>
         <Switch>
-        <Route exact path={"/:id"} component={detail}></Route>
+        <Route exact path={"/movie/:id"} component={detail}></Route>
         </Switch>
       </Router>
     </div>
