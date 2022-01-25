@@ -19,7 +19,7 @@ app.use(cors({ origin: ["https://movieon.vercel.app"], credentials: true }));
 
 app.set("trust proxy", 1);
 
-app.get("/", (req, res, next) => {  
+app.get("/", (req, res, next) => {
   headers["Access-Control-Allow-Origin"] = ["https://movieon.vercel.app"];
   headers["Access-Control-Allow-Headers"] =
     "Content-Type, Content-Length, Authorization, Accept, X-Requested-With";
@@ -32,15 +32,9 @@ app.get("/", (req, res, next) => {
   }
 });
 
-mongoose.connect(
-  process.env.MONGO,
-  { useNewUrlParser: true, useUnifiedTopology: true },
-  () => {
-    console.log("Mongoose Is Connected");
-  }
-
-);
-mongoose.set("useCreateIndex", true);
+mongoose.connect(process.env.MONGO, () => {
+  console.log("Mongoose Is Connected");
+});
 
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 app.use(bodyParser.json({ limit: "50mb" }));
@@ -57,7 +51,7 @@ app.use(
       sameSite: "none",
       secure: true,
       maxAge: 1000 * 60 * 60 * 24 * 7,
-      httpOnly: true,    
+      httpOnly: true,
       domain: "movieon.vercel.app",
     },
   })
