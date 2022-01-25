@@ -38,15 +38,22 @@ mongoose.connect(process.env.MONGO, () => {
 
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 app.use(bodyParser.json({ limit: "50mb" }));
-app.use(cookieParser("secretcode"));
+app.use(cookieParser());
 app.use(morgan("dev"));
 
 app.use(
   session({
     secret: "secretcode",
-    resave: false,
-    saveUninitialized: false,
+    resave: true,
+    saveUninitialized: true,
     store: MongoStore.create({ mongoUrl: process.env.MONGO }),
+    cookie: {
+      sameSite: "none",
+      secure: true,
+      maxAge: 1000 * 60 * 60 * 24 * 7,
+      httpOnly: true,
+      domain: "movieon.vercel.app",
+    },
   })
 );
 
