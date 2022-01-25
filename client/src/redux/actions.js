@@ -5,13 +5,8 @@ export const GET_MOVIE = "GET_MOVIE";
 export const GET_SEARCH = 'GET_SEARCH';
 export const GET_REGISTER = 'GET_REGISTER';
 
-const development = process.env.NODE_ENV !== 'production';
 axios.defaults.withCrendentails = true;
 axios.defaults.Credentials = "includes";
-
-const local = "http://localhost:4000/"
-const heroku = "https://movieon-back.herokuapp.com/"
-
 
 export function getMovies() {
   return async function (dispatch) {
@@ -32,7 +27,7 @@ export function getMovie(id) {
         `https://api.themoviedb.org/3/movie/${id}?api_key=${API}`
       );
       console.log(json.data)
-      let json2 = await axios.get(development ? local + `movie/${json.data.title}` : heroku + `movie/${json.data.title}`);
+      let json2 = await axios.get(`https://movieon-back.herokuapp.com/movie/${json.data.title}`);
 
       json.data.torrents = json2?.data;
       return dispatch({ type: "GET_MOVIE", payload: json.data });
@@ -64,7 +59,7 @@ export function register(register) {
           profile: register.profile,
         },
         withCredentials: true,  
-        url: development ? local + 'register' : heroku + "register",
+        url: "https://movieon-back.herokuapp.com/register",
       });
       return dispatch({ type: "REGISTER", payload: json.data });
     } catch (error) {
@@ -82,7 +77,7 @@ export function login(login) {
           password: login.password,          
         },
         withCredentials: true,
-        url:  development ? local + 'login' : heroku + "login",
+        url:  "https://movieon-back.herokuapp.com/login",
       });     
       console.log(json.data);    
       return dispatch({ type: "LOGIN", payload: json.data });
