@@ -17,18 +17,18 @@ export default function Detail(props) {
   return (
     <div>
       <div className="detail">
-        <h1>{movie.title}</h1>
+        <h1>{movie?.title}</h1>
         <div>
           <img src={image} width={400} alt="" />
         </div>
         <div>
-            <h3>{movie.overview}</h3>
+            <h3>{movie?.overview}</h3>
         </div>
         <div>
-          {movie.torrents === 'No Disponible' ? <h3>Login to get Premium functions</h3> : movie.torrents?.map(e => (
+          {movie?.torrents === 'No Disponible' ? <h3>Login to get Premium functions</h3> : movie?.torrents?.map(e => (
             <li>
             {e.title}
-            <a href={e.magnet}>Magnet Link</a>
+            <a href={e?.magnet}>Magnet Link</a>
             </li>
           ))}
         </div>
