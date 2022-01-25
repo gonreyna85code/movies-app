@@ -38,7 +38,9 @@ mongoose.connect(
   () => {
     console.log("Mongoose Is Connected");
   }
+
 );
+mongoose.set("useCreateIndex", true);
 
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 app.use(bodyParser.json({ limit: "50mb" }));
