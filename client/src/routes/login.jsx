@@ -52,7 +52,7 @@ export default function Loginform() {
                 setTimeout(function () {
                   window.location.reload();
                 }, 1000);
-                history.push("/");
+               // history.push("/");
               }}
             >
               {" "}
