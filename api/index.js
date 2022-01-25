@@ -25,18 +25,7 @@ app.use(
 
 app.set("trust proxy", 1);
 
-app.get("/", (req, res, next) => {
-  headers["Access-Control-Allow-Origin"] = "https://movieon.vercel.app";  
-  headers["Access-Control-Allow-Headers"] =
-    "Content-Type, Content-Length, Authorization, Accept, X-Requested-With";
-  headers["Access-Contrl-Allow-Methods"] = "PUT, POST, GET, DELETE, OPTIONS";
-  headers["Access-Control-Max-Age"] = "86400";
-  res.writeHead(200, headers);
-  if (req.method === "OPTIONS") {
-    console.log("OPTIONS SUCCESS");
-    res.end();
-  }
-});
+
 
 mongoose.connect(process.env.MONGO, () => {
   console.log("Mongoose Is Connected");
