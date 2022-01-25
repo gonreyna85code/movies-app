@@ -2,8 +2,7 @@ const Router = require("express");
 
 const isAuthenticated = function (req, res, next) {
   if (req.isAuthenticated()) return next();
-  res.send("No Disponible");
-  console.log('no logueado')
+  res.sendStatus(401);
 };
 
 const router = Router();
