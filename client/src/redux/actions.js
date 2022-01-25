@@ -15,7 +15,7 @@ export function getMovies() {
       const json = await axios.get(
         `https://api.themoviedb.org/3/trending/movie/week?api_key=${API}`
       );
-      return dispatch({ type: "GET_MOVIES", payload: json.data.items });
+      return dispatch({ type: "GET_MOVIES", payload: json.data.results });
     } catch (error) {
       console.log(error);
     } 
