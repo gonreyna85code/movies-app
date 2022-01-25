@@ -18,7 +18,7 @@ app.name = "API";
 
 app.use(
   cors({
-    origin: ["https://movieon.vercel.app"],
+    origin: "https://movieon.vercel.app",
     credentials: true,
   })
 );
