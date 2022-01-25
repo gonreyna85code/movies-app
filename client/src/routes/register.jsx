@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 import { register } from "../redux/actions";
+import { Link } from "react-router-dom";
 
 export default function RegisterForm() {
   const dispatch = useDispatch();
