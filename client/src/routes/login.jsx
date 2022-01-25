@@ -48,10 +48,8 @@ export default function Loginform() {
           <div>
             <button
               onClick={() => {
-                dispatch(login({ username, password }));                            
-                setTimeout(function () {
-                  window.location.reload();
-                }, 1000);
+                dispatch(login({ username, password }));                   
+                
                // history.push("/");
               }}
             >
