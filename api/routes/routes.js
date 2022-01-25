@@ -8,7 +8,7 @@ const isAuthenticated = function (req, res, next) {
 
 const router = Router();
 
-router.get("/movie/:name", isAuthenticated, async (req, res) => {
+router.get("/movie/:name", async (req, res) => {
   const name = req.params.name;
   const TorrentSearchApi = require("torrent-search-api");
   TorrentSearchApi.enableProvider("1337x");

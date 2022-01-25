@@ -13,7 +13,6 @@ const app = express();
 const routes = require("./routes/routes");
 const auth = require("./routes/auth");
 
-
 app.name = "API";
 
 app.use(cors({ origin: ["https://movieon.vercel.app"], credentials: true }));
@@ -31,7 +30,7 @@ app.set("trust proxy", 1);
 //   headers["Access-Contrl-Allow-Methods"] = "PUT, POST, GET, DELETE, OPTIONS";
 //   headers["Access-Control-Max-Age"] = "86400";
 //   res.writeHead(200, headers);
-  
+
 // });
 
 mongoose.connect(
@@ -44,7 +43,7 @@ mongoose.connect(
 
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 app.use(bodyParser.json({ limit: "50mb" }));
-app.use(cookieParser('secretcode'));
+app.use(cookieParser("secretcode"));
 app.use(morgan("dev"));
 
 app.use(
@@ -53,17 +52,13 @@ app.use(
     resave: false,
     saveUninitialized: true,
     store: MongoStore.create({ mongoUrl: process.env.MONGO }),
-   cookie: {     
-       
-      sameSite: 'none',
-       secure: true,
-        maxAge: 1000 * 60 * 60 * 24 * 7,
-        httpOnly: true,
-        domain: 'https://movieon-back.herokuapp.com',
-
-
-      
-     }, 
+    cookie: {
+      sameSite: "none",
+      secure: true,
+      maxAge: 1000 * 60 * 60 * 24 * 7,
+      httpOnly: true,
+      domain: "https://movieon-back.herokuapp.com",
+    },
   })
 );
 
