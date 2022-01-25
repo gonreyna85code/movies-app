@@ -35,8 +35,7 @@ app.get("/", (req, res, next) => {
 
 
 mongoose.connect(
-  process.env.MONGO,
-  { useNewUrlParser: true, useUnifiedTopology: true },
+  process.env.MONGO,  
   () => {
     console.log("Mongoose Is Connected");
   }
