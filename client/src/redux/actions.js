@@ -1,5 +1,5 @@
 import axios from "axios";
-const API = "k_5p0p373c";
+const API = "d5e36f6a7c8e47ef01dce85748500322";
 export const GET_MOVIES = "GET_MOVIES";
 export const GET_MOVIE = "GET_MOVIE";
 export const GET_SEARCH = 'GET_SEARCH';
@@ -13,7 +13,7 @@ export function getMovies() {
   return async function (dispatch) {
     try {
       const json = await axios.get(
-        `https://imdb-api.com/en/API/Top250Movies/${API}`
+        `https://api.themoviedb.org/3/trending/movie/week?api_key=${API}`
       );
       return dispatch({ type: "GET_MOVIES", payload: json.data.items });
     } catch (error) {
@@ -25,7 +25,7 @@ export function getMovie(id) {
   return async function (dispatch) {
     try {
       let json = await axios.get(
-        `https://imdb-api.com/en/API/Title/${API}/${id}`
+        `https://api.themoviedb.org/3/movie/${id}?api_key=${API}`
       );
       let json2 = await axios.get(`https://movieon-back.herokuapp.com/movie/${json.data.title}`);
 
@@ -40,7 +40,7 @@ export function getSearch(name) {
   return async function (dispatch) {
     try {
       const json = await axios.get(
-        `https://imdb-api.com/en/API/SearchMovie/${API}/${name}`
+        `https://api.themoviedb.org/3/search/movie?api_key=${API}&language=en-US&query=${name}&page=1&include_adult=false`
       );
       return dispatch({ type: "GET_SEARCH", payload: json.data.results});
     } catch (error) {
