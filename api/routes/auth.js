@@ -13,10 +13,10 @@ router.get(
 router.get(
   "/auth/google/callback",
   passport.authenticate("google", {
-    failureRedirect: "https://eventy-main.vercel.app/login",
+    failureRedirect: "https://movieon-back.herokuapp.com/login",
   }),
   function (req, res) {
-    res.redirect("https://eventy-main.vercel.app");
+    res.redirect("https://movieon-back.herokuapp.com");
   }
 );
 router.post("/login", (req, res, next) => {
