@@ -20,7 +20,8 @@ router.get(
 router.post("/login", (req, res, next) => {
   passport.authenticate("login", (err, user, info) => {
     if (err) throw err;
-    if (!user) res.send("No User Exists");
+    if (!user) {res.send("No User Exists");
+    console.log('No existe');}
     else {
       req.logIn(user, { session: true }, (err) => {
         if (err) throw err;
