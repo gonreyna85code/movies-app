@@ -14,12 +14,12 @@ const auth = require("./routes/auth");
 
 app.name = "API";
 
-app.use(cors({ origin: ["https://movieon.vercel.app"], credentials: true }));
+app.use(cors({ origin: ["http://localhost:3000", "https://eventy-main.vercel.app"], credentials: true }));
 
 app.set("trust proxy", 1);
 
 app.get("/", (req, res, next) => {
-  headers["Access-Control-Allow-Origin"] = ["https://movieon.vercel.app"];
+  headers["Access-Control-Allow-Origin"] = ["http://localhost:3000", "https://eventy-main.vercel.app"];
   headers["Access-Control-Allow-Headers"] =
     "Content-Type, Content-Length, Authorization, Accept, X-Requested-With";
   headers["Access-Contrl-Allow-Methods"] = "PUT, POST, GET, DELETE, OPTIONS";
@@ -55,10 +55,7 @@ app.use(
     cookie: {
       sameSite: "none",
       secure: true,
-      maxAge: 1000 * 60 * 60 * 24 * 7,
-      httpOnly: true,
-      sameParty: true,
-      domain: "https://movieon-back.herokuapp.com",
+      maxAge: 1000 * 60 * 60 * 24 * 7,     
     },
   })
 );
