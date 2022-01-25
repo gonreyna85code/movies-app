@@ -1,7 +1,7 @@
 const Router = require("express");
 
 const isAuthenticated = function (req, res, next) {
-  console.log(req.user);
+  console.log(req);
   if (req.isAuthenticated()) return next();
   res.send("No Disponible");
 };
