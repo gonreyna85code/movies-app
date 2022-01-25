@@ -3,6 +3,8 @@ import { getMovies } from "../redux/actions.js";
 import { useDispatch } from "react-redux";
 import Paginado from "../components/paginado.jsx";
 import Navbar from "../components/navbar.jsx";
+import { Link } from "react-router-dom";
+
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -12,6 +14,9 @@ export default function Home() {
 
   return (
     <div>
+      <Link to="/">
+        <button>login</button>
+      </Link>      
       <Navbar/>
       <Paginado/> 
     </div>
