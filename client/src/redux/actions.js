@@ -53,8 +53,6 @@ export function register(register) {
         data: {
           username: register.username,
           password: register.password,
-          publicKey: register.publicKey, //esto es el accesToken
-          accesKey: register.accesKey,   //esto es el publicKey
           profile: register.profile,
         },
         withCredentials: true,  
@@ -66,13 +64,19 @@ export function register(register) {
     }
   };
 }
-export function login(user) {
+export function login(login) {
   return async function (dispatch) {
     try {
-      const json = await axios.post(
-        `https://movieon-back.herokuapp.com/login/${user}`
-      );
-      return dispatch({ type: "GET_USER", payload: json.data});
+      const json = await axios({
+        method: "POST",
+        data: {
+          username: login.username,
+          password: login.password,          
+        },
+        withCredentials: true,
+        url:  'https://movieon-back.herokuapp.com/login',
+      });         
+      return dispatch({ type: "LOGIN", payload: json.data });
     } catch (error) {
       console.log(error);
     }
