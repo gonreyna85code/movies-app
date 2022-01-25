@@ -44,28 +44,24 @@ mongoose.set("useCreateIndex", true);
 
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 app.use(bodyParser.json({ limit: "50mb" }));
-
+app.use(cookieParser());
 app.use(morgan("dev"));
 
-// app.use(
-//   session({
-//     secret: "secretcode",
-//     resave: true,
-//     proxy: true,
-//     saveUninitialized: true,
-//     store: MongoStore.create({ mongoUrl: process.env.MONGO }),
-//     cookie: {
-//       sameSite: "none",
-//       secure: true,
-//       maxAge: 1000 * 60 * 60 * 24 * 7,     
-//     },
-//   })
-// );
+app.use(
+  session({
+    secret: "secretcode",
+    resave: true,
+    proxy: true,
+    saveUninitialized: true,
+    store: MongoStore.create({ mongoUrl: process.env.MONGO }),
+    cookie: {
+      sameSite: "none",
+      secure: true,
+      maxAge: 1000 * 60 * 60 * 24 * 7,     
+    },
+  })
+);
 
-app.use(cookieSession({
-  name: 'session',
-  keys: ['key1', 'key2']
-}))
 
 require("./passportConfig")(passport);
 app.use(passport.initialize());
