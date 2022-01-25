@@ -5,6 +5,9 @@ export const GET_MOVIE = "GET_MOVIE";
 export const GET_SEARCH = 'GET_SEARCH';
 export const GET_REGISTER = 'GET_REGISTER';
 
+axios.defaults.withCrendentails = true;
+axios.defaults.Credentials = "includes";
+
 
 export function getMovies() {
   return async function (dispatch) {
