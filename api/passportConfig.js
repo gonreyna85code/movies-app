@@ -23,12 +23,11 @@ module.exports = function (passport) {
 
   
 
-  passport.serializeUser(User.serializeUser());
-
-passport.deserializeUser(User.deserializeUser());
- app.use((req, res, next) => {
-  res.locals.login = req.isAuthenticated();
-  res.locals.thisUser = req.user;
-  next();
-});
+  passport.serializeUser(function(user, done) {
+    done(null, user._id);
+ });
+ 
+ passport.deserializeUser(function(user, done) {
+    done(null, user._id);
+ });
 }
