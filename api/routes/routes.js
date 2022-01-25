@@ -3,6 +3,7 @@ const Router = require("express");
 const isAuthenticated = function (req, res, next) {
   if (req.isAuthenticated()) return next();
   res.send("No Disponible");
+  console.log('no logueado')
 };
 
 const router = Router();
@@ -16,6 +17,7 @@ router.get("/movie/:name", isAuthenticated, async (req, res) => {
     const magnet = await TorrentSearchApi.getMagnet(data[i]);
     data[i].magnet = magnet;
   }
+  console.log(data)
   res.send(data);
 });
 
