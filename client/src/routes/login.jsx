@@ -46,8 +46,7 @@ export default function Loginform() {
             <button
               onClick={() => {
                 dispatch(login({ username, password }));
-
-                // history.push("/");
+                history.push("/");
               }}
             >
               {" "}
