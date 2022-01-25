@@ -18,7 +18,7 @@ app.name = "API";
 
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://movieon.vercel.app"],
+    origin: ["https://movieon.vercel.app"],
     credentials: true,
   })
 );
@@ -26,10 +26,7 @@ app.use(
 app.set("trust proxy", 1);
 
 app.get("/", (req, res, next) => {
-  headers["Access-Control-Allow-Origin"] = [
-    "http://localhost:3000",
-    "https://movieon.vercel.app",
-  ];
+  headers["Access-Control-Allow-Origin"] = "https://movieon.vercel.app";  
   headers["Access-Control-Allow-Headers"] =
     "Content-Type, Content-Length, Authorization, Accept, X-Requested-With";
   headers["Access-Contrl-Allow-Methods"] = "PUT, POST, GET, DELETE, OPTIONS";
