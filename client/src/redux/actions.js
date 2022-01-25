@@ -40,7 +40,7 @@ export function getSearch(name) {
   return async function (dispatch) {
     try {
       const json = await axios.get(
-        `http://www.omdbapi.com/?t=${name}&apikey=${API}`
+        `http://www.omdbapi.com/?s=${name}&apikey=${API}`
         
       );
       return dispatch({ type: "GET_SEARCH", payload: json.data.results});
