@@ -2,7 +2,16 @@ const Router = require("express");
 
 const router = Router();
 
-router.get("/movie/:name", async (req, res) => {
+function checkAuthentication(req,res,next){
+  if(req.isAuthenticated()){
+      //req.isAuthenticated() will return true if user is logged in
+      next();
+  } else{
+      res.redirect("/login");
+  }
+}
+
+router.get("/movie/:name", checkAuthentication, async (req, res) => {
   if (req.session.passport.user !== undefined) {
     const name = req.params.name;
     const TorrentSearchApi = require("torrent-search-api");
