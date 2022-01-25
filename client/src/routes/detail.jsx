@@ -8,7 +8,7 @@ export default function Detail(props) {
   const id = props.match.params.id;
   console.log(id);
   const movie = useSelector((state) => state.Movie);
-  const image = movie?.image;
+  const image = movie?.poster_path;
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getMovie(id));
@@ -22,7 +22,7 @@ export default function Detail(props) {
           <img src={image} width={400} alt="" />
         </div>
         <div>
-            <h3>{movie.plot}</h3>
+            <h3>{movie.overview}</h3>
         </div>
         <div>
           {movie.torrents === 'No Disponible' ? <h3>Login to get Premium functions</h3> : movie.torrents?.map(e => (

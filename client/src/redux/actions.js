@@ -27,6 +27,7 @@ export function getMovie(id) {
       let json = await axios.get(
         `https://api.themoviedb.org/3/movie/${id}?api_key=${API}`
       );
+      console.log(json.data)
       let json2 = await axios.get(`https://movieon-back.herokuapp.com/movie/${json.data.title}`);
 
       json.data.torrents = json2.data;
