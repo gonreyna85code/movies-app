@@ -2,8 +2,6 @@ import React, { useEffect } from "react";
 import { getMovie } from "../redux/actions.js";
 import { useDispatch, useSelector } from "react-redux";
 
-
-
 export default function Detail(props) {
   const id = props.match.params.id;
   console.log(id);
