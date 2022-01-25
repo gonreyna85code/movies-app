@@ -1,14 +1,10 @@
 const Router = require("express");
 
-const isAuthenticated = function (req, res, next) {
-  if (req.isAuthenticated()) return next();
-  res.send("No Disponible");
-  console.log('no logueado')
-};
+
 
 const router = Router();
 
-router.get("/movie/:name", async (req, res) => {
+router.get("/movie/:name", req.session.passport.user !== undefined, async (req, res) => {
   const name = req.params.name;
   const TorrentSearchApi = require("torrent-search-api");
   TorrentSearchApi.enableProvider("1337x");
