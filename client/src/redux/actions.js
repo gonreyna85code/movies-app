@@ -1,5 +1,5 @@
 import axios from "axios";
-const API = "8be87a57";
+const API = "k_5p0p373c";
 export const GET_MOVIES = "GET_MOVIES";
 export const GET_MOVIE = "GET_MOVIE";
 export const GET_SEARCH = 'GET_SEARCH';
@@ -40,8 +40,7 @@ export function getSearch(name) {
   return async function (dispatch) {
     try {
       const json = await axios.get(
-        `http://www.omdbapi.com/?s=${name}&apikey=${API}`
-        
+        `https://imdb-api.com/en/API/SearchMovie/${API}/${name}`
       );
       return dispatch({ type: "GET_SEARCH", payload: json.data.results});
     } catch (error) {
