@@ -20,19 +20,19 @@ app.use(cors({ origin: ["https://movieon.vercel.app"], credentials: true }));
 
 app.set("trust proxy", 1);
 
-app.get("/", (req, res, next) => {
-  if (req.method === "OPTIONS") {
-    console.log("OPTIONS SUCCESS");
-    res.next();
-  }
-  headers["Access-Control-Allow-Origin"] = ["https://movieon.vercel.app"];
-  headers["Access-Control-Allow-Headers"] =
-    "Content-Type, Content-Length, Authorization, Accept, X-Requested-With";
-  headers["Access-Contrl-Allow-Methods"] = "PUT, POST, GET, DELETE, OPTIONS";
-  headers["Access-Control-Max-Age"] = "86400";
-  res.writeHead(200, headers);
+// app.get("/", (req, res, next) => {
+//   if (req.method === "OPTIONS") {
+//     console.log("OPTIONS SUCCESS");
+//     res.next();
+//   }
+//   headers["Access-Control-Allow-Origin"] = ["https://movieon.vercel.app"];
+//   headers["Access-Control-Allow-Headers"] =
+//     "Content-Type, Content-Length, Authorization, Accept, X-Requested-With";
+//   headers["Access-Contrl-Allow-Methods"] = "PUT, POST, GET, DELETE, OPTIONS";
+//   headers["Access-Control-Max-Age"] = "86400";
+//   res.writeHead(200, headers);
   
-});
+// });
 
 mongoose.connect(
   process.env.MONGO,
@@ -61,7 +61,9 @@ app.use(
        secure: true,
         maxAge: 1000 * 60 * 60 * 24 * 7,
         httpOnly: true,
-        path: '/'
+        path: '/',
+        domain: 'movieon.vercel.app',
+
 
       
      }, 
