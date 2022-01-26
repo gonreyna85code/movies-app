@@ -42,7 +42,7 @@ export default function Detail(props) {
               ) : (
                 movie?.torrents?.map((e) => (
                   <li>
-                    {e.title}
+                    {e.title} <br />
                     <a href={e?.magnet}>Magnet Link</a>
                   </li>
                 ))
