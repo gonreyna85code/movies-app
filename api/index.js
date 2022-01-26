@@ -3,7 +3,6 @@ const cors = require("cors");
 const passport = require("passport");
 const passportLocal = require("passport-local").Strategy;
 require("dotenv").config();
-cookieSession = require("cookie-session");
 const morgan = require("morgan");
 var session = require("express-session");
 const bodyParser = require("body-parser");
@@ -12,6 +11,7 @@ const mongoose = require("mongoose");
 const app = express();
 const routes = require("./routes/routes");
 const auth = require("./routes/auth");
+const cookieParser = require("cookie-parser");
 
 app.name = "API";
 
@@ -43,6 +43,7 @@ mongoose.connect(process.env.MONGO, () => {
 
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 app.use(bodyParser.json({ limit: "50mb" }));
+app.use(cookieParser("secretcode"));
 app.use(morgan("dev"));
 
 app.use(
