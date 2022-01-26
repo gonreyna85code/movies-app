@@ -49,6 +49,7 @@ app.use(morgan("dev"));
 app.use(
   session({
     resave: false,
+    saveUninitialized: true,
     secret: "secretcode",    
     store: MongoStore.create({ mongoUrl: process.env.MONGO }),    
   })
