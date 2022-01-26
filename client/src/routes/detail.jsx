@@ -48,12 +48,12 @@ export default function Detail(props) {
                 ))
               )}
             </div>
+            <Link to="/">
+              <button className="det-but">RETURN HOME</button>
+            </Link>
           </div>
         </div>
       </div>
-      <Link to="/">
-        <button>Volver al Home</button>
-      </Link>
     </div>
   );
 }
