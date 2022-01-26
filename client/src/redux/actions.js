@@ -100,6 +100,7 @@ export function getUser() {
       const json = await axios({
         method: "GET",
         withCredentials: true,
+        Credentials: "includes",
         url:  "https://movion-back.herokuapp.com/user",
       });
       console.log(json.data)
