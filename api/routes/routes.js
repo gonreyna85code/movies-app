@@ -25,7 +25,7 @@ router.get("/movie/:name", isAuthenticated, async (req, res) => {
     res.send(data);
   } catch (error) {
     console.log(error);
-    res.send("No Disponible");
+    res.send("Not Found");
   }
 });
 
