@@ -16,6 +16,7 @@ export default function Home() {
 
   const handleLogout = () => {
     dispatch(logout());
+    window.location.reload();
   };
 
   return (
