@@ -14,93 +14,96 @@ export default function RegisterForm() {
   const [email, setEmail] = useState("");
 
   return (
-    <div>
-      <Link to="/">
-        <button>Volver al Home</button>
-      </Link>
-      <h1>Crear nuevo Usuario</h1>
-      <form>
-        <div>
-          nombre
-          <input
-            label="Nombre:"
-            type="text"
-            onChange={(e) => {
-              setNombre(e.target.value);
-            }}
-          />
-        </div>
-        <div>
-          apellido
-          <input
-            label="Apellido:"
-            type="text"
-            onChange={(e) => {
-              setApellido(e.target.value);
-            }}
-          />
-        </div>
-        <div>
-          usuario
-          <input
-            label="Usuario:"
-            type="text"
-            name="user"
-            onChange={(e) => {
-              setUsuario(e.target.value);
-            }}
-          />
-        </div>
-        <div>
-          contraseña
-          <input
-            label="Contraseña:"
-            type="password"
-            onChange={(e) => {
-              setContraseña(e.target.value);
-            }}
-          />
-        </div>
-        <div></div>
-        <div>
-          email
-          <input
-            label="Email:"
-            type="text"
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-          />
-        </div>
-
-        <div>
-          {name !== "" &&
-          surname !== "" &&
-          username !== "" &&
-          password !== "" &&
-          email !== "" ? (
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                let reg = {
-                  username,
-                  password,
-                  profile: {
-                    name,
-                    surname,
-                    email,
-                  },
-                };
-                dispatch(register(reg));
-                history.push('/login')
-                console.log(register);
+    <div className="register">
+      <div className="form2">
+        <h1>CREATE NEW USER!</h1>
+        <form>
+          <div>
+            NAME:{" "}
+            <input
+              label="Nombre:"
+              type="text"
+              onChange={(e) => {
+                setNombre(e.target.value);
               }}
-            >
-              Crear Usuario
-            </button>
-          ) : null}
-        </div>
-      </form>
+            />
+          </div>
+          <div>
+            LAST NAME:{" "}
+            <input
+              label="Apellido:"
+              type="text"
+              onChange={(e) => {
+                setApellido(e.target.value);
+              }}
+            />
+          </div>
+          <div>
+            USER:{" "}
+            <input
+              label="Usuario:"
+              type="text"
+              name="user"
+              onChange={(e) => {
+                setUsuario(e.target.value);
+              }}
+            />
+          </div>
+          <div>
+            PASSWORD:{" "}
+            <input
+              label="Contraseña:"
+              type="password"
+              onChange={(e) => {
+                setContraseña(e.target.value);
+              }}
+            />
+          </div>
+          <div></div>
+          <div>
+            EMAIL:{" "}
+            <input
+              label="Email:"
+              type="text"
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+            />
+          </div>
+
+          <div className="mag-but">
+            {name !== "" &&
+            surname !== "" &&
+            username !== "" &&
+            password !== "" &&
+            email !== "" ? (
+              <button
+                className="login-button"
+                onClick={(e) => {
+                  e.preventDefault();
+                  let reg = {
+                    username,
+                    password,
+                    profile: {
+                      name,
+                      surname,
+                      email,
+                    },
+                  };
+                  dispatch(register(reg));
+                  history.push("/login");
+                  console.log(register);
+                }}
+              >
+                CREATE USER
+              </button>
+            ) : null}
+          </div>
+        </form>
+        <Link to="/">
+          <button className="login-button2">RETURN HOME</button>
+        </Link>
+      </div>
     </div>
   );
 }

@@ -4,6 +4,7 @@ export const GET_MOVIES = "GET_MOVIES";
 export const GET_MOVIE = "GET_MOVIE";
 export const GET_SEARCH = 'GET_SEARCH';
 export const GET_REGISTER = 'GET_REGISTER';
+export const GET_USER = 'GET_USER';
 
 axios.defaults.withCrendentails = true;
 axios.defaults.Credentials = "includes";
@@ -87,6 +88,22 @@ export function login(login) {
       });     
       console.log(json.data);    
       return dispatch({ type: "LOGIN", payload: json.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function getUser() {
+  return async function (dispatch) {
+    try {
+      const json = await axios({
+        method: "GET",
+        withCredentials: true,
+        url:  "https://movion-back.herokuapp.com/user",
+      });
+      console.log(json.data)
+      return dispatch({ type: "GET_USER", payload: json.data });
     } catch (error) {
       console.log(error);
     }

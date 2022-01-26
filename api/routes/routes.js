@@ -12,6 +12,14 @@ const isAuthenticated = function (req, res, next) {
 
 const router = Router();
 
+router.get("/user", (req, res) => {
+  if(req.user){
+    res.send(req.user);
+  }else{
+    res.send("No Disponible");
+  }
+});
+
 router.get("/movie/:name", isAuthenticated, async (req, res) => {
   const name = req.params.name;
   TorrentSearchApi.enableProvider('1337x');

@@ -31,9 +31,16 @@ export default function Paginado() {
   }, [movies]);
   console.log(movies)
 
-  const list = movies.slice(currentPage, currentPage + 8);
+  const list = movies.slice(currentPage, currentPage + 10);
   return (
-    <div>          
+    <div>   
+      <div className="cards">
+        {list.length === 0 ? (<div><h4>Oops!, no results</h4></div>) : list.map((e) => (
+          <Link key={e.id} to={`movie/${e.id}`} style={{ textDecoration: 'none' }}>
+            <Card Titulo={e.title} Imagen={'https://image.tmdb.org/t/p/w500' + e?.poster_path}/>
+          </Link>
+        ))}  
+      </div>       
       <div className='pager_container'> 
       <button className="pager" onClick={first_Page}>
         First Page
@@ -50,14 +57,7 @@ export default function Paginado() {
       <button className="pager" onClick={last_Page}>
         Last Page
       </button>
-      </div> 
-      <div className="cards">
-        {list.length === 0 ? (<div><h4>Oops!, no results</h4></div>) : list.map((e) => (
-          <Link key={e.id} to={`movie/${e.id}`} style={{ textDecoration: 'none' }}>
-            <Card Titulo={e.title} Imagen={'https://image.tmdb.org/t/p/w500' + e?.poster_path}/>
-          </Link>
-        ))}  
-      </div>
+      </div>       
     </div> 
   );
 }

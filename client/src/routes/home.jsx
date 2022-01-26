@@ -1,14 +1,16 @@
 import React, { useEffect } from "react";
-import { getMovies, logout } from "../redux/actions.js";
-import { useDispatch } from "react-redux";
+import { getMovies, logout, getUser } from "../redux/actions.js";
+import { useDispatch, useSelector } from "react-redux";
 import Paginado from "../components/paginado.jsx";
 import Navbar from "../components/navbar.jsx";
 import { Link } from "react-router-dom";
-
+import "../styles/home.css";
 
 export default function Home() {
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.User);
   useEffect(() => {
+    dispatch(getUser());
     dispatch(getMovies());
   }, [dispatch]);
 
@@ -17,13 +19,16 @@ export default function Home() {
   };
 
   return (
-    <div>
-      <Link to="/login">
-        <button>login</button>
-      </Link>        
-        <button onClick={handleLogout}>logout</button>         
-      <Navbar/>
-      <Paginado/> 
+    <div className="home">
+      <div>
+      <div className="user">
+        {!user ? <Link to="/login">
+          <button className="loger">LOGIN</button>
+        </Link> : <button className="loger" onClick={handleLogout}>LOGOUT</button>}        
+      </div>
+      <Navbar />
+      </div>
+      <Paginado />
     </div>
   );
 }

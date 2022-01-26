@@ -1,0 +1,117 @@
+.login {
+  background-image: url("./home-background.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  scroll-behavior: hidden;
+  height: 115vh;
+  padding-top: 50px;
+  padding-bottom: 35px;
+}
+
+.register {
+  background-image: url("./home-background.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  scroll-behavior: hidden;
+  height: 115vh;
+  padding-top: 20px;
+  padding-bottom: 35px;
+}
+
+.form{
+
+    text-align: center;
+    color: #f3ecec;
+}
+
+.form2{
+
+    text-align: center;
+    color: #f3ecec;
+}
+
+input:-internal-autofill-selected {
+    height: 40px;
+    width: 250px;
+    margin: 5px;
+    color: black !important;
+    background-color: black !important;
+    border-radius: 4px;
+}
+input[type="text" i] {
+    height: 40px;
+    width: 250px;
+    margin: 5px;
+    color: black !important;
+    border-radius: 4px;
+}
+input[type="password" i] {
+    -webkit-text-security: disc !important;
+    height: 40px;
+    width: 250px;
+    margin: 5px;
+    color: black !important;
+    border-radius: 4px;
+}
+.input{
+    margin-top: 60px;
+    margin-left: 42px;
+}
+
+.but-form{
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+.log-reg{
+    margin-bottom: 45px;
+}
+
+.login-button{
+    width: 90px;
+    height: 35px;
+    border-radius: 3px;
+    border: 2px solid;
+}
+
+.login-button2{
+    width: 90px;
+    height: 35px;
+    border-radius: 3px;
+    border: 2px solid;
+    margin-top: 35px;
+}
+
+.return{
+    width: 150px;
+    height: 35px;
+    border-radius: 3px;
+    border: 2px solid;
+}
+
+.input-field{
+    height: 40px;
+    width: 250px;
+    margin: 5px;
+    border-radius: 4px;
+    
+}
+
+.mag-but{
+    margin-top: 20px;
+}
+
+.loger{
+    margin-top: 10px;
+    margin-right: 30px;
+    border-radius: 4px;
+    border: none;
+    background-color: black;
+    color: white;
+    height: 30px;
+    width: 80px;
+}

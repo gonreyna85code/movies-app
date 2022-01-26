@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 import { login } from "../redux/actions";
+import "../styles/auth.css";
 
 export default function Loginform() {
   const dispatch = useDispatch();
@@ -11,52 +12,57 @@ export default function Loginform() {
   const history = useHistory();
 
   return (
-    <div>
+    <div className="login">
       <div>
-        <div>
-          <Link to="/">
-            <button>Volver al Home</button>
+        <div>          
+          <div className="form">
+            <h1>USER & PASSWORD</h1>
+            <form>
+              <div className="input">
+                USER:{'   '}
+                <input
+                className="field"
+                  label="Usuario"
+                  type="text"
+                  required
+                  onChange={(e) => {
+                    setUserName(e.target.value);
+                  }}
+                />
+              </div>
+              <div className="input2">
+                PASSWORD:{'   '}
+                <input
+                className="field"
+                  label="Contraseña"
+                  type="password"
+                  onChange={(e) => {
+                    setPasword(e.target.value);
+                  }}
+                />
+              </div>
+            </form>
+            <div className="but-form">
+              <button
+                className="login-button"
+                onClick={() => {
+                  dispatch(login({ username, password }));
+                  history.push("/");
+                  window.location.reload();
+                }}
+              >
+                {" "}
+                LOGIN{" "}
+              </button>
+            </div>
+            <div className="log-reg">
+              <button className="login-button" onClick={() => history.push("/register")}>
+                REGISTER
+              </button>
+            </div>
+            <Link to="/">
+            <button className="return">RETURN HOME</button>
           </Link>
-          <h1>Por favor, Ingrese su Usuario y Contraseña</h1>
-          <form>
-            <div className="input">
-              usuario
-              <input
-                label="Usuario"
-                type="text"
-                required
-                onChange={(e) => {
-                  setUserName(e.target.value);
-                }}
-              />
-            </div>
-            <div className="input">
-              contraseña
-              <input
-                label="Contraseña"
-                type="password"
-                onChange={(e) => {
-                  setPasword(e.target.value);
-                }}
-              />
-            </div>
-          </form>
-          <div>
-            <button
-              onClick={() => {
-                dispatch(login({ username, password }));
-                history.push("/");
-                window.location.reload();
-              }}
-            >
-              {" "}
-              INGRESAR{" "}
-            </button>
-          </div>          
-          <div>          
-            <button onClick={() => history.push("/register")}>
-              Aún no estoy registrado
-            </button>
           </div>
         </div>
       </div>

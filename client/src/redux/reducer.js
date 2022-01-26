@@ -1,8 +1,9 @@
-import { GET_MOVIES, GET_MOVIE, GET_SEARCH } from "./actions";
+import { GET_MOVIES, GET_MOVIE, GET_SEARCH, GET_USER } from "./actions";
 
 const initialState = {
   Movies: [],
   Movie: {},
+  User: {},
 };
 
 function rootReducer(state = initialState, action) {
@@ -16,6 +17,12 @@ function rootReducer(state = initialState, action) {
     return {
       ...state, 
       Movie: action.payload,
+    };
+  }
+  if (action.type === GET_USER) {
+    return {
+      ...state,
+      User: action.payload,
     };
   }
   if (action.type === GET_SEARCH) {
