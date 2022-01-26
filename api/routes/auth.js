@@ -4,19 +4,7 @@ const User = require("../models/user");
 const bcrypt = require("bcryptjs");
 const router = Router();
 
-router.get(
-  "/auth/google",
-  passport.authenticate("google", { scope: ["email", "profile"] })
-);
-router.get(
-  "/auth/google/callback",
-  passport.authenticate("google", {
-    failureRedirect: "https://movieon-back.herokuapp.com/login",
-  }),
-  function (req, res) {
-    res.redirect("https://movieon-back.herokuapp.com");
-  }
-);
+
 router.post("/login", (req, res, next) => {
   passport.authenticate("login", (err, user, info) => {
     if (err) throw err;
