@@ -12,7 +12,6 @@ const mongoose = require("mongoose");
 const app = express();
 const routes = require("./routes/routes");
 const auth = require("./routes/auth");
-const cookieParser = require("cookie-parser");
 
 app.name = "API";
 
@@ -44,7 +43,6 @@ mongoose.connect(process.env.MONGO, () => {
 
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 app.use(bodyParser.json({ limit: "50mb" }));
-app.use(cookieParser());
 app.use(morgan("dev"));
 
 app.use(
