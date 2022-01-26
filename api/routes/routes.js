@@ -17,7 +17,7 @@ router.get("/movie/:name", isAuthenticated, async (req, res) => {
   TorrentSearchApi.enableProvider('1337x');
   console.log(name);  
   try {
-    const data = await TorrentSearchApi.search(`${name}`, "Movies", 10);
+    const data = await TorrentSearchApi.search(`${name}`, "Movies", 5);
     for (let i = 0; i < data.length; i++) {
       const magnet = await TorrentSearchApi.getMagnet(data[i]);
       data[i].magnet = magnet;
