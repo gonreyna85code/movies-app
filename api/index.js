@@ -25,6 +25,7 @@ app.use(
 app.set("trust proxy", 1);
 
 app.use((req, res, next) => {
+  console.log(req.headers.cookie)
   if(req.method === 'OPTIONS') {
     res.next()
   }
@@ -56,7 +57,7 @@ app.use(
    cookie: {      
       sameSite: 'none',
        secure: true,
-       maxAge: 60 * 60 * 1000 * 24 * 365,
+       maxAge: 1160 * 1160 * 1000 * 24 * 365,
      }, 
   })
 );
