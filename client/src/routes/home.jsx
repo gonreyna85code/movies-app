@@ -12,12 +12,16 @@ export default function Home() {
     dispatch(getMovies());
   }, [dispatch]);
 
+  const handleLogout = () => {
+    dispatch(logout());
+  };
+
   return (
     <div>
       <Link to="/login">
         <button>login</button>
       </Link>        
-        <button onClick={dispatch(logout())}>logout</button>         
+        <button onClick={handleLogout}>logout</button>         
       <Navbar/>
       <Paginado/> 
     </div>
