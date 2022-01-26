@@ -22,7 +22,7 @@ export default function Home() {
     <div className="home">
       <div>
       <div className="user">
-        {!user ? <Link to="/login">
+        { user === 'No Disponible' ? <Link to="/login">
           <button className="loger">LOGIN</button>
         </Link> : <button className="loger" onClick={handleLogout}>LOGOUT</button>}        
       </div>
