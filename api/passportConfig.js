@@ -24,12 +24,12 @@ module.exports = function (passport) {
   
 
   passport.serializeUser(function(user, done) {
-    console.log('SER',user)
-    done(null, user);
- });
- 
- passport.deserializeUser(function(id, done) {
-   console.log('DES',id)
-    done(null, id);
- });
+    done(null, user._id);
+});
+
+passport.deserializeUser(function(id, done) {
+    findById(id, function(err, user) {
+        done(err, user);
+    });
+});
 }
