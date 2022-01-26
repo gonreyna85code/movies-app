@@ -25,7 +25,11 @@ app.use(
 
 app.set("trust proxy", 1);
 
-
+app.use(function(req, res, next) {  
+  res.header('Access-Control-Allow-Origin', req.headers.origin);
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 mongoose.connect(process.env.MONGO, () => {
   console.log("Mongoose Is Connected");
