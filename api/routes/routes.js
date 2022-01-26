@@ -12,7 +12,7 @@ const isAuthenticated = function (req, res, next) {
 
 const router = Router();
 
-router.get("/user", (req, res) => {
+router.get("/user", isAuthenticated, (req, res) => {
   if(req.user){
     res.send(req.user);
   }else{
