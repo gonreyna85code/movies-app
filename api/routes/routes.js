@@ -13,7 +13,7 @@ router.get("/movie/:name", isAuthenticated, async (req, res) => {
   console.log(name);
   const TorrentSearchApi = require("torrent-search-api");
   try {
-    TorrentSearchApi.enableProvider('1337x');
+    TorrentSearchApi.enableProvider('KickassTorrents');
     const data = await TorrentSearchApi.search(`${name}`, "Movies", 5);
     for (let i = 0; i < data.length; i++) {
       const magnet = await TorrentSearchApi.getMagnet(data[i]);
