@@ -51,23 +51,8 @@ export default function Loginform() {
               {" "}
               INGRESAR{" "}
             </button>
-          </div>
-          <div>
-            <form
-              action="https://api-eventy.herokuapp.com/auth/google"
-              method="GET"
-            >
-              <button colorBtn="btn_azul" type="submit">
-                {" "}
-                GOOGLE LOGIN{" "}
-              </button>
-            </form>
-            <br />
-          </div>
-          <div>
-            <Link to="/forgot">
-              <button>Olvidé mi contraseña</button>
-            </Link>
+          </div>          
+          <div>          
             <button onClick={() => history.push("/register")}>
               Aún no estoy registrado
             </button>
