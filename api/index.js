@@ -28,9 +28,9 @@ app.use("/", (req, res, next) => {
   console.log(req.headers);
   headers["Access-Control-Allow-Origin"] = ["https://movieon.vercel.app"];
   headers["Access-Control-Allow-Headers"] =
-    "Content-Type, Content-Length, Authorization, Accept, X-Requested-With";
-  headers["Access-Contrl-Allow-Methods"] = "PUT, POST, GET, DELETE, OPTIONS";
-  headers["Access-Control-Max-Age"] = "86400";
+    ["Content-Type, Content-Length, Authorization, Accept, X-Requested-With"];
+  headers["Access-Contrl-Allow-Methods"] = ["PUT, POST, GET, DELETE, OPTIONS"];
+  headers["Access-Control-Max-Age"] = ["86400"];
   res.writeHead(200, headers);
   if (req.method === "OPTIONS") {
     console.log("OPTIONS SUCCESS");
