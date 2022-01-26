@@ -48,15 +48,8 @@ app.use(morgan("dev"));
 
 app.use(
   session({
-    secret: "secretcode",
-    resave: true,
-    saveUninitialized: true,
-    store: MongoStore.create({ mongoUrl: process.env.MONGO }),
-    cookie: {
-      sameSite: "none",
-      secure: true,
-      maxAge: 1000 * 60 * 60 * 24 * 7,
-    },
+    secret: "secretcode",    
+    store: MongoStore.create({ mongoUrl: process.env.MONGO }),    
   })
 );
 
