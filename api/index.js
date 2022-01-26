@@ -26,7 +26,7 @@ app.set("trust proxy", 1);
 
 app.use("/", (req, res, next) => {
   console.log(req.headers);
-  headers["Access-Control-Allow-Origin"] = "https://movieon.vercel.app";
+  headers["Access-Control-Allow-Origin"] = ["https://movieon.vercel.app"];
   headers["Access-Control-Allow-Headers"] =
     "Content-Type, Content-Length, Authorization, Accept, X-Requested-With";
   headers["Access-Contrl-Allow-Methods"] = "PUT, POST, GET, DELETE, OPTIONS";
