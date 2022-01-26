@@ -28,7 +28,7 @@ export default function Detail(props) {
             <h3>{movie?.overview}</h3>
         </div>
         <div>
-          {movie?.torrents === 'No Disponible' ? <h3>Login to get Premium functions</h3> ? movie?.torrents === 'Not Found' : <h3>Some error ocurred wile searching for torrents, refresh the page to search again!</h3> : movie?.torrents?.map(e => (
+          {movie?.torrents === 'No Disponible' ? <h3>Login to get Premium functions</h3> : movie?.torrents === 'Not Found' ? <h3>Some error ocurred wile searching for torrents, refresh the page to search again!</h3> : movie?.torrents?.map(e => (
             <li>
             {e.title}
             <a href={e?.magnet}>Magnet Link</a>
