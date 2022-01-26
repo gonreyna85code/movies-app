@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { getMovie } from "../redux/actions.js";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -6,18 +6,24 @@ import { Link } from "react-router-dom";
 export default function Detail(props) {
   const id = props.match.params.id;
   console.log(id);
-  const movie = useSelector((state) => state.Movie);
+  const mo = useSelector((state) => state.Movie);
+  
   const image = 'https://image.tmdb.org/t/p/w500'+ movie?.poster_path;
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getMovie(id));
   }, [dispatch, id]);
   console.log(movie)
+
+    const handleHome = () => {
+      setMovie(null);
+    };
+    const [movie, setMovie] = useState(mo);
   return (
     <div>
       <div className="detail">
       <Link to="/">
-            <button >Volver al Home</button>
+            <button onClick={handleHome} >Volver al Home</button>
           </Link>
         <h1>{movie?.title}</h1>
         <div>
