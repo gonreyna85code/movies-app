@@ -25,7 +25,7 @@ app.use(
 app.set('trust proxy', true);
 
 app.use((req, res, next) => {
-  console.log(req.headers.cookie)
+  console.log('COOKIE:',req.headers.cookie)
   if(req.method === 'OPTIONS') {
     res.next()
   }
