@@ -1,0 +1,72 @@
+.detail{
+    background-image: url("./home-background.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  scroll-behavior: hidden;
+  height: 115vh;  
+  background-color: black;
+  padding-top: 10px;
+}
+
+.movie-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    align-items: flex-start;
+    justify-content: space-evenly;
+}
+
+.movie-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    width: 50%;
+    height: 40%;
+    background-color: black;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px black;
+    margin-top: 20px;
+}
+.img{
+    margin-top: 35px;
+    
+}
+
+.imagen{
+    border-radius: 20px;
+    margin-left: 70px;
+}
+
+.title{
+    margin: 0px;
+}
+
+.right{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    
+}
+
+.torrents{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    width: 50%;
+    height: 40%;
+    background-color: black;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px black;
+    margin-top: 20px;
+}

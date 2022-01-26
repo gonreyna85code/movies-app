@@ -8,6 +8,7 @@
   height: 115vh;
   padding-top: 50px;
   padding-bottom: 35px;
+  background-color: black;
 }
 
 .register {
@@ -20,6 +21,7 @@
   height: 115vh;
   padding-top: 20px;
   padding-bottom: 35px;
+  background-color: black;
 }
 
 .form{

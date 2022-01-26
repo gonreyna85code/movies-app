@@ -28,13 +28,13 @@ export function getMovie(id) {
         `https://api.themoviedb.org/3/movie/${id}?api_key=${API}`
       );
       console.log(json.data)
-      let json2 = await axios({
-        method: "GET",        
-        withCredentials: true,  
-        Credentials: "includes",
-        url: `https://movion-back.herokuapp.com/movie/${json.data.title}`,
-      });
-      json.data.torrents = json2?.data;
+      // let json2 = await axios({
+      //   method: "GET",        
+      //   withCredentials: true,  
+      //   Credentials: "includes",
+      //   url: `https://movion-back.herokuapp.com/movie/${json.data.title}`,
+      // });
+      // json.data.torrents = json2?.data;
       return dispatch({ type: "GET_MOVIE", payload: json.data });
     } catch (error) {
       console.log(error);
