@@ -27,7 +27,7 @@ export function getMovie(id) {
         `https://api.themoviedb.org/3/movie/${id}?api_key=${API}`
       );
       console.log(json.data)
-      let json2 = await axios.get(`https://movieon-back.herokuapp.com/movie/${json.data.title}`);
+      let json2 = await axios.get(`https://movion-back.herokuapp.com/movie/${json.data.title}`);
 
       json.data.torrents = json2?.data;
       return dispatch({ type: "GET_MOVIE", payload: json.data });
@@ -59,7 +59,7 @@ export function register(register) {
           profile: register.profile,
         },
         withCredentials: true,  
-        url: "https://movieon-back.herokuapp.com/register",
+        url: "https://movion-back.herokuapp.com/register",
       });
       return dispatch({ type: "REGISTER", payload: json.data });
     } catch (error) {
@@ -77,7 +77,7 @@ export function login(login) {
           password: login.password,          
         },
         withCredentials: true,
-        url:  "https://movieon-back.herokuapp.com/login",
+        url:  "https://movion-back.herokuapp.com/login",
       });     
       console.log(json.data);    
       return dispatch({ type: "LOGIN", payload: json.data });
