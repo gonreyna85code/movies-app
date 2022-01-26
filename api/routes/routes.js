@@ -18,10 +18,12 @@ router.get("/movie/:name", async (req, res) => {
     const magnet = await TorrentSearchApi.getMagnet(data[i]);
     data[i].magnet = magnet;
   }
+  res.send(data);
 } catch (error) {
   console.log(error);
-}
-  res.send(data);
+  res.send('No Disponible');
+} 
+  
 });
 
 
