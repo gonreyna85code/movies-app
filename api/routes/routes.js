@@ -1,7 +1,7 @@
 const Router = require("express");
 const TorrentSearchApi = require("torrent-search-api");
 
-TorrentSearchApi.enableProvider('KickassTorrents');
+
 
 
 const isAuthenticated = function (req, res, next) {
@@ -14,6 +14,7 @@ const router = Router();
 
 router.get("/movie/:name", isAuthenticated, async (req, res) => {
   const name = req.params.name;
+  TorrentSearchApi.enableProvider('KickassTorrents');
   console.log(name);  
   try {
     const data = await TorrentSearchApi.search(`${name}`, "Movies", 5);
