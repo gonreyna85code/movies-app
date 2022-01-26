@@ -25,12 +25,13 @@ module.exports = function (passport) {
 
   passport.serializeUser(function(user, done) {
     console.log(user._id);
-    done(null, user._id.toString());    
+    done(null, user._id);    
 });
 
 passport.deserializeUser(function(id, done) {
-  console.log(id);
+  
     User.findById(id, function(err, user) {
+      console.log(user._id);
         done(null, user);
     });
 });
