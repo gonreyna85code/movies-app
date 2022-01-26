@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { getMovies } from "../redux/actions.js";
+import { getMovies, logout } from "../redux/actions.js";
 import { useDispatch } from "react-redux";
 import Paginado from "../components/paginado.jsx";
 import Navbar from "../components/navbar.jsx";
@@ -16,7 +16,8 @@ export default function Home() {
     <div>
       <Link to="/login">
         <button>login</button>
-      </Link>      
+      </Link>        
+        <button onClick={dispatch(logout())}>logout</button>         
       <Navbar/>
       <Paginado/> 
     </div>

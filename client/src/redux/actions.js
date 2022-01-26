@@ -93,3 +93,19 @@ export function login(login) {
   };
 }
 
+export function logout() {
+  return async function (dispatch) {
+    try {
+      const json = await axios({
+        method: "GET",
+        withCredentials: true,
+        url:  "https://movion-back.herokuapp.com/logout",
+      });
+      console.log('Usuario no logueado')
+      return dispatch({ type: "LOGOUT", payload: json.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+

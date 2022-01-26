@@ -32,6 +32,11 @@ router.post("/login", (req, res, next) => {
   })(req, res, next);
 });
 
+router.get("/logout", function (req, res) {
+  req.logOut(); // <-- not req.logout();
+  res.send("Usuario no logueado");
+});
+
 router.post("/register", (req, res) => {
   User.findOne({ username: req.body.username }, async (err, doc) => {
     if (err) throw err;
