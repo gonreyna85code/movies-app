@@ -16,7 +16,9 @@ export default function Detail(props) {
   }, [dispatch, id]);
   
 
-  while (id === movie?.id) {
+  while (id !== movie?.id) {
+    return <div>Loading...</div>;
+  }  
     return (
       <div>
         <div className="detail">
@@ -58,5 +60,9 @@ export default function Detail(props) {
         </div>
       </div>
     );
-  } return <h1>Loading...</h1>; 
-}
+  }  
+  
+
+
+
+
