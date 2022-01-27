@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { getMovie } from "../redux/actions.js";
+import { getMovie, getTorrents } from "../redux/actions.js";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "../styles/detail.css";
@@ -14,6 +14,7 @@ export default function Detail(props) {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getMovie(id));
+    dispatch(getTorrents(movie?.title));
   }, [dispatch, id]);
   
 
