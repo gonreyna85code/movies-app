@@ -15,50 +15,47 @@ export default function Detail(props) {
   }, [dispatch, id]);
   console.log(movie);
 
-  while(id === movie?.id) return (   
-    <div>
-      <div className="detail">
-        <div className="movie-container">
-          <div className="img">
-            <img className="imagen" src={image} width={400} alt="" />
-          </div>
-          <div className="right">
-            <div className="movie-info">
-              <h2 className="title">{movie?.title}</h2>
-              <div>
-                <h3>{movie?.overview}</h3>
+  while (id === movie?.id) {
+    return (
+      <div>
+        <div className="detail">
+          <div className="movie-container">
+            <div className="img">
+              <img className="imagen" src={image} width={400} alt="" />
+            </div>
+            <div className="right">
+              <div className="movie-info">
+                <h2 className="title">{movie?.title}</h2>
+                <div>
+                  <h3>{movie?.overview}</h3>
+                </div>
               </div>
+              <div className="torrents">
+                {!movie.torrents ? (
+                  <h3>No Conection</h3>
+                ) : movie?.torrents === "No Disponible" ? (
+                  <h3>Login to get Premium functions</h3>
+                ) : movie?.torrents === "Not Found" ? (
+                  <h3>
+                    Some error ocurred wile searching for torrents, refresh the
+                    page to search again!
+                  </h3>
+                ) : (
+                  movie?.torrents?.map((e) => (
+                    <li>
+                      {e.title} <br />
+                      <a href={e?.magnet}>Magnet Link</a>
+                    </li>
+                  ))
+                )}
+              </div>
+              <Link to="/">
+                <button className="det-but">RETURN HOME</button>
+              </Link>
             </div>
-            <div className="torrents">
-              {!movie.torrents ? (
-                <h3>No Conection</h3>
-              ) : movie?.torrents === "No Disponible" ? (
-                <h3>Login to get Premium functions</h3>
-              ) : movie?.torrents === "Not Found" ? (
-                <h3>
-                  Some error ocurred wile searching for torrents, refresh the
-                  page to search again!
-                </h3>
-              ) : (
-                movie?.torrents?.map((e) => (
-                  <li>
-                    {e.title} <br />
-                    <a href={e?.magnet}>Magnet Link</a>
-                  </li>
-                ))
-              )}
-            </div>
-            <Link to="/">
-              <button className="det-but">RETURN HOME</button>
-            </Link>
           </div>
         </div>
       </div>
-    </div>
-
-  );
+    );
+  } return <h1>Loading...</h1>; 
 }
-
-
-
-  
