@@ -14,7 +14,7 @@ export default function Detail(props) {
   useEffect(() => {
     dispatch(getMovie(id));
   }, [dispatch, id]);
-  console.log(movie);
+  
 
   while (id === movie?.id) {
     return (
