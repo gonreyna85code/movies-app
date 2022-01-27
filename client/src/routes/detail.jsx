@@ -15,7 +15,7 @@ export default function Detail(props) {
   }, [dispatch, id]);
   console.log(movie);
 
-  return ( id === movie?.id ? (
+  while(id === movie?.id) return (   
     <div>
       <div className="detail">
         <div className="movie-container">
@@ -55,9 +55,10 @@ export default function Detail(props) {
         </div>
       </div>
     </div>
-  ) : (
-    <div>
-      <h1>Loading...</h1>
-    </div>
-  ));
+
+  );
 }
+
+
+
+  
