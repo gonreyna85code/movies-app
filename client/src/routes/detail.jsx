@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import WebTorrent from "webtorrent";
 import {
   getMovie,
   getTorrents,
@@ -37,6 +38,40 @@ export default function Detail(props) {
   while (Number(id) !== Number(movie?.id)) {
     return <div className="loading">Loading...</div>;
   }
+
+
+
+
+console.log(torrents)
+
+  var client = new WebTorrent()
+
+  var torrentId = 'magnet:?xt=urn:btih:D07E3D87D87EB0A3AF8458A745EFECD4DA333FC1&dn=Dune.2021.1080p.WEBRip.x264&tr=http%3A%2F%2Ftracker.trackerfix.com%3A80%2Fannounce&tr=udp%3A%2F%2F9.rarbg.me%3A2940%2Fannounce&tr=udp%3A%2F%2F9.rarbg.to%3A2770%2Fannounce&tr=udp%3A%2F%2Ftracker.thinelephant.org%3A12730%2Fannounce&tr=udp%3A%2F%2Ftracker.slowcheetah.org%3A14750%2Fannounce&tr=udp%3A%2F%2Ftracker.zer0day.to%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fcoppersurfer.tk%3A6969%2Fannounce'
+  
+  client.add(torrentId, function (torrent) {
+    console.log(torrent.files)// Torrents can contain many files. Let's use the .mp4 file
+    var file = torrent.files.find(function (file) {
+      return file.name.endsWith('.mp4', '.mkv')
+      
+    })
+  
+    // Display the file by adding it to the DOM. Supports video, audio, image, etc. files
+    file.appendTo('body')
+  
+  })
+
+
+
+
+
+
+
+
+
+
+
+
+
   return (
     <div>
       <div className="detail">
