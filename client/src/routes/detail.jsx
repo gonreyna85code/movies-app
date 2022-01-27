@@ -21,6 +21,11 @@ export default function Detail(props) {
     dispatch(getTorrents(movie?.title));
   };
 
+  const handleLogout = () => {
+    dispatch(logout());
+    window.location.reload();
+  };
+  
   while (Number(id) !== Number(movie?.id)) {
     return <div className="loading">Loading...</div>;
   }
