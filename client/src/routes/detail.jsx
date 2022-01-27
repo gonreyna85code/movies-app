@@ -22,7 +22,7 @@ export default function Detail(props) {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getMovie(id));
-    dispatch(delTorrent());
+    //dispatch(delTorrent());
     dispatch(getUser());
   }, [dispatch, id]);
 
@@ -46,7 +46,7 @@ console.log(torrents)
 
   var client = new WebTorrent()
 
-  var torrentId = torrents[1]
+  var torrentId = torrents
   
   client.add(torrentId, function (torrent) {
     console.log(torrent.files)// Torrents can contain many files. Let's use the .mp4 file
