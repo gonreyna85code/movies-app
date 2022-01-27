@@ -5,6 +5,7 @@ export const GET_MOVIE = "GET_MOVIE";
 export const GET_SEARCH = 'GET_SEARCH';
 export const GET_REGISTER = 'GET_REGISTER';
 export const GET_USER = 'GET_USER';
+export const GET_TORRENTS = 'GET_TORRENTS';
 
 axios.defaults.withCrendentails = true;
 axios.defaults.Credentials = "includes";
@@ -27,16 +28,24 @@ export function getMovie(id) {
       let json = await axios.get(
         `https://api.themoviedb.org/3/movie/${id}?api_key=${API}`
       );
-      console.log(json.data)
-      let json2 = await axios({
+      console.log(json.data)     
+      return dispatch({ type: "GET_MOVIE", payload: json.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+export function getTorrents(title) {
+  return async function (dispatch) {
+    try {      
+      let json = await axios({
         method: "GET",        
         withCredentials: true,  
         Credentials: "includes",
         url: `https://movion-back.herokuapp.com/movie/${json.data.title}`,
       });
-      console.log(json2.data)
-      json.data.torrents = json2?.data;
-      return dispatch({ type: "GET_MOVIE", payload: json.data });
+      console.log(json.data)      
+      return dispatch({ type: "GET_TORRENTS", payload: json.data });
     } catch (error) {
       console.log(error);
     }

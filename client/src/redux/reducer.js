@@ -4,6 +4,7 @@ const initialState = {
   Movies: [],
   Movie: {},
   User: {},
+  Torrents: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -17,6 +18,12 @@ function rootReducer(state = initialState, action) {
     return {
       ...state, 
       Movie: action.payload,
+    };
+  }
+  if (action.type === GET_TORRENTS) {
+    return {
+      ...state,
+      Torrents: action.payload,
     };
   }
   if (action.type === GET_USER) {

@@ -8,6 +8,7 @@ export default function Detail(props) {
   const id = props.match.params.id;
   console.log(Number(id));
   const movie = useSelector((state) => state.Movie);
+  const torrents = useSelector((state) => state.Torrents);
   console.log(Number(movie?.id))
   const image = "https://image.tmdb.org/t/p/w500" + movie?.poster_path;
   const dispatch = useDispatch();
@@ -34,17 +35,15 @@ export default function Detail(props) {
                 </div>
               </div>
               <div className="torrents">
-                {!movie.torrents ? (
-                  <h3>No Conection</h3>
-                ) : movie?.torrents === "No Disponible" ? (
+                {torrents === "No Disponible" ? (
                   <h3>Login to get Premium functions</h3>
-                ) : movie?.torrents === "Not Found" ? (
+                ) : torrents === "Not Found" ? (
                   <h3>
                     Some error ocurred wile searching for torrents, refresh the
                     page to search again!
                   </h3>
                 ) : (
-                  movie?.torrents?.map((e) => (
+                  torrents?.map((e) => (
                     <li>
                       {e.title} <br />
                       <a href={e?.magnet}>Magnet Link</a>
