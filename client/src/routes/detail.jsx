@@ -17,7 +17,7 @@ export default function Detail(props) {
     dispatch(getTorrents(movie?.title));
   }, [dispatch, id]);
 
-  HandleClick = (e) => {
+  handleClick = () => {
     dispatch(getTorrents(movie?.title));
   };
   
@@ -44,8 +44,7 @@ export default function Detail(props) {
                   <h3>Login to get Premium functions</h3>
                 ) : torrents === "Not Found" ? (
                   <h3>
-                    Some error ocurred wile searching for torrents, refresh the
-                    page to search again!
+                    Some error ocurred wile searching for torrents, click the TORRENTS button to search again!
                   </h3>
                 ) : (
                   torrents?.map((e) => (
@@ -56,7 +55,7 @@ export default function Detail(props) {
                   ))
                 )}
               </div>
-              <button className="det-but" onClick={HandleClick}>TORRENTS</button>
+              <button className="det-but" onClick={handleClick}>TORRENTS</button>
               <Link to="/">
                 <button className="det-but">RETURN HOME</button>
               </Link>
