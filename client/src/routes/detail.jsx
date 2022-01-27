@@ -17,7 +17,7 @@ export default function Detail(props) {
     dispatch(getTorrents(movie?.title));
   }, [dispatch, id]);
 
-  handleClick = () => {
+  const handleClick = () => {
     dispatch(getTorrents(movie?.title));
   };
   
