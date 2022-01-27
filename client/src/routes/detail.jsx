@@ -18,7 +18,7 @@ export default function Detail(props) {
   
 
   while (Number(id) !== Number(movie?.id)) {
-    return <div>Loading...</div>;
+    return <div className="loading">Loading...</div>;
   }  
     return (
       <div>
