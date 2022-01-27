@@ -34,6 +34,7 @@ export function getMovie(id) {
         Credentials: "includes",
         url: `https://movion-back.herokuapp.com/movie/${json.data.title}`,
       });
+      console.log(json2.data)
       json.data.torrents = json2?.data;
       return dispatch({ type: "GET_MOVIE", payload: json.data });
     } catch (error) {
