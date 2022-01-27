@@ -78,6 +78,7 @@ input[type="password" i] {
     height: 35px;
     border-radius: 3px;
     border: 2px solid;
+    cursor: pointer;
 }
 
 .login-button2{
@@ -86,6 +87,7 @@ input[type="password" i] {
     border-radius: 3px;
     border: 2px solid;
     margin-top: 35px;
+    cursor: pointer;
 }
 
 .return{
@@ -93,6 +95,7 @@ input[type="password" i] {
     height: 35px;
     border-radius: 3px;
     border: 2px solid;
+    cursor: pointer;
 }
 
 .input-field{
@@ -105,6 +108,7 @@ input[type="password" i] {
 
 .mag-but{
     margin-top: 20px;
+    cursor: pointer;
 }
 
 .loger{
@@ -116,4 +120,5 @@ input[type="password" i] {
     color: white;
     height: 30px;
     width: 80px;
+    cursor: pointer;
 }

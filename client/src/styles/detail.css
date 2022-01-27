@@ -23,7 +23,7 @@
 .movie-info{
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
     width: 50%;
     height: 40%;
@@ -58,8 +58,8 @@
 .torrents{
     display: flex;
     flex-direction: column;
-    justify-content: start;
-    align-items: start;
+    justify-content: flex-start;
+    align-items: flex-start;
     width: 50%;
     height: 40%;
     background-color: black;
