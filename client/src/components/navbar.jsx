@@ -8,8 +8,7 @@ export default function Navbar() {
   function submit() {   
     dispatch(getSearch(input));
   }
-  return (
-    
+  return (    
       <div className="bar">
         <input className="navbar" type="search" onKeyUp={e => (e.key === 'Enter') ? submit(e): null} onChange={e => setinput(e.target.value)} id="header-search" placeholder="  Search Movies" /> 
         &nbsp;
