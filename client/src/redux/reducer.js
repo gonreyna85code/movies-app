@@ -23,7 +23,7 @@ function rootReducer(state = initialState, action) {
   if (action.type === DEL_TORRENT) {
     return {
       ...state,
-      Torrents: [action.payload],
+      Torrents: [],
     };
   }
   if (action.type === GET_TORRENTS) {
