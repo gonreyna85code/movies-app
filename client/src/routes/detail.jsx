@@ -48,7 +48,7 @@ export default function Detail(props) {
                   <h3>
                     Some error ocurred wile searching for torrents, click the TORRENTS button to search again!
                   </h3>
-                ) : (
+                ) : torrents === undefined ? null : (
                   torrents?.map((e) => (
                     <li>
                       {e} <br />
