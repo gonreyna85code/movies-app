@@ -39,38 +39,19 @@ export default function Detail(props) {
     return <div className="loading">Loading...</div>;
   }
 
+  console.log(torrents);
+  const handleTorrent = (e) => {
+    var client = new WebTorrent();
+    client.add(e, function (torrent) {
+      console.log(torrent.files); // Torrents can contain many files. Let's use the .mp4 file
+      var file = torrent.files.find(function (file) {
+        return file.name.endsWith(".mp4", ".mkv");
+      });
 
-
-
-console.log(torrents)
-
-  var client = new WebTorrent()
-
-  var torrentId = torrents
-  
-  client.add(torrentId, function (torrent) {
-    console.log(torrent.files)// Torrents can contain many files. Let's use the .mp4 file
-    var file = torrent.files.find(function (file) {
-      return file.name.endsWith('.mp4', '.mkv')
-      
-    })
-  
-    // Display the file by adding it to the DOM. Supports video, audio, image, etc. files
-    file.appendTo('body')
-  
-  })
-
-
-
-
-
-
-
-
-
-
-
-
+      // Display the file by adding it to the DOM. Supports video, audio, image, etc. files
+      file.appendTo("body");
+    });
+  };
 
   return (
     <div>
@@ -111,7 +92,7 @@ console.log(torrents)
                 torrents?.map((e) => (
                   <li>
                     {e.title} <br />
-                    <a href={e?.magnet}>Magnet Link</a>
+                    <button onClick={(e) => handleTorrent(e?.magnet)}>Magnet Link</button>
                   </li>
                 ))
               )}
