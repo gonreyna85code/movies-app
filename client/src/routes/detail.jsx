@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { getMovie, getTorrents } from "../redux/actions.js";
+import { getMovie, getTorrents, delTorrent } from "../redux/actions.js";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "../styles/detail.css";
@@ -14,13 +14,15 @@ export default function Detail(props) {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getMovie(id));
-    dispatch(getTorrents(movie?.title));
+    dispatch(delTorrent());
   }, [dispatch, id]);
 
   const handleClick = () => {
     dispatch(getTorrents(movie?.title));
   };
-  
+  const handleOut = () => {
+    dispatch(delTorrent(""));
+  }
 
   while (Number(id) !== Number(movie?.id)) {
     return <div className="loading">Loading...</div>;
@@ -57,7 +59,7 @@ export default function Detail(props) {
               </div>
               <button className="det-but" onClick={handleClick}>TORRENTS</button>
               <Link to="/">
-                <button className="det-but">RETURN HOME</button>
+                <button className="det-but" onClick={handleOut}>RETURN HOME</button>
               </Link>
             </div>
           </div>

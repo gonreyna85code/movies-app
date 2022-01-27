@@ -6,6 +6,7 @@ export const GET_SEARCH = 'GET_SEARCH';
 export const GET_REGISTER = 'GET_REGISTER';
 export const GET_USER = 'GET_USER';
 export const GET_TORRENTS = 'GET_TORRENTS';
+export const DEL_TORRENT = 'DEL_TORRENT';
 
 axios.defaults.withCrendentails = true;
 axios.defaults.Credentials = "includes";
@@ -136,5 +137,9 @@ export function logout() {
       console.log(error);
     }
   };
+}
+
+export function delTorrent() {
+  return dispatch({type: "DEL_TORRENT"})
 }
 
