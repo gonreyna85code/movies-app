@@ -6,9 +6,9 @@ import "../styles/detail.css";
 
 export default function Detail(props) {
   const id = props.match.params.id;
-  console.log(id);
+  console.log(Number(id));
   const movie = useSelector((state) => state.Movie);
-  console.log(movie?.id)
+  console.log(Number(movie?.id))
   const image = "https://image.tmdb.org/t/p/w500" + movie?.poster_path;
   const dispatch = useDispatch();
   useEffect(() => {
@@ -16,7 +16,7 @@ export default function Detail(props) {
   }, [dispatch, id]);
   
 
-  while (id !== movie?.id) {
+  while (Number(id) !== Number(movie?.id)) {
     return <div>Loading...</div>;
   }  
     return (
