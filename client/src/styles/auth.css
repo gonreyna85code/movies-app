@@ -112,6 +112,8 @@ input[type="password" i] {
 }
 
 .loger{
+    margin-top: 10px;
+    margin-right: 30px;
     background-color: black;
     color: white;
     border-radius: 10px;
