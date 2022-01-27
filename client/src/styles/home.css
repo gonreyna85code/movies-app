@@ -2,7 +2,7 @@
   background-image: url("./home-background.png");
   background-position: center center;
   background-repeat: no-repeat;
-  background-attachment: scroll;
+  background-attachment: fixed;
   background-size: cover;
   height: 115vh;
   padding-top: 5px;
