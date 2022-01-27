@@ -12,6 +12,7 @@
 }
 
 input[type="search" i] {
+  color: white;
   background-color: transparent;
   border: solid 2px;
   border-radius: 100px;
