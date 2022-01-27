@@ -42,7 +42,7 @@ export function getTorrents(title) {
         method: "GET",        
         withCredentials: true,  
         Credentials: "includes",
-        url: `https://movion-back.herokuapp.com/movie/${json.data.title}`,
+        url: `https://movion-back.herokuapp.com/movie/${title}`,
       });
       console.log(json.data)      
       return dispatch({ type: "GET_TORRENTS", payload: json.data });
