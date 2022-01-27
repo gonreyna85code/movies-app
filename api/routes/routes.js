@@ -35,6 +35,8 @@ router.get("/movie/:name", isAuthenticated, async (req, res) => {
     console.log(error);
     res.send("Not Found");
   }
+  
 });
+
 
 module.exports = router;
