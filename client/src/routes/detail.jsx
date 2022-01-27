@@ -15,7 +15,7 @@ export default function Detail(props) {
   }, [dispatch, id]);
   console.log(movie);
 
-  return ( id === movie.id ? (
+  return ( id === movie?.id ? (
     <div>
       <div className="detail">
         <div className="movie-container">
