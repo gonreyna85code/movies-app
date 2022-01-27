@@ -1,5 +1,11 @@
 import React, { useEffect } from "react";
-import { getMovie, getTorrents, delTorrent, getUser, logout } from "../redux/actions.js";
+import {
+  getMovie,
+  getTorrents,
+  delTorrent,
+  getUser,
+  logout,
+} from "../redux/actions.js";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "../styles/detail.css";
@@ -33,18 +39,18 @@ export default function Detail(props) {
   }
   return (
     <div>
-      <div className="user">
-        {user === "No Disponible" ? (
-          <Link to="/login">
-            <button className="loger">LOGIN</button>
-          </Link>
-        ) : (
-          <button className="loger" onClick={handleLogout}>
-            LOGOUT
-          </button>
-        )}
-      </div>
       <div className="detail">
+        <div className="user">
+          {user === "No Disponible" ? (
+            <Link to="/login">
+              <button className="loger">LOGIN</button>
+            </Link>
+          ) : (
+            <button className="loger" onClick={handleLogout}>
+              LOGOUT
+            </button>
+          )}
+        </div>
         <div className="movie-container">
           <div className="img">
             <img className="imagen" src={image} width={400} alt="" />
