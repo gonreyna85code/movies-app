@@ -51,7 +51,7 @@ export default function Detail(props) {
                 ) : (
                   torrents?.map((e) => (
                     <li>
-                      {e.title} <br />
+                      {e} <br />
                       <a href={e?.magnet}>Magnet Link</a>
                     </li>
                   ))
