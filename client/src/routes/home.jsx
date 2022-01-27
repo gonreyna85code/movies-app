@@ -19,17 +19,31 @@ export default function Home() {
     window.location.reload();
   };
 
-  return (
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+  return !isMobile ? (
     <div className="home">
       <div>
-      <div className="user">
-        { user === 'No Disponible' ? <Link to="/login">
-          <button className="loger">LOGIN</button>
-        </Link> : <button className="loger" onClick={handleLogout}>LOGOUT</button>}        
-      </div>
-      <Navbar />
+        <div className="user">
+          {user === "No Disponible" ? (
+            <Link to="/login">
+              <button className="loger">LOGIN</button>
+            </Link>
+          ) : (
+            <button className="loger" onClick={handleLogout}>
+              LOGOUT
+            </button>
+          )}
+        </div>
+        <Navbar />
       </div>
       <Paginado />
+    </div>
+  ) : (
+    <div className="home">
+      <div>
+        <h1>NOT AVAILABLE FOR MOVILE DEVICES</h1>
+      </div>
     </div>
   );
 }

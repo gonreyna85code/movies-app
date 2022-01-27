@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { getMovie, getTorrents, delTorrent } from "../redux/actions.js";
+import { getMovie, getTorrents, delTorrent, getUser } from "../redux/actions.js";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "../styles/detail.css";
@@ -9,12 +9,14 @@ export default function Detail(props) {
   console.log(Number(id));
   const movie = useSelector((state) => state.Movie);
   const torrents = useSelector((state) => state.Torrents);
+  const user = useSelector((state) => state.User);
   console.log(Number(movie?.id));
   const image = "https://image.tmdb.org/t/p/w500" + movie?.poster_path;
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getMovie(id));
     dispatch(delTorrent());
+    dispatch(getUser());
   }, [dispatch, id]);
 
   const handleClick = () => {
@@ -25,7 +27,7 @@ export default function Detail(props) {
     dispatch(logout());
     window.location.reload();
   };
-  
+
   while (Number(id) !== Number(movie?.id)) {
     return <div className="loading">Loading...</div>;
   }
