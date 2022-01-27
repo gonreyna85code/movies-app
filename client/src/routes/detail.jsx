@@ -9,7 +9,7 @@ export default function Detail(props) {
   console.log(Number(id));
   const movie = useSelector((state) => state.Movie);
   const torrents = useSelector((state) => state.Torrents);
-  console.log(Number(movie?.id))
+  console.log(Number(movie?.id));
   const image = "https://image.tmdb.org/t/p/w500" + movie?.poster_path;
   const dispatch = useDispatch();
   useEffect(() => {
@@ -20,52 +20,63 @@ export default function Detail(props) {
   const handleClick = () => {
     dispatch(getTorrents(movie?.title));
   };
-  
+
   while (Number(id) !== Number(movie?.id)) {
     return <div className="loading">Loading...</div>;
-  }  
-    return (
-      <div>
-        <div className="detail">
-          <div className="movie-container">
-            <div className="img">
-              <img className="imagen" src={image} width={400} alt="" />
-            </div>
-            <div className="right">
-              <div className="movie-info">
-                <h2 className="title">{movie?.title}</h2>
-                <div>
-                  <h3>{movie?.overview}</h3>
-                </div>
+  }
+  return (
+    <div>
+      <div className="user">
+        {user === "No Disponible" ? (
+          <Link to="/login">
+            <button className="loger">LOGIN</button>
+          </Link>
+        ) : (
+          <button className="loger" onClick={handleLogout}>
+            LOGOUT
+          </button>
+        )}
+      </div>
+      <div className="detail">
+        <div className="movie-container">
+          <div className="img">
+            <img className="imagen" src={image} width={400} alt="" />
+          </div>
+          <div className="right">
+            <div className="movie-info">
+              <h2 className="title">{movie?.title}</h2>
+              <div>
+                <h3>{movie?.overview}</h3>
               </div>
-              <div className="torrents">
-                {torrents === "No Disponible" ? (
-                  <h3>Login to get Premium functions</h3>
-                ) : torrents === "Not Found" ? (
-                  <h3>
-                    Some error ocurred wile searching for torrents, click the TORRENTS button to search again!
-                  </h3>
-                ) : torrents.length === 0 ? <h3>Click TORRENTS to search for downloads!</h3> : (
-                  torrents?.map((e) => (
-                    <li>
-                      {e.title} <br />
-                      <a href={e?.magnet}>Magnet Link</a>
-                    </li>
-                  ))
-                )}
-              </div>
-              <button className="det-but" onClick={handleClick}>TORRENTS</button>
-              <Link to="/">
-                <button className="det-but">RETURN HOME</button>
-              </Link>
             </div>
+            <div className="torrents">
+              {torrents === "No Disponible" ? (
+                <h3>Login to get Premium functions</h3>
+              ) : torrents === "Not Found" ? (
+                <h3>
+                  Some error ocurred wile searching for torrents, click the
+                  TORRENTS button to search again!
+                </h3>
+              ) : torrents.length === 0 ? (
+                <h3>Click TORRENTS to search for downloads!</h3>
+              ) : (
+                torrents?.map((e) => (
+                  <li>
+                    {e.title} <br />
+                    <a href={e?.magnet}>Magnet Link</a>
+                  </li>
+                ))
+              )}
+            </div>
+            <button className="det-but" onClick={handleClick}>
+              TORRENTS
+            </button>
+            <Link to="/">
+              <button className="det-but">RETURN HOME</button>
+            </Link>
           </div>
         </div>
       </div>
-    );
-  }  
-  
-
-
-
-
+    </div>
+  );
+}
