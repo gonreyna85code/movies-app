@@ -20,10 +20,7 @@ export default function Detail(props) {
   const handleClick = () => {
     dispatch(getTorrents(movie?.title));
   };
-  const handleOut = () => {
-    dispatch(delTorrent(""));
-  }
-
+  
   while (Number(id) !== Number(movie?.id)) {
     return <div className="loading">Loading...</div>;
   }  
@@ -59,7 +56,7 @@ export default function Detail(props) {
               </div>
               <button className="det-but" onClick={handleClick}>TORRENTS</button>
               <Link to="/">
-                <button className="det-but" onClick={handleOut}>RETURN HOME</button>
+                <button className="det-but">RETURN HOME</button>
               </Link>
             </div>
           </div>
