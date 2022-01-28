@@ -10,6 +10,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "../styles/detail.css";
+const parseTorrent = require("parse-torrent");
 
 export default function Detail(props) {
   const id = props.match.params.id;
@@ -39,20 +40,20 @@ export default function Detail(props) {
     return <div className="loading">Loading...</div>;
   }
 
-  console.log(torrents);
-var link = 'magnet:?xt=urn:btih:0D1279FC43D98EEC98329E7846D02C834962A21F&dn=Peacemaker.2022.S01E04.720p.WEB.x265-MiNX%5BTGx%5D&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.tiny-vps.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.cyberia.is%3A6969%2Fannounce&tr=udp%3A%2F%2Fipv4.tracker.harry.lu%3A80%2Fannounce&tr=udp%3A%2F%2Fp4p.arenabg.com%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.birkenwald.de%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.moeking.me%3A6969%2Fannounce&tr=udp%3A%2F%2Fopentor.org%3A2710%2Fannounce&tr=udp%3A%2F%2Ftracker.dler.org%3A6969%2Fannounce&tr=udp%3A%2F%2F9.rarbg.me%3A2970%2Fannounce&tr=https%3A%2F%2Ftracker.foreverpirates.co%3A443%2Fannounce&tr=udp%3A%2F%2Ftracker.zer0day.to%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fcoppersurfer.tk%3A6969%2Fannounce'
+  var link = parseTorrent(
+    "magnet:?xt=urn:btih:0D1279FC43D98EEC98329E7846D02C834962A21F&dn=Peacemaker.2022.S01E04.720p.WEB.x265-MiNX%5BTGx%5D&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.tiny-vps.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.cyberia.is%3A6969%2Fannounce&tr=udp%3A%2F%2Fipv4.tracker.harry.lu%3A80%2Fannounce&tr=udp%3A%2F%2Fp4p.arenabg.com%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.birkenwald.de%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.moeking.me%3A6969%2Fannounce&tr=udp%3A%2F%2Fopentor.org%3A2710%2Fannounce&tr=udp%3A%2F%2Ftracker.dler.org%3A6969%2Fannounce&tr=udp%3A%2F%2F9.rarbg.me%3A2970%2Fannounce&tr=https%3A%2F%2Ftracker.foreverpirates.co%3A443%2Fannounce&tr=udp%3A%2F%2Ftracker.zer0day.to%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fcoppersurfer.tk%3A6969%2Fannounce"
+  );
+
+  const handleTorrent = () => {
+    var link2 = "0d1279fc43d98eec98329e7846d02c834962a21f";
     var client = new WebTorrent();
-    client.add(link, function (torrent) {
-      console.log(torrent.files); // Torrents can contain many files. Let's use the .mp4 file
+    client.add(link2, function (torrent) {
+      console.log(torrent.files); 
       var file = torrent.files.find(function (file) {
         return file.name.endsWith(".mp4", ".mkv");
-      });
-      // Display the file by adding it to the DOM. Supports video, audio, image, etc. files
-      //file.appendTo("body");
+      });      
+      file.appendTo("body");
     });
-  const handleTorrent = (e) => {
-    console.log(e);
-    
   };
 
   return (
@@ -94,7 +95,12 @@ var link = 'magnet:?xt=urn:btih:0D1279FC43D98EEC98329E7846D02C834962A21F&dn=Peac
                 torrents?.map((e) => (
                   <li>
                     {e.title} <br />
-                    <button onClick={(e) => handleTorrent(e.target.value)} value={e.magnet}>Magnet Link</button>
+                    <button
+                      onClick={handleTorrent}
+                      value={e.magnet}
+                    >
+                      Magnet Link
+                    </button>
                     {e.size}
                   </li>
                 ))
