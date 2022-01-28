@@ -40,13 +40,13 @@ router.get("/movie/:name", isAuthenticated, async (req, res) => {
 });
 
 router.get("/video", async (req, res) => {    
+  const magnet = req.params.magnet;
   try {    
-      const engine = torrentStream('magnet:?xt=urn:btih:8FC9933A05BAEE29D6EFFE665A7B7B9BE71DDF80&dn=The.Matrix.Resurrections.2021.HMAX.WEBRip.700MB.h264.MP4-Microflix%5BTGx%5D&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.tiny-vps.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.cyberia.is%3A6969%2Fannounce&tr=udp%3A%2F%2Fipv4.tracker.harry.lu%3A80%2Fannounce&tr=udp%3A%2F%2Fp4p.arenabg.com%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.birkenwald.de%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.moeking.me%3A6969%2Fannounce&tr=udp%3A%2F%2Fopentor.org%3A2710%2Fannounce&tr=udp%3A%2F%2Ftracker.dler.org%3A6969%2Fannounce&tr=udp%3A%2F%2F9.rarbg.me%3A2970%2Fannounce&tr=https%3A%2F%2Ftracker.foreverpirates.co%3A443%2Fannounce&tr=udp%3A%2F%2Ftracker.zer0day.to%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fcoppersurfer.tk%3A6969%2Fannounce');            
+      const engine = torrentStream(magnet);            
       engine.on('ready', function() {
        const stream = engine.files[0].createReadStream();            
           stream.pipe(res);
-      });  
-        
+      });          
   } catch (error) {
     console.log(error);
     res.send("Not Found");

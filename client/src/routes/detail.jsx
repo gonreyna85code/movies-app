@@ -76,9 +76,17 @@ export default function Detail(props) {
                 torrents?.map((e) => (
                   <li>
                     {e.title} <br />
-                    &emsp;&emsp;&emsp;<button href={e.magnet} value={e.magnet}>
+                    &emsp;&emsp;&emsp;
+                    <button href={e.magnet} value={e.magnet}>
                       Magnet Link
                     </button>
+                    <Link
+                      key={e.id}
+                      to={`video/${e.magnet}`}
+                      style={{ textDecoration: "none" }}
+                    >
+                      watch
+                    </Link>
                     &emsp;{e.size}
                   </li>
                 ))
@@ -92,10 +100,7 @@ export default function Detail(props) {
             </Link>
           </div>
         </div>
-      </div>
-      <video id="videoPlayer" width="650" controls muted="muted" autoplay>
-      <source src="https://movion-back.herokuapp.com/video" type="video/mp4" />
-    </video>
+      </div>      
     </div>
   );
 }
