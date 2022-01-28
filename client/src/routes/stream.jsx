@@ -1,12 +1,13 @@
 import React from "react";
 
-export default function Stream() {
-    const magnet = require.params.magnet
-    console.log(magnet)
-    return <video id="videoPlayer" width="650" controls muted="muted" autoplay>
-    <source
-      src={`https://movion-back.herokuapp.com/video/${magnet}`}
-      type="video/mp4"
-    />
-  </video>;
-    }
+export default function Stream(params) {
+  const magnet =
+    params.match.params.magnet.toString(params.location.search) +
+    params.location.search.toString();
+
+  return (
+    <video id="videoPlayer" width="650" controls muted="muted" autoPlay>
+      <source src={`http://localhost:4000/video/${magnet}`} type="video/mp4" />
+    </video>
+  );
+}

@@ -82,7 +82,7 @@ export default function Detail(props) {
                     </button>
                     <Link
                       key={e.id}
-                      to={`video/${e.magnet}`}
+                      to={`/video/${e.magnet}`}
                       style={{ textDecoration: "none" }}
                     >
                       watch

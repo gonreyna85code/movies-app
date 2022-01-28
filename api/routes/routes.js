@@ -15,7 +15,7 @@ const isAuthenticated = function (req, res, next) {
 
 const router = Router();
 
-router.get("/user", isAuthenticated, (req, res) => {
+router.get("/user", (req, res) => {
   if(req.user){
     res.send(req.user);
   }else{
@@ -23,7 +23,7 @@ router.get("/user", isAuthenticated, (req, res) => {
   }
 });
 
-router.get("/movie/:name", isAuthenticated, async (req, res) => {
+router.get("/movie/:name", async (req, res) => {
   const name = req.params.name;
   TorrentSearchApi.enableProvider('1337x');    
   try {
@@ -40,13 +40,16 @@ router.get("/movie/:name", isAuthenticated, async (req, res) => {
 });
 
 router.get("/video/:magnet", async (req, res) => {    
-  const magnet = req.params.magnet;
+  const magnet = req.params.magnet + req._parsedUrl.search
+  console.log(magnet)
   try {    
       const engine = torrentStream(magnet);            
       engine.on('ready', function() {
-       const stream = engine.files[0].createReadStream();            
+       const stream = engine.files[0].createReadStream(); 
+       console.log(engine.files[0].name);           
           stream.pipe(res);
-      });          
+      });    
+      console.log("Streaming:");      
   } catch (error) {
     console.log(error);
     res.send("Not Found");
