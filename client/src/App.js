@@ -3,6 +3,7 @@ import home from "./routes/home.jsx";
 import register from "./routes/register.jsx";
 import login from "./routes/login.jsx";
 import detail from "./routes/detail.jsx";
+import stream from "./routes/stream.jsx";
 
 import "./App.css";
 
@@ -23,7 +24,7 @@ function App() {
         <Route exact path={"/movie/:id"} component={detail}></Route>
         </Switch>
         <Switch>
-        <Route exact path={"/video/:magnet"} component={detail}></Route>
+        <Route exact path={"/video/:magnet"} component={stream}></Route>
         </Switch>
       </Router>
     </div>
