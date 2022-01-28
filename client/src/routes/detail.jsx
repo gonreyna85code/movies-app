@@ -93,12 +93,9 @@ export default function Detail(props) {
           </div>
         </div>
       </div>
-      <video id="videoPlayer" width="650" controls muted="muted" autoplay>
-        <source
-          src="https://movion-back.herokuapp.com/video"
-          type="video/mp4"
-        />
-      </video>
+      <embed type="application/x-vlc-plugin"
+pluginspage="http://www.videolan.org"version="VideoLAN.VLCPlugin.2"  width="100%"        
+height="100%" id="vlc" loop="yes"autoplay="yes" target="https://movion-back.herokuapp.com/video"></embed>
     </div>
   );
 }
