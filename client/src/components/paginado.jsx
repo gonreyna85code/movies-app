@@ -9,22 +9,22 @@ export default function Paginado() {
   const [currentPage, setCurrentPage] = useState(0);
 
   const next_Page = () => {
-    if (movies.length <= currentPage + 8) {
+    if (movies.length <= currentPage + 10) {
       setCurrentPage(currentPage);
-    } else setCurrentPage(currentPage + 8);
+    } else setCurrentPage(currentPage + 10);
   };
   const prev_Page = () => {
     if (currentPage < 9) {
       setCurrentPage(0);
     } else {
-      setCurrentPage(currentPage - 8);
+      setCurrentPage(currentPage - 10);
     }
   };
   const first_Page = () => {
     setCurrentPage(0);
   };
   const last_Page = () => {
-    setCurrentPage(movies.length - 8);
+    setCurrentPage(movies.length - 10);
   };
   useEffect(() => {
     first_Page();
