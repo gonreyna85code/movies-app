@@ -10,7 +10,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "../styles/detail.css";
 
-
 export default function Detail(props) {
   const id = props.match.params.id;
   console.log(Number(id));
@@ -34,25 +33,8 @@ export default function Detail(props) {
     dispatch(logout());
     window.location.reload();
   };
-
   
- 
-
-  const handleTorrent = (e) => {
-const torrentStream = require('torrent-stream');
-  let engine = torrentStream(e);
-
-  engine.on("ready", function () {
-    engine.files.forEach(function (file) {
-      console.log("filename:", file.name);
-      var stream = file.createReadStream();
-      // stream is readable stream to containing the file content
-      stream.appendTo('body')
-    });
-   });
-
-  };
-
+  
   while (Number(id) !== Number(movie?.id)) {
     return <div className="loading">Loading...</div>;
   }
@@ -95,7 +77,10 @@ const torrentStream = require('torrent-stream');
                 torrents?.map((e) => (
                   <li>
                     {e.title} <br />
-                    <button onClick={(e) => handleTorrent(e.target.value)} value={e.magnet}>
+                    <button
+                      onClick={''}
+                      value={e.magnet}
+                    >
                       Magnet Link
                     </button>
                     {e.size}
@@ -111,7 +96,9 @@ const torrentStream = require('torrent-stream');
             </Link>
           </div>
         </div>
-      </div>
-    </div>
+      </div> 
+        
+      </div>   
+    
   );
 }

@@ -1,5 +1,8 @@
 const Router = require("express");
 const TorrentSearchApi = require("torrent-search-api");
+const torrentStream = require('torrent-stream');
+
+
 
 
 
@@ -29,9 +32,15 @@ router.get("/movie/:name", isAuthenticated, async (req, res) => {
     console.log(data);
     for (let i = 0; i < data.length; i++) {
       const magnet = await TorrentSearchApi.getMagnet(data[i]);
-      const Detail = await TorrentSearchApi.getTorrentDetails(data[i]);
-      data[i].detail = Detail;
+      const engine = torrentStream(magnet);
+      engine.on('ready', function() {
+        engine.files.forEach(function(file) {
+          console.log('filename:', file.name);
+          var stream = file.createReadStream();         
+        });
+      });
       data[i].magnet = magnet;
+      data[i].stream = stream
     }
     res.send(data);
   } catch (error) {
