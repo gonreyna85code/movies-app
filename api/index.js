@@ -11,7 +11,7 @@ const mongoose = require("mongoose");
 const app = express();
 const routes = require("./routes/routes");
 const auth = require("./routes/auth");
-
+const cookieParser = require("cookie-parser");
 
 app.name = "API";
 
