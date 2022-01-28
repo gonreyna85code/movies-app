@@ -38,7 +38,7 @@ router.get("/movie/:name", isAuthenticated, async (req, res) => {
       engine.on('ready', function() {
         engine.files.forEach(function(file) {
           console.log('filename:', file.name);
-          stream = file.createReadStream(); 
+          const stream = file.createReadStream(); 
           streams.push(stream);                  
         });
       });  
