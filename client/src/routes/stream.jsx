@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function Stream() {
-    const magnet = require.params
+    const magnet = require.params.magnet
     console.log(magnet)
     return <video id="videoPlayer" width="650" controls muted="muted" autoplay>
     <source
