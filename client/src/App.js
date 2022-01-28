@@ -24,7 +24,7 @@ function App() {
         <Route exact path={"/movie/:id"} component={detail}></Route>
         </Switch>
         <Switch>
-        <Route exact path={"/video/:magnet"} component={stream}></Route>
+        <Route exact path={"/movie/video/:magnet"} component={stream}></Route>
         </Switch>
       </Router>
     </div>
