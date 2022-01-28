@@ -22,7 +22,7 @@ router.get("/user", isAuthenticated, (req, res) => {
 
 router.get("/movie/:name", isAuthenticated, async (req, res) => {
   const name = req.params.name;
-  TorrentSearchApi.enableProvider('KickassTorrents');
+  TorrentSearchApi.enableProvider('1337x');
   console.log(name);  
   try {
     const data = await TorrentSearchApi.search(`${name}`, "Movies", 5);
