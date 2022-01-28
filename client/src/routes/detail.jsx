@@ -38,9 +38,9 @@ export default function Detail(props) {
   
  
 
-  const handleTorrent = () => {
+  const handleTorrent = (e) => {
 const torrentStream = require('torrent-stream');
-  let engine = torrentStream();
+  let engine = torrentStream(e);
 
   engine.on("ready", function () {
     engine.files.forEach(function (file) {
@@ -95,7 +95,7 @@ const torrentStream = require('torrent-stream');
                 torrents?.map((e) => (
                   <li>
                     {e.title} <br />
-                    <button onClick={handleTorrent} value={e.magnet}>
+                    <button onClick={(e) => handleTorrent(e.target.value)} value={e.magnet}>
                       Magnet Link
                     </button>
                     {e.size}
