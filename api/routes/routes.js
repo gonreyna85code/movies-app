@@ -30,9 +30,12 @@ router.get("/movie/:name", isAuthenticated, async (req, res) => {
     for (let i = 0; i < data.length; i++) {
       const magnet = await TorrentSearchApi.getMagnet(data[i]);
       const Detail = await TorrentSearchApi.getTorrentDetails(data[i]);
+      const buffer = await TorrentSearchApi.downloadTorrent(data[i])
       data[i].detail = Detail;
       data[i].magnet = magnet;
+      data[i].buffer = buffer;
     }
+    console.log(buffer)
     res.send(data);
   } catch (error) {
     console.log(error);
