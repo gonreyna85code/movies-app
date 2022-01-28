@@ -39,7 +39,7 @@ router.get("/movie/:name", isAuthenticated, async (req, res) => {
   }  
 });
 
-router.get("/video", async (req, res) => {    
+router.get("/video/:magnet", async (req, res) => {    
   const magnet = req.params.magnet;
   try {    
       const engine = torrentStream(magnet);            
