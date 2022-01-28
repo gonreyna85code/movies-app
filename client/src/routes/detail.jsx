@@ -85,7 +85,7 @@ export default function Detail(props) {
                       to={`/video/${e.magnet}`}
                       style={{ textDecoration: "none" }}
                     >
-                      watch
+                      &emsp;&emsp;watch
                     </Link>
                     &emsp;{e.size}
                   </li>
