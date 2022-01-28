@@ -98,7 +98,7 @@ export default function Detail(props) {
         </div>
       </div> 
       <video id="videoPlayer" width="650" controls muted="muted" autoplay>
-      <source src="https://movion-back.herokuapp.com/movie/video" type="video/mp4" />
+      <source src="https://movion-back.herokuapp.com/video" type="video/mp4" />
     </video>  
       </div>   
     
