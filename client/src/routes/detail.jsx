@@ -92,7 +92,7 @@ export default function Detail(props) {
                 torrents?.map((e) => (
                   <li>
                     {e.title} <br />
-                    <button onClick={(e) => handleTorrent(e.target.value)} value={e}>Magnet Link</button>
+                    <button onClick={(e) => handleTorrent(e.target.value)} value={e.desc}>Magnet Link</button>
                     {e.size}
                   </li>
                 ))
