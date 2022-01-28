@@ -32,15 +32,15 @@ router.get("/movie/:name", isAuthenticated, async (req, res) => {
     console.log(data);
     for (let i = 0; i < data.length; i++) {
       const magnet = await TorrentSearchApi.getMagnet(data[i]);
-      const engine = torrentStream(magnet);
+      data[i].magnet = magnet;
+      const engine = torrentStream(magnet);      
       engine.on('ready', function() {
         engine.files.forEach(function(file) {
           console.log('filename:', file.name);
-          var stream = file.createReadStream();         
+          const stream = file.createReadStream(); 
+          data[i].stream = stream        
         });
-      });
-      data[i].magnet = magnet;
-      data[i].stream = stream
+      });            
     }
     res.send(data);
   } catch (error) {

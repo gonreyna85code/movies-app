@@ -11,7 +11,7 @@ const mongoose = require("mongoose");
 const app = express();
 const routes = require("./routes/routes");
 const auth = require("./routes/auth");
-const cookieParser = require("cookie-parser");
+
 
 app.name = "API";
 
@@ -23,25 +23,6 @@ app.use(
 );
 
 app.set('trust proxy', true);
-
-// app.use((req, res, next) => {
-//   if(req.method === 'OPTIONS') {
-//     console.log('OPTIONS');
-//     res.next()
-//   }
-//   res.header('Access-Control-Allow-Origin', 'https://movieon.vercel.app')
-//   res.header("Access-Control-Allow-Credentials", "true");
-//   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
-//   next()
- 
-//   app.options('*', (res, req) => {
-//    res.header('Access-Control-Allow-Methods', 'GET, PATCH, PUT, POST, DELETE, OPTIONS')
-//    if(req.method === 'OPTIONS') {
-//     console.log('OPTIONS');
-//     res.next()
-//   }
-//   })
-//  })
 
 mongoose.connect(process.env.MONGO, () => {
   console.log("Mongoose Is Connected");
