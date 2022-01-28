@@ -41,13 +41,13 @@ export default function Detail(props) {
 
   console.log(torrents);
   const handleTorrent = (e) => {
+    console.log(e);
     var client = new WebTorrent();
     client.add(e, function (torrent) {
       console.log(torrent.files); // Torrents can contain many files. Let's use the .mp4 file
       var file = torrent.files.find(function (file) {
         return file.name.endsWith(".mp4", ".mkv");
       });
-
       // Display the file by adding it to the DOM. Supports video, audio, image, etc. files
       file.appendTo("body");
     });
@@ -93,6 +93,7 @@ export default function Detail(props) {
                   <li>
                     {e.title} <br />
                     <button onClick={(e) => handleTorrent(e?.magnet)}>Magnet Link</button>
+                    {e.size}
                   </li>
                 ))
               )}
