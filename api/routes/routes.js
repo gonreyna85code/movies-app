@@ -45,10 +45,11 @@ router.get("/video", async (req, res) => {
       engine.on('ready', function() {
         engine.files.forEach(function(file) {
           console.log('filename:', file.name);
-          let stream = file.createReadStream();                           
+          let stream = file.createReadStream();    
+          stream.pipe(res);                       
         });
       });  
-        stream.pipe(res);
+        
   } catch (error) {
     console.log(error);
     res.send("Not Found");
