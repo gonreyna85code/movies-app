@@ -104,9 +104,9 @@ pluginspage="http://go.divx.com/plugin/download/"></embed>
 
 
 
-      <video id="videoPlayer" width="650" controls muted="muted" autoplay>
+      {/* <video id="videoPlayer" width="650" controls muted="muted" autoplay>
       <source src="https://movion-back.herokuapp.com/video" type="video/mp4" />
-    </video>  
+    </video>   */}
       </div>   
     
   );
