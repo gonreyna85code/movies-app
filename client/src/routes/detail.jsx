@@ -97,6 +97,13 @@ export default function Detail(props) {
           </div>
         </div>
       </div> 
+      
+      <embed id="divxplayer" type="https://movion-back.herokuapp.com/video" width="1024" height="768" 
+src ="path_to_file" autoPlay="true" 
+pluginspage="http://go.divx.com/plugin/download/"></embed>
+
+
+
       <video id="videoPlayer" width="650" controls muted="muted" autoplay>
       <source src="https://movion-back.herokuapp.com/video" type="video/mp4" />
     </video>  
