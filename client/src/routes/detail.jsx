@@ -33,8 +33,7 @@ export default function Detail(props) {
     dispatch(logout());
     window.location.reload();
   };
-  
-  
+
   while (Number(id) !== Number(movie?.id)) {
     return <div className="loading">Loading...</div>;
   }
@@ -77,10 +76,7 @@ export default function Detail(props) {
                 torrents?.map((e) => (
                   <li>
                     {e.title} <br />
-                    <button
-                      onClick={''}
-                      value={e.magnet}
-                    >
+                    <button onClick={""} value={e.magnet}>
                       Magnet Link
                     </button>
                     {e.size}
@@ -96,21 +92,13 @@ export default function Detail(props) {
             </Link>
           </div>
         </div>
-      </div> 
-      <video width="320" height="240" controls>  
-  <source src="https://movion-back.herokuapp.com/video" type="video/mkv"/>   
-</video>
-      
-      <embed id="divxplayer" type="https://movion-back.herokuapp.com/video" width="1024" height="768" 
-src ="path_to_file" autoPlay="true" 
-pluginspage="http://go.divx.com/plugin/download/"></embed>
-
-
-
-      {/* <video id="videoPlayer" width="650" controls muted="muted" autoplay>
-      <source src="https://movion-back.herokuapp.com/video" type="video/mp4" />
-    </video>   */}
-      </div>   
-    
+      </div>
+      <video id="videoPlayer" width="650" controls muted="muted" autoplay>
+        <source
+          src="https://movion-back.herokuapp.com/video"
+          type="video/mkv"
+        />
+      </video>
+    </div>
   );
 }
