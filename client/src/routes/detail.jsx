@@ -22,7 +22,7 @@ export default function Detail(props) {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getMovie(id));
-    //dispatch(delTorrent());
+    dispatch(delTorrent());
     dispatch(getUser());
   }, [dispatch, id]);
 
@@ -92,7 +92,7 @@ export default function Detail(props) {
                 torrents?.map((e) => (
                   <li>
                     {e.title} <br />
-                    <button onClick={(e) => handleTorrent(e?.magnet)}>Magnet Link</button>
+                    <button onClick={(e) => handleTorrent(e.target.value)} value={e.magnet}>Magnet Link</button>
                     {e.size}
                   </li>
                 ))
