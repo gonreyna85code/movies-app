@@ -30,17 +30,19 @@ router.get("/movie/:name", isAuthenticated, async (req, res) => {
   try {
     const data = await TorrentSearchApi.search(`${name}`, "Movies", 5);
     console.log(data);
-    for (let i = 0; i < data.length; i++) {
+    for (var i = 0; i < data.length; i++) {
       const magnet = await TorrentSearchApi.getMagnet(data[i]);
       data[i].magnet = magnet;
-      const engine = torrentStream(magnet);      
+      const engine = torrentStream(magnet); 
+      var streams = [];     
       engine.on('ready', function() {
         engine.files.forEach(function(file) {
           console.log('filename:', file.name);
-          const stream = file.createReadStream(); 
-          data[i].stream = stream        
+          stream = file.createReadStream(); 
+          streams.push(stream);                  
         });
-      });            
+      });  
+      data[i].streams = streams;          
     }
     res.send(data);
   } catch (error) {
