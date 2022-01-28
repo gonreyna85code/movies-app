@@ -44,7 +44,7 @@ export function getTorrents(title) {
         method: "GET",
         withCredentials: true,
         Credentials: "includes",
-        url: `https://localhost:4000/movie/${title}`,
+        url: `https://movion-back.herokuapp.com/movie/${title}`,
       });
       console.log(json.data);
       return dispatch({ type: "GET_TORRENTS", payload: json.data });
@@ -77,7 +77,7 @@ export function register(register) {
         },
         withCredentials: true,
         Credentials: "includes",
-        url: "https://localhost:4000/register",
+        url: "https://movion-back.herokuapp.com/register",
       });
       return dispatch({ type: "REGISTER", payload: json.data });
     } catch (error) {
@@ -96,7 +96,7 @@ export function login(login) {
         },
         withCredentials: true,
         Credentials: "includes",
-        url: "https://localhost:4000/login",
+        url: "https://movion-back.herokuapp.com/login",
       });
       console.log(json.data);
       return dispatch({ type: "LOGIN", payload: json.data });
@@ -113,7 +113,7 @@ export function getUser() {
         method: "GET",
         withCredentials: true,
         Credentials: "includes",
-        url: "https://localhost:4000/user",
+        url: "https://movion-back.herokuapp.com/user",
       });
       console.log(json.data);
       return dispatch({ type: "GET_USER", payload: json.data });
@@ -130,7 +130,7 @@ export function logout() {
         method: "GET",
         withCredentials: true,
         Credentials: "includes",
-        url: "https://localhost:4000/logout",
+        url: "https://movion-back.herokuapp.com/logout",
       });
       console.log("Usuario no logueado");
       return dispatch({ type: "LOGOUT", payload: json.data });

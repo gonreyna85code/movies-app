@@ -18,7 +18,7 @@ app.name = "API";
 app.use(
   cors({
     origin: "https://localhost:3000",
-    credentials: true,
+    credentials: false,
   })
 );
 
