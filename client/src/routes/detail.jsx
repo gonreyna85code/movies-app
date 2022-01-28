@@ -76,7 +76,7 @@ export default function Detail(props) {
                 torrents?.map((e) => (
                   <li>
                     {e.title} <br />
-                    &emsp;<button onClick={""} value={e.magnet}>
+                    &emsp;<button href={e.magnet} value={e.magnet}>
                       Magnet Link
                     </button>
                     &emsp;{e.size}
