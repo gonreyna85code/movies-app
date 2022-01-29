@@ -77,15 +77,20 @@ export default function Detail(props) {
                   <li>
                     {e.title} <br />
                     &emsp;&emsp;&emsp;
-                    <button href={e.magnet} value={e.magnet}>
+                    <a href={e.magnet}>
+                    <button>
                       Magnet Link
                     </button>
+                    </a>
                     <Link
                       key={e.id}
                       to={`/video/${e.magnet}`}
+                      target="_blank"
                       style={{ textDecoration: "none" }}
                     >
-                      &emsp;&emsp;watch
+                      &emsp;&emsp;<button>
+                      Watch
+                    </button>
                     </Link>
                     &emsp;{e.size}
                   </li>
