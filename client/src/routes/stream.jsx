@@ -1,4 +1,5 @@
 import React from "react";
+import "../styles/stream.css";
 
 export default function Stream(params) {
   const magnet =
