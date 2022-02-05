@@ -39,10 +39,9 @@ router.get("/video/:magnet", isAuthenticated, async (req, res) => {
   try {
     const engine = torrentStream(magnet);
     engine.on("ready", function () {
-      const file = engine.files.find((f) => f.name.endsWith(".mp4"));
-      if(!file)engine.files.find((f) => f.name.endsWith(".mkv"));
-      if(!file)engine.files.find((f) => f.name.endsWith(".avi"));
+      const file = engine.files.find((f) => f.name.endsWith(".mp4") || f.name.endsWith(".mkv") || f.name.endsWith(".avi"));       
       if (file) {
+        res.setHeader("Content-Type", "video/mp4");
         file.createReadStream().pipe(res);
       } else {
         res.send("Not Found");
