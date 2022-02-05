@@ -7,9 +7,6 @@ const openSubtitles = new OpenSubtitles({
   apiKey: 'zc0UaUOf7OIsFhK9fBGJCbL5IkH98Ul7',
 });
 
-const subtitles = openSubtitles.subtitles().search({ query: 'Breaking Bad S01E02' });
-    console.log(subtitles);
-
 const isAuthenticated = function (req, res, next) {
   console.log(req.user);
   if (req.isAuthenticated()) return next();
@@ -43,6 +40,8 @@ router.get("/movie/:name", isAuthenticated, async (req, res) => {
 });
 
 router.get("/video/:magnet", isAuthenticated, async (req, res) => {
+  const subtitles = await openSubtitles.subtitles().search({ query: 'Breaking Bad S01E02' });
+    console.log(subtitles);
   const magnet = req.params.magnet + req._parsedUrl.search;
   try {
     const engine = torrentStream(magnet);
