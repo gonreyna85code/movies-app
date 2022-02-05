@@ -1,6 +1,14 @@
 const Router = require("express");
 const TorrentSearchApi = require("torrent-search-api");
 const torrentStream = require('torrent-stream');
+const OpenSubtitles = require('subtitles.js');
+
+const openSubtitles = new OpenSubtitles({
+  apiKey: 'OPENSUBTITLES_API_KEY',
+});
+
+
+
 
 
 const isAuthenticated = function (req, res, next) {
@@ -23,7 +31,7 @@ router.get("/movie/:name",isAuthenticated, async (req, res) => {
   const name = req.params.name;
   TorrentSearchApi.enableProvider('1337x');    
   try {
-    const data = await TorrentSearchApi.search(`${name}`+ " .mp4", "Movies", 15);    
+    const data = await TorrentSearchApi.search(`${name}`, "Movies", 15);    
     for (var i = 0; i < data.length; i++) {
       const magnet = await TorrentSearchApi.getMagnet(data[i]);
       data[i].magnet = magnet;              
