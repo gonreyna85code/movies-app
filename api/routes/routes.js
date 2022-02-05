@@ -43,20 +43,23 @@ router.get("/video/:magnet", isAuthenticated, async (req, res) => {
         if (file.name.endsWith(".mp4")) {
           res.setHeader("Content-Type", "video/mp4");
           file.createReadStream().pipe(res);
+          console.log("Streaming:", file.name);
         }
         if (file.name.endsWith(".mkv")) {
           res.setHeader("Content-Type", "video/mp4");
           file.createReadStream().pipe(res);
+          console.log("Streaming:", file.name);
         }
         if (file.name.endsWith(".avi")) {
           res.setHeader("Content-Type", "video/mp4");
           file.createReadStream().pipe(res);
+          console.log("Streaming:", file.name);
         } else {
           res.send("Not Found");
         }
       });
     });
-    console.log("Streaming:" + file.name);
+    console.log("Streaming:");
   } catch (error) {
     console.log(error);
     res.send("Not Found");
