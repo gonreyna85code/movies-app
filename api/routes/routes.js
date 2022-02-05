@@ -41,7 +41,6 @@ router.get("/movie/:name",isAuthenticated, async (req, res) => {
 
 router.get("/video/:magnet",isAuthenticated, async (req, res) => {    
   const magnet = req.params.magnet + req._parsedUrl.search
-  console.log(magnet)
   try {    
       const engine = torrentStream(magnet);            
       engine.on('ready', function() {
