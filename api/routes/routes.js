@@ -40,12 +40,12 @@ router.get("/video/:magnet", isAuthenticated, async (req, res) => {
     const engine = torrentStream(magnet);
     engine.on("ready", function () {
       const file = engine.files.find((f) => f.name.endsWith(".mp4"));
-      const stream = file.createReadStream();
-      for(let i = 0; i < engine.files.length; i++) {
-        console.log(engine.files[i].name)
-      }
-      console.log(file.name);
-      stream.pipe(res);
+      if (file) {
+        res.setHeader("Content-Type", "video/mp4");
+        file.createReadStream().pipe(res);
+      } else {
+        res.send("Not Found");
+      }      
     });
     console.log("Streaming:");
   } catch (error) {
