@@ -7,6 +7,7 @@ export const GET_REGISTER = "GET_REGISTER";
 export const GET_USER = "GET_USER";
 export const GET_TORRENTS = "GET_TORRENTS";
 export const DEL_TORRENT = "DEL_TORRENT";
+export const GET_SUBS = "GET_SUBS";
 
 
 axios.defaults.withCrendentails = true;
@@ -24,6 +25,21 @@ export function getMovies() {
     }
   };
 }
+
+export function getSubs() {
+  return async function (dispatch) {
+    try {
+      const json = await axios.get(
+        `http://bsplayer-subtitles.com/index.php?cmd=search&p=exploresub&q=eternals&lang=SPA`
+      );
+      console.log(json.data)
+      return dispatch({ type: "GET_MOVIES", payload: json.data.results });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
 export function getMovie(id) {
   return async function (dispatch) {
     try {

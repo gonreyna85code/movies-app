@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import {
   getMovie,
   getTorrents,
+  getSubs,
   delTorrent,
   getUser,
   logout,
@@ -22,6 +23,7 @@ export default function Detail(props) {
   useEffect(() => {
     dispatch(getMovie(id));
     dispatch(delTorrent());
+    dispatch(getSubs());
     dispatch(getUser());
   }, [dispatch, id]);
 
