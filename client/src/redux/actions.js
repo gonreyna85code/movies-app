@@ -30,10 +30,10 @@ export function getSubs() {
   return async function (dispatch) {
     try {
       const json = await axios.get(
-        `https://bsplayer-subtitles.com/index.php?cmd=search&p=exploresub&q=eternals&lang=SPA`
+        `http://bsplayer-subtitles.com/index.php?cmd=search&p=exploresub&q=eternals&lang=SPA`
       );
       console.log(json.data)
-      return dispatch({ type: "GET_MOVIES", payload: json.data.results });
+      return dispatch({ type: "GET_SUBS", payload: json.data.results });
     } catch (error) {
       console.log(error);
     }
