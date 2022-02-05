@@ -46,6 +46,7 @@ router.get("/video/:magnet",isAuthenticated, async (req, res) => {
       const engine = torrentStream(magnet);            
       engine.on('ready', function() {
        const stream = engine.files[0].createReadStream(); 
+       console.log(engine.files)
        console.log(engine.files[0].name);           
           stream.pipe(res);
       });    

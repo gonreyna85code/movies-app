@@ -31,6 +31,8 @@ export function getSubs() {
     try {
       const json = await axios.get(
         `http://bsplayer-subtitles.com/index.php?cmd=search&p=exploresub&q=eternals&lang=SPA`
+
+        
       );
       console.log(json.data)
       return dispatch({ type: "GET_SUBS", payload: json.data.results });
