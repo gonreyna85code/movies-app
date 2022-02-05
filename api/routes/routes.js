@@ -1,11 +1,7 @@
 const Router = require("express");
 const TorrentSearchApi = require("torrent-search-api");
 const torrentStream = require('torrent-stream');
-const OpenSubtitles = require('subtitles.js');
 
-const openSubtitles = new OpenSubtitles({
-  apiKey: 'OPENSUBTITLES_API_KEY',
-});
 
 
 
