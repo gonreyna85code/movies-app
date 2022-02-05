@@ -54,9 +54,7 @@ router.get("/video/:magnet", isAuthenticated, async (req, res) => {
           res.setHeader("Content-Type", "video/mp4");
           file.createReadStream().pipe(res);
           console.log("Streaming:", file.name);
-        } else {
-          res.send("Not Found");
-        }
+        } 
       });
     });
   } catch (error) {
