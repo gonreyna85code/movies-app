@@ -7,7 +7,7 @@ const openSubtitles = new OpenSubtitles({
   apiKey: 'zc0UaUOf7OIsFhK9fBGJCbL5IkH98Ul7',
 });
 
-const subtitles = await openSubtitles.subtitles().search({ query: 'Breaking Bad S01E02' });
+const subtitles = openSubtitles.subtitles().search({ query: 'Breaking Bad S01E02' });
     console.log(subtitles);
 
 const isAuthenticated = function (req, res, next) {
