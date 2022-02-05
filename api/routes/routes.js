@@ -47,7 +47,7 @@ router.get("/video/:magnet", isAuthenticated, async (req, res) => {
         res.send("Not Found");
       }      
     });
-    console.log("Streaming:");
+    console.log("Streaming:"+ file.name);
   } catch (error) {
     console.log(error);
     res.send("Not Found");
