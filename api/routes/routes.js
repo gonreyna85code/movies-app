@@ -43,7 +43,6 @@ router.get("/video/:magnet", isAuthenticated, async (req, res) => {
       if(!file)engine.files.find((f) => f.name.endsWith(".mkv"));
       if(!file)engine.files.find((f) => f.name.endsWith(".avi"));
       if (file) {
-        res.setHeader("Content-Type", "video/mp4");
         file.createReadStream().pipe(res);
       } else {
         res.send("Not Found");
