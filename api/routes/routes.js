@@ -46,25 +46,36 @@ router.get("/video/:magnet", isAuthenticated, async (req, res) => {
     engine.on("ready", function () {
       engine.files.forEach (async function (file) {
         if (file.name.endsWith(".mp4")) {
-          const subtitles = await openSubtitles.subtitles().search({ query: file.name });
           res.setHeader("Content-Type", "video/mp4");
-           file.createReadStream().pipe(res.send(subtitles));           
+           file.createReadStream().pipe(res);           
           console.log("Streaming:", file.name);
         }
         if (file.name.endsWith(".mkv")) {
-          const subtitles = await openSubtitles.subtitles().search({ query: file.name });
           res.setHeader("Content-Type", "video/mp4");
-          file.createReadStream().pipe(res.send(subtitles));
+          file.createReadStream().pipe(res);
           console.log("Streaming:", file.name);
         }
         if (file.name.endsWith(".avi")) {
-          const subtitles = await openSubtitles.subtitles().search({ query: file.name });
           res.setHeader("Content-Type", "video/mp4");
-          file.createReadStream().pipe(res.send(subtitles));
+          file.createReadStream().pipe(res);
           console.log("Streaming:", file.name);
         } 
       });
     });
+  } catch (error) {
+    console.log(error);
+    res.send("Not Found");
+  }
+});
+
+router.get("/subtitle/:name", isAuthenticated, async (req, res) => {
+  const name = req.params.name;
+  try {
+    const subtitles = await openSubtitles.search({
+      sublanguageid: "eng",
+      query: name,
+    });
+    res.send(subtitles);
   } catch (error) {
     console.log(error);
     res.send("Not Found");
