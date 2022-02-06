@@ -73,7 +73,7 @@ router.get("/subs/:name", isAuthenticated, async (req, res) => {
   console.log(name);
   try {
     const subtitles = await openSubtitles.subtitles().search({
-      imdb_id: 524434,
+      imdbid: 524434,
       languages: "es",
       limit: "best",
       gzip: true,
