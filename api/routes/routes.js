@@ -44,7 +44,7 @@ router.get("/video/:magnet", isAuthenticated, async (req, res) => {
   try {
     const engine = torrentStream(magnet);    
     engine.on("ready", function () {
-      engine.files.forEach (function (file) {
+      engine.files.forEach (async function (file) {
         if (file.name.endsWith(".mp4")) {
           const subtitles = await openSubtitles.subtitles().search({ query: file.name });
           res.setHeader("Content-Type", "video/mp4");
