@@ -71,14 +71,16 @@ router.get("/video/:magnet", isAuthenticated, async (req, res) => {
 router.get("/subs/:name/:id", isAuthenticated, async (req, res) => {
   const name = req.params.name;
   const id = req.params.id;
-  console.log(name);
+  console.log(id)
+  console.log(name + id.slice(1, -1));
   try {
     const subtitles = await openSubtitles.subtitles().search({
-      imdbid: id,
+      imdbid: id.slice(1, -1),
       sublanguageid: 'spa',
       query: name,
       languages: "es",
       limit: "best",
+      type: "movie",
       gzip: true,
     });
     console.log(subtitles);
