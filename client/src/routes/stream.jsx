@@ -16,6 +16,7 @@ export default function Stream(params) {
 
   return (
     <div className="streamer">
+      <h1>{params.match.params.title}</h1>
     <video id="videoPlayer" width="650" controls muted="muted" autoPlay>
       <source src={buffer} type="video/mp4" />
     </video>
