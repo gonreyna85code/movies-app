@@ -26,16 +26,17 @@ export function getMovies() {
   };
 }
 
-export function getSubs() {
+export function getSubs(title) {
   return async function (dispatch) {
     try {
-      const json = await axios.get(
-        `http://bsplayer-subtitles.com/index.php?cmd=search&p=exploresub&q=eternals&lang=SPA`
-
-        
-      );
+      const json = await axios.get({
+        url:`https://movion-back.herokuapp.com/subs/${title}`,
+        method: "GET",
+        withCredentials: true,
+        Credentials: "includes",
+      });
       console.log(json.data)
-      return dispatch({ type: "GET_SUBS", payload: json.data.results });
+      return dispatch({ type: "GET_SUBS", payload: json.data });
     } catch (error) {
       console.log(error);
     }
