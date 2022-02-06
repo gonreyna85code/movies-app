@@ -75,7 +75,11 @@ router.get("/subs/:name/:id", isAuthenticated, async (req, res) => {
   });
   (async () => {
     try {
-            const rawSubs = await openSubtitles.subtitles().search({
+      const login = await openSubtitles.login({
+        username: 'gonreyna',
+       password: 'Orchendor1',
+      });
+        const rawSubs = await openSubtitles.subtitles().search({
         imdbid: id.slice(2),
         sublanguageid: "spa",
         query: name,
