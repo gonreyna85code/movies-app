@@ -26,14 +26,14 @@ export function getMovies() {
   };
 }
 
-export function getSubs(title) {
+export function getSubs(title, id) {
   return async function (dispatch) {
     try {
       let json = await axios({
         method: "GET",
         withCredentials: true,
         Credentials: "includes",
-        url: `https://movion-back.herokuapp.com/subs/${title}`,
+        url: `https://movion-back.herokuapp.com/subs/${title}/${id}`,
       });
       console.log(json);
       return dispatch({ type: "GET_SUBS", payload: json.data });

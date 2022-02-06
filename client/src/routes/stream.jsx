@@ -14,8 +14,8 @@ export default function Stream(params) {
   console.log(buffer);
 
   useEffect(() => {
-    dispatch(getSubs(title));
-  }, [dispatch, title]);
+    dispatch(getSubs(title, id));
+  }, [dispatch, title, id]);
 
   const subtitulos = subs?.data?.filter((sub) => sub?.attributes?.language !== "en");
 
