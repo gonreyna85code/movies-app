@@ -29,12 +29,16 @@ export function getMovies() {
 export function getSubs(title) {
   return async function (dispatch) {
     try {
-      let json = await axios({
-        method: "GET",
-        withCredentials: true,
-        Credentials: "includes",
-        url: `https://movion-back.herokuapp.com/subs/${title}`,
-      });
+      const headers = {
+        'Api-Key': "zc0UaUOf7OIsFhK9fBGJCbL5IkH98Ul7",
+    }
+
+    const params = (
+        ('imdb_id', '524434')
+    );
+      let json = await axios.get(
+        `https://www.opensubtitles.com/api/v1/subtitles`, headers, params);
+        
       console.log(json.data);
       return dispatch({ type: "GET_SUBS", payload: json.data });
     } catch (error) {
