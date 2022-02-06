@@ -83,8 +83,7 @@ router.get("/subs/:name/:id", isAuthenticated, async (req, res) => {
       gzip: true,
     });
     const subtitulos = subtitles.data?.filter((sub) => sub?.attributes?.feature_details.title === name);
-    console.log(subtitulos);
-    res.send(subtitles);
+    res.send(subtitulos);
   } catch (error) {
     console.log(error);
     res.send("Not Found");
