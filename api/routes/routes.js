@@ -75,12 +75,9 @@ router.get("/subs/:name/:id", isAuthenticated, async (req, res) => {
   });
   (async () => {
     try {
-      const login = await openSubtitles.login({
-        username: 'gonreyna',
-        password: 'Orchendor1',
-      });
+      
   
-      const { token } = login;
+      
 
       const rawSubs = await openSubtitles.subtitles().search({
         imdbid: id.slice(2),
@@ -96,7 +93,7 @@ router.get("/subs/:name/:id", isAuthenticated, async (req, res) => {
         (sub) => sub?.attributes?.feature_details.title === name
       );
       for (let i = 0; i < subtitulos.length; i++) {
-        const file = await openSubtitles.download().download(subs[i].id, token);
+        const file = await openSubtitles.download().download(subs[i].id);
         console.log(file);
         subtitulos.push(file);
       }
