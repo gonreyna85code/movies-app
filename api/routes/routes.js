@@ -72,8 +72,17 @@ router.get("/subs/:name/:id", isAuthenticated, async (req, res) => {
   const name = req.params.name;
   const id = req.params.id;  
   console.log(name + id);
+  
+
   try {
-    const subtitles = await openSubtitles.subtitles().search({
+    const login = await openSubtitles.login({
+      username: 'gonreyna',
+      password: 'Orchendor1',
+    });
+  
+    const { token } = login;
+
+    const rawSubs = await openSubtitles.subtitles().search({
       imdbid: id.slice(2),
       sublanguageid: 'spa',
       query: name,
@@ -82,7 +91,12 @@ router.get("/subs/:name/:id", isAuthenticated, async (req, res) => {
       type: "movie",
       gzip: true,
     });
-    const subtitulos = subtitles.data?.filter((sub) => sub?.attributes?.feature_details.title === name);
+    var subtitulos = [];
+    const subs = rawSubs.data?.filter((sub) => sub?.attributes?.feature_details.title === name);
+    for(let i = 0; i < subtitulos.length; i++){
+      const file = await openSubtitles.download().download(subs[i].id, token);
+      subtitulos.push(file);
+    }    
     res.send(subtitulos);
   } catch (error) {
     console.log(error);
