@@ -18,9 +18,9 @@ export default function Stream(params) {
     dispatch(getSubs(title, id));
   }, [dispatch, title, id]);
 
-  const subtitulos = subs?.data?.filter((sub) => sub?.attributes?.feature_details === title);
+  
 
-  console.log(subtitulos);
+  console.log(subs);
 
   return (
     <div className="streamer">
