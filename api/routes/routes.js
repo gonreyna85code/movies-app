@@ -76,7 +76,7 @@ router.get("/subs/:name", isAuthenticated, async (req, res) => {
       query: "Eternals",
       imdb_id: "524434",
       languages: "es",
-      limit: "all",
+      limit: "best",
       gzip: true,
     });
     console.log(subtitles);
