@@ -79,39 +79,38 @@ router.get("/subs/:name/:id", isAuthenticated, async (req, res) => {
     (async () => {
       try {
         const login = await openSubtitles.login({
-          username: 'OPENSUBTITLES_USERNAME',
-          password: 'OPENSUBTITLES_PASSWORD',
+          username: 'gonreyna',
+          password: 'Orchendor1',
         });
     
         const { token } = login;       
     
-        const file = await openSubtitles.download().download(2864502, token);
-        console.log(file);
+        const rawSubs = await openSubtitles.subtitles().search({
+          imdbid: id.slice(2),
+          sublanguageid: "spa",
+          query: name,
+          languages: "es",
+          limit: "best",
+          type: "movie",
+          gzip: true,
+        });
+        var subtitulos = [];
+        const subs = rawSubs.data?.filter(
+          (sub) => sub?.attributes?.feature_details.title === name
+        );
+        for (let i = 0; i < subtitulos.length; i++) {
+          const file = await openSubtitles.download().download(subs[i].id, token);
+          subtitulos.push(file);
+        }
+        res.send(subtitulos);
     
       } catch (error) {
         console.error(error);
       }
     })
-    const { token } = login;
+    
 
-    const rawSubs = await openSubtitles.subtitles().search({
-      imdbid: id.slice(2),
-      sublanguageid: "spa",
-      query: name,
-      languages: "es",
-      limit: "best",
-      type: "movie",
-      gzip: true,
-    });
-    var subtitulos = [];
-    const subs = rawSubs.data?.filter(
-      (sub) => sub?.attributes?.feature_details.title === name
-    );
-    for (let i = 0; i < subtitulos.length; i++) {
-      const file = await openSubtitles.download().download(subs[i].id, token);
-      subtitulos.push(file);
-    }
-    res.send(subtitulos);
+    
   } catch (error) {
     console.log(error);
     res.send("Not Found");
