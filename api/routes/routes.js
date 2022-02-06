@@ -76,7 +76,7 @@ router.get("/subs/:name/:id", isAuthenticated, async (req, res) => {
   });
 
   try {
-    const login = await openSubtitles.login({
+    const login = await OpenSubtitles.login({
       username: "gonreyna",
       password: "Orchendor1",
     });
