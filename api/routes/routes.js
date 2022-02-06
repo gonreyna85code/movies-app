@@ -1,10 +1,10 @@
 const Router = require("express");
 const TorrentSearchApi = require("torrent-search-api");
 const torrentStream = require("torrent-stream");
-const OpenSubtitles = require('subtitles.js');
+const OpenSubtitles = require("subtitles.js");
 
 const openSubtitles = new OpenSubtitles({
-  apiKey: 'zc0UaUOf7OIsFhK9fBGJCbL5IkH98Ul7',
+  apiKey: "zc0UaUOf7OIsFhK9fBGJCbL5IkH98Ul7",
 });
 
 const isAuthenticated = function (req, res, next) {
@@ -42,12 +42,12 @@ router.get("/movie/:name", isAuthenticated, async (req, res) => {
 router.get("/video/:magnet", isAuthenticated, async (req, res) => {
   const magnet = req.params.magnet + req._parsedUrl.search;
   try {
-    const engine = torrentStream(magnet);    
+    const engine = torrentStream(magnet);
     engine.on("ready", function () {
-      engine.files.forEach (async function (file) {
+      engine.files.forEach(async function (file) {
         if (file.name.endsWith(".mp4")) {
           res.setHeader("Content-Type", "video/mp4");
-           file.createReadStream().pipe(res);           
+          file.createReadStream().pipe(res);
           console.log("Streaming:", file.name);
         }
         if (file.name.endsWith(".mkv")) {
@@ -59,7 +59,7 @@ router.get("/video/:magnet", isAuthenticated, async (req, res) => {
           res.setHeader("Content-Type", "video/mp4");
           file.createReadStream().pipe(res);
           console.log("Streaming:", file.name);
-        } 
+        }
       });
     });
   } catch (error) {
@@ -70,13 +70,13 @@ router.get("/video/:magnet", isAuthenticated, async (req, res) => {
 
 router.get("/subs/:name", isAuthenticated, async (req, res) => {
   const name = req.params.name;
-  console.log(name)
+  console.log(name);
   try {
     const subtitles = await openSubtitles.subtitles().search({
-      query: 'Eternals',
-       imdbid: '524434',
-        sublanguageid: 'spa',
-      });
+      query: "Eternals",
+      imdbid: "524434",
+      sublanguageid: "spa",
+    });
     console.log(subtitles);
     res.send(subtitles);
   } catch (error) {

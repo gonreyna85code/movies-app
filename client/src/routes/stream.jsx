@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "../styles/stream.css";
 import { useDispatch, useSelector } from "react-redux";
-import {getSubs} from "../redux/actions.js";
+import { getSubs } from "../redux/actions.js";
 
 export default function Stream(params) {
   const dispatch = useDispatch();
@@ -17,14 +17,18 @@ export default function Stream(params) {
     dispatch(getSubs(title));
   }, [dispatch, title]);
 
-  console.log(subs)
+  const subtitulos = subs.filter((sub) => {
+    sub.attributes.language === "es";
+    sub.attributes.feature_details.title === title;
+  });
+
+  console.log(subtitulos);
 
   return (
     <div className="streamer">
       <h1>{title}</h1>
       <video id="videoPlayer" width="650" controls muted="muted" autoPlay>
         <source src={buffer} type="video/mp4" />
-        
       </video>
     </div>
   );
