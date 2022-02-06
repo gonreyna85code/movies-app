@@ -82,7 +82,7 @@ router.get("/subs/:name/:id", isAuthenticated, async (req, res) => {
       type: "movie",
       gzip: true,
     });
-    const subtitulos = subtitles.data?.filter((sub) => sub?.attributes?.feature_details === name);
+    const subtitulos = subtitles.data?.filter((sub) => sub?.attributes?.feature_details.title === name);
     console.log(subtitulos);
     res.send(subtitles);
   } catch (error) {
