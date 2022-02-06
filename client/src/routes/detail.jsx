@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "../styles/detail.css";
 
+
 export default function Detail(props) {
   const id = props.match.params.id;
   console.log(Number(id));
