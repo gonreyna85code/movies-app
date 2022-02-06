@@ -17,10 +17,7 @@ export default function Stream(params) {
     dispatch(getSubs(title));
   }, [dispatch, title]);
 
-  const subtitulos = subs.filter((sub) => {
-    sub.attributes.language === "es" &&
-    sub.attributes.feature_details.title === title;
-  });
+  const subtitulos = subs.filter((sub) => sub.attributes.language === "es"&&sub.attributes.feature_details.title === title);
 
   console.log(subtitulos);
 
