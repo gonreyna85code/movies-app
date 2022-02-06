@@ -3,9 +3,7 @@ const TorrentSearchApi = require("torrent-search-api");
 const torrentStream = require("torrent-stream");
 const OpenSubtitles = require("subtitles.js");
 
-const openSubtitles = new OpenSubtitles({
-  apiKey: "zc0UaUOf7OIsFhK9fBGJCbL5IkH98Ul7",
-});
+
 
 const isAuthenticated = function (req, res, next) {
   console.log(req.user);
@@ -70,21 +68,24 @@ router.get("/video/:magnet", isAuthenticated, async (req, res) => {
 
 router.get("/subs/:name/:id", isAuthenticated, async (req, res) => {
   const name = req.params.name;
-  const id = req.params.id;  
+  const id = req.params.id;
   console.log(name + id);
   
+  const openSubtitles = new OpenSubtitles({
+    apiKey: "zc0UaUOf7OIsFhK9fBGJCbL5IkH98Ul7",
+  });
 
   try {
     const login = await openSubtitles.login({
-      username: 'gonreyna',
-      password: 'Orchendor1',
+      username: "gonreyna",
+      password: "Orchendor1",
     });
-  
+
     const { token } = login;
 
     const rawSubs = await openSubtitles.subtitles().search({
       imdbid: id.slice(2),
-      sublanguageid: 'spa',
+      sublanguageid: "spa",
       query: name,
       languages: "es",
       limit: "best",
@@ -92,11 +93,13 @@ router.get("/subs/:name/:id", isAuthenticated, async (req, res) => {
       gzip: true,
     });
     var subtitulos = [];
-    const subs = rawSubs.data?.filter((sub) => sub?.attributes?.feature_details.title === name);
-    for(let i = 0; i < subtitulos.length; i++){
+    const subs = rawSubs.data?.filter(
+      (sub) => sub?.attributes?.feature_details.title === name
+    );
+    for (let i = 0; i < subtitulos.length; i++) {
       const file = await openSubtitles.download().download(subs[i].id, token);
       subtitulos.push(file);
-    }    
+    }
     res.send(subtitulos);
   } catch (error) {
     console.log(error);
