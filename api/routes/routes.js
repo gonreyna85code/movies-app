@@ -68,7 +68,7 @@ router.get("/video/:magnet", isAuthenticated, async (req, res) => {
   }
 });
 
-router.get("/subs/:name", isAuthenticated, async (req, res) => {
+router.get("/subs/:name/:id", isAuthenticated, async (req, res) => {
   const name = req.params.name;
   const id = req.params.id;
   console.log(name);
