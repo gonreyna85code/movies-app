@@ -9,6 +9,8 @@ export default function Stream(params) {
     console.log(buffer)
 
 
+
+    
   return (
     <div className="streamer">
     <video id="videoPlayer" width="650" controls muted="muted" autoPlay>
