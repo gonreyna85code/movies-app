@@ -69,52 +69,49 @@ router.get("/video/:magnet", isAuthenticated, async (req, res) => {
 router.get("/subs/:name/:id", isAuthenticated, async (req, res) => {
   const name = req.params.name;
   const id = req.params.id;
-  console.log(name + id);
-  
+  console.log(name + id);  
   const openSubtitles = new OpenSubtitles({
     apiKey: "zc0UaUOf7OIsFhK9fBGJCbL5IkH98Ul7",
   });
+  (async () => {
+    try {
+      const login = await openSubtitles.login({
+        username: 'gonreyna',
+        password: 'Orchendor1',
+      });
+  
+      const { token } = login;
 
-  try {
-    (async () => {
-      try {
-        const login = await openSubtitles.login({
-          username: 'gonreyna',
-          password: 'Orchendor1',
-        });
-    
-        const { token } = login;       
-    
-        const rawSubs = await openSubtitles.subtitles().search({
-          imdbid: id.slice(2),
-          sublanguageid: "spa",
-          query: name,
-          languages: "es",
-          limit: "best",
-          type: "movie",
-          gzip: true,
-        });
-        var subtitulos = [];
-        const subs = rawSubs.data?.filter(
-          (sub) => sub?.attributes?.feature_details.title === name
-        );
-        for (let i = 0; i < subtitulos.length; i++) {
-          const file = await openSubtitles.download().download(subs[i].id, token);
-          subtitulos.push(file);
-        }
-        res.send(subtitulos);
-    
-      } catch (error) {
-        console.error(error);
+      const rawSubs = await openSubtitles.subtitles().search({
+        imdbid: id.slice(2),
+        sublanguageid: "spa",
+        query: name,
+        languages: "es",
+        limit: "best",
+        type: "movie",
+        gzip: true,
+      });
+      var subtitulos = [];
+      const subs = rawSubs.data?.filter(
+        (sub) => sub?.attributes?.feature_details.title === name
+      );
+      for (let i = 0; i < subtitulos.length; i++) {
+        const file = await openSubtitles.download().download(subs[i].id, token);
+        console.log(file);
+        subtitulos.push(file);
       }
-    })
-    
-
-    
-  } catch (error) {
-    console.log(error);
-    res.send("Not Found");
-  }
+      res.send(subtitulos);
+  
+      
+    } catch (error) {
+      console.error(error);
+    }
+  })();
+  
 });
 
 module.exports = router;
+
+
+
+
