@@ -75,11 +75,7 @@ router.get("/subs/:name/:id", isAuthenticated, async (req, res) => {
   });
   (async () => {
     try {
-      
-  
-      
-
-      const rawSubs = await openSubtitles.subtitles().search({
+            const rawSubs = await openSubtitles.subtitles().search({
         imdbid: id.slice(2),
         sublanguageid: "spa",
         query: name,
@@ -92,7 +88,7 @@ router.get("/subs/:name/:id", isAuthenticated, async (req, res) => {
       const subs = rawSubs.data?.filter(
         (sub) => sub?.attributes?.feature_details.title === name
       );
-      for (let i = 0; i < subtitulos.length; i++) {
+      for (let i = 0; i < subs.length; i++) {
         const file = await openSubtitles.download().download(subs[i].id);
         console.log(file);
         subtitulos.push(file);
