@@ -2,7 +2,9 @@ import React from "react";
 import "../styles/stream.css";
 
 export default function Stream(params) {
-  console.log(params);
+    
+  
+  
   const magnet =
     params.match.params.magnet.toString(params.location.search) +
     params.location.search.toString();

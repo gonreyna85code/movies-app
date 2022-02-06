@@ -84,10 +84,9 @@ export default function Detail(props) {
                       Magnet Link
                     </button>
                     </a>
-                    <Link
-                      name={e.title}
+                    <Link                
                       key={e.id}
-                      to={`/video/${e.magnet}`}
+                      to={`/video/${e.title}/${e.magnet}`}
                       target="_blank"
                       style={{ textDecoration: "none" }}
                     >
