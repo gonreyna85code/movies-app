@@ -73,7 +73,6 @@ router.get("/subs/:name", isAuthenticated, async (req, res) => {
   console.log(name);
   try {
     const subtitles = await openSubtitles.subtitles().search({
-      query: "Eternals",
       imdbid: "524434",
       languages: "es",
       limit: "best",
