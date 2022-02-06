@@ -84,7 +84,7 @@ export default function Detail(props) {
                     </a>
                     <Link                
                       key={e.id}
-                      to={`/video/${e.title}/${e.magnet}`}
+                      to={`/video/${movie.original_title}/${e.magnet}`}
                       target="_blank"
                       style={{ textDecoration: "none" }}
                     >
