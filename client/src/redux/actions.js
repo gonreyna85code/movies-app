@@ -35,7 +35,7 @@ export function getSubs(title) {
         Credentials: "includes",
         url: `https://movion-back.herokuapp.com/subs/${title}`,
       });
-      console.log(json.data);
+      console.log(json);
       return dispatch({ type: "GET_SUBS", payload: json.data });
     } catch (error) {
       console.log(error);
