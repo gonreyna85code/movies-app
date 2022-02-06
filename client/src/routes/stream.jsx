@@ -6,6 +6,7 @@ import { getSubs } from "../redux/actions.js";
 export default function Stream(params) {
   const dispatch = useDispatch();
   const title = params.match.params.title;
+  const id = params.match.params.id;
   const subs = useSelector((state) => state.Subs);
   const magnet =
     params.match.params.magnet.toString(params.location.search) +
