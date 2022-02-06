@@ -29,13 +29,13 @@ export function getMovies() {
 export function getSubs(title) {
   return async function (dispatch) {
     try {
-      const json = await axios.get({
-        url:`https://movion-back.herokuapp.com/subs/${title}`,
+      let json = await axios({
         method: "GET",
         withCredentials: true,
         Credentials: "includes",
+        url: `https://movion-back.herokuapp.com/subs/${title}`,
       });
-      console.log(json.data)
+      console.log(json.data);
       return dispatch({ type: "GET_SUBS", payload: json.data });
     } catch (error) {
       console.log(error);
