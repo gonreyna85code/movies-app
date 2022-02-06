@@ -42,23 +42,25 @@ router.get("/movie/:name", isAuthenticated, async (req, res) => {
 router.get("/video/:magnet", isAuthenticated, async (req, res) => {
   const magnet = req.params.magnet + req._parsedUrl.search;
   try {
-    const engine = torrentStream(magnet);
-    const subtitles = await openSubtitles.subtitles().search({ query: file.name });
+    const engine = torrentStream(magnet);    
     engine.on("ready", function () {
       engine.files.forEach (function (file) {
         if (file.name.endsWith(".mp4")) {
+          const subtitles = await openSubtitles.subtitles().search({ query: file.name });
           res.setHeader("Content-Type", "video/mp4");
           subtitles.appendTo(file);
            file.createReadStream().pipe(res);           
           console.log("Streaming:", file.name);
         }
         if (file.name.endsWith(".mkv")) {
+          const subtitles = await openSubtitles.subtitles().search({ query: file.name });
           res.setHeader("Content-Type", "video/mp4");
          subtitles.appendTo(file);
            file.createReadStream().pipe(res);
           console.log("Streaming:", file.name);
         }
         if (file.name.endsWith(".avi")) {
+          const subtitles = await openSubtitles.subtitles().search({ query: file.name });
           res.setHeader("Content-Type", "video/mp4");
           subtitles.appendTo(file);
            file.createReadStream().pipe(res);
