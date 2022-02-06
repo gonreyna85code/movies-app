@@ -6,7 +6,7 @@ export default function Stream(params) {
     params.match.params.magnet.toString(params.location.search) +
     params.location.search.toString();
     const buffer = `https://movion-back.herokuapp.com/video/${magnet}`
-    console.log(buffer.length)
+    console.log(buffer)
 
 
   return (
