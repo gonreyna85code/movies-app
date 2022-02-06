@@ -79,7 +79,7 @@ router.get("/subs/:name/:id", isAuthenticated, async (req, res) => {
     try {
       const login = await axios({
         method: "POST",
-        body: {username: 'gonreyna',
+        data: {username: 'gonreyna',
        password: 'Orchendor1',},
        url: 'https://api.opensubtitles.com/api/v1/login',
       });
