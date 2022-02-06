@@ -2,6 +2,8 @@ const Router = require("express");
 const TorrentSearchApi = require("torrent-search-api");
 const torrentStream = require("torrent-stream");
 const OpenSubtitles = require("subtitles.js");
+const axios = require("axios");
+
 
 
 
@@ -75,10 +77,13 @@ router.get("/subs/:name/:id", isAuthenticated, async (req, res) => {
   });
   (async () => {
     try {
-      const login = await openSubtitles.login({
-        username: 'gonreyna',
-       password: 'Orchendor1',
+      const login = await axios.post({
+        body: {username: 'gonreyna',
+       password: 'Orchendor1',},
+       url: 'https://api.opensubtitles.com/api/v1/login',
       });
+
+      const {token} = login.data.token;
         const rawSubs = await openSubtitles.subtitles().search({
         imdbid: id.slice(2),
         sublanguageid: "spa",
@@ -93,7 +98,7 @@ router.get("/subs/:name/:id", isAuthenticated, async (req, res) => {
         (sub) => sub?.attributes?.feature_details.title === name
       );
       for (let i = 0; i < subs.length; i++) {
-        const file = await openSubtitles.download().download(subs[i].id);
+        const file = await openSubtitles.download().download(subs[i].id, token);
         console.log(file);
         subtitulos.push(file);
       }

@@ -14,6 +14,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.25.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "connect-mongo": "^4.6.0",
@@ -26,6 +27,7 @@
     "install": "^0.13.0",
     "mongoose": "^6.1.8",
     "morgan": "^1.10.0",
+    "node-fetch": "^2.6.7",
     "nodemon": "^2.0.15",
     "npm": "^8.3.2",
     "opensubtitles-api": "^5.1.2",
