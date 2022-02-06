@@ -40,7 +40,7 @@ router.get("/movie/:name", isAuthenticated, async (req, res) => {
 });
 
 router.get("/video/:magnet", isAuthenticated, async (req, res) => {
-  const subtitles = await openSubtitles.subtitles().search({ query: 'Breaking Bad S01E02' });
+  
     console.log(subtitles);
   const magnet = req.params.magnet + req._parsedUrl.search;
   try {
@@ -49,16 +49,20 @@ router.get("/video/:magnet", isAuthenticated, async (req, res) => {
       engine.files.forEach (function (file) {
         if (file.name.endsWith(".mp4")) {
           res.setHeader("Content-Type", "video/mp4");
+          subtitles.appendTo(file);
            file.createReadStream().pipe(res);
+           const subtitles = await openSubtitles.subtitles().search({ query: file.name });
           console.log("Streaming:", file.name);
         }
         if (file.name.endsWith(".mkv")) {
           res.setHeader("Content-Type", "video/mp4");
+         subtitles.appendTo(file);
            file.createReadStream().pipe(res);
           console.log("Streaming:", file.name);
         }
         if (file.name.endsWith(".avi")) {
           res.setHeader("Content-Type", "video/mp4");
+          subtitles.appendTo(file);
            file.createReadStream().pipe(res);
           console.log("Streaming:", file.name);
         } 
