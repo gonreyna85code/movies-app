@@ -45,17 +45,17 @@ router.get("/video/:magnet", isAuthenticated, async (req, res) => {
     const engine = torrentStream(magnet);
     engine.on("ready", function () {
       engine.files.forEach(async function (file) {
-        if (file.name.endsWith(".mp4")) {
+        if (file.name.endsWith(".mp4") && !file.name.includes('sample')) {
           res.setHeader("Content-Type", "video/mp4");
           file.createReadStream().pipe(res);
           console.log("Streaming:", file.name);
         }
-        if (file.name.endsWith(".mkv")) {
+        if (file.name.endsWith(".mkv") && !file.name.includes('sample')) {
           res.setHeader("Content-Type", "video/mp4");
           file.createReadStream().pipe(res);
           console.log("Streaming:", file.name);
         }
-        if (file.name.endsWith(".avi")) {
+        if (file.name.endsWith(".avi") && !file.name.includes('sample')) {
           res.setHeader("Content-Type", "video/mp4");
           file.createReadStream().pipe(res);
           console.log("Streaming:", file.name);
