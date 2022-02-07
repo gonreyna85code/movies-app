@@ -32,7 +32,8 @@ router.get("/movie/:name", isAuthenticated, async (req, res) => {
       const magnet = await TorrentSearchApi.getMagnet(data[i]);
       data[i].magnet = magnet;
     }
-    res.send(data);
+    const torrents = data.map(e => {e.size.slice(0, -2)});
+    res.send(torrents);
   } catch (error) {
     console.log(error);
     res.send("Not Found");
