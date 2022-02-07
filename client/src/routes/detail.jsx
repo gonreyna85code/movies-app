@@ -83,7 +83,7 @@ export default function Detail(props) {
                       Magnet Link
                     </button>
                     </a>
-                     {e.size < 4 ? <Link                
+                     {Number(e.size) < 4 ? <Link                
                       key={e.id}
                       to={`/video/${movie.original_title}/${movie.imdb_id}/${e.magnet}`}
                       target="_blank"
