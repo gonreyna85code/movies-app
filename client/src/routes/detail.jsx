@@ -83,7 +83,7 @@ export default function Detail(props) {
                       Magnet Link
                     </button>
                     </a>
-                    <Link                
+                     {e.size < 4} ? {<Link                
                       key={e.id}
                       to={`/video/${movie.original_title}/${movie.imdb_id}/${e.magnet}`}
                       target="_blank"
@@ -92,7 +92,7 @@ export default function Detail(props) {
                       &emsp;&emsp;<button>
                       Watch
                     </button>
-                    </Link>
+                    </Link>} : {null}
                     &emsp;{e.size}
                   </li>
                 ))
