@@ -36,7 +36,7 @@ function rootReducer(state = initialState, action) {
   if (action.type === GET_TORRENTS) {
     return {
       ...state,
-      Torrents: action.payload.sort((a, b) => a.size.includes('MB') - b.size),
+      Torrents: action.payload,
     };
   }
   if (action.type === GET_USER) {
