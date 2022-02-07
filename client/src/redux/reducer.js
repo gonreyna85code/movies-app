@@ -36,7 +36,7 @@ function rootReducer(state = initialState, action) {
   if (action.type === GET_TORRENTS) {
     return {
       ...state,
-      Torrents: action.payload.map((torrent) => {torrent.size.slice(0, -2); return torrent}),
+      Torrents: action.payload.map((torrent) => {torrent.size.slice(0, 3); return torrent}),
     };
   }
   if (action.type === GET_USER) {
