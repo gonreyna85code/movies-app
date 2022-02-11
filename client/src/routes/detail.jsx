@@ -23,7 +23,7 @@ export default function Detail(props) {
   useEffect(() => {
     dispatch(getMovie(id));
     dispatch(delTorrent());
-    dispatch(getUser());
+    //dispatch(getUser());
   }, [dispatch, id]);
 
   const handleClick = () => {
