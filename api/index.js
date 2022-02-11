@@ -24,7 +24,7 @@ app.use(
 
 app.set('trust proxy', true);
 
-mongoose.connect("mongodb+srv://gonreyna85:gonreyna85@cluster0.bubyh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", () => {
+mongoose.connect(process.env.MONGO, () => {
   console.log("Mongoose Is Connected");
 });
 
