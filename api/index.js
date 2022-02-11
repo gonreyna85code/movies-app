@@ -62,6 +62,6 @@ app.use((err, req, res, next) => {
   res.status(status).send(message);
 });
 
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT, '0.0.0.0', () => {
   console.log("Server Has Started on port " + process.env.PORT);
 });
