@@ -99,10 +99,18 @@ router.get("/subs/:name/:id", isAuthenticated, async (req, res) => {
         (sub) => sub?.attributes?.feature_details.title === name
       );
 
-      const file = await openSubtitles.download().download(subs[0].id, token);
+      const subtitulo = await axios({
+        method: "POST",
+        headers: {
+          "Authorization": token,
+          "Content-Type": "application/json",
+        },
+        data: { file_id: subs[0].id },
+        url: "https://api.opensubtitles.com/api/v1/download",
+      });
       console.log(subs[0].id);
-        console.log(file)
-      res.send(subs);
+        console.log(subtitulo)
+      res.send(subtitulo);
     } catch (error) {
       console.error(error);
     }
