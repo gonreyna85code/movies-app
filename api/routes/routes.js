@@ -68,24 +68,11 @@ router.get("/video/:magnet", isAuthenticated, async (req, res) => {
 router.get("/subs/:name/:id", isAuthenticated, async (req, res) => {
   const name = req.params.name;
   const id = req.params.id;
-  console.log(name + id);
   const openSubtitles = new OpenSubtitles({
     apiKey: "zc0UaUOf7OIsFhK9fBGJCbL5IkH98Ul7",
   });
   (async () => {
     try {
-      const login = await axios({
-        method: "POST",
-        headers: {
-          "Api-Key": "zc0UaUOf7OIsFhK9fBGJCbL5IkH98Ul7",
-          "Content-Type": "application/json",
-        },
-        data: { username: "gonreyna", password: "Orchendor1" },
-        url: "https://api.opensubtitles.com/api/v1/login",
-      });
-      console.log(login.data);
-      const { token } = login.data;
-      
       const rawSubs = await openSubtitles.subtitles().search({
         imdbid: id.slice(2),
         sublanguageid: "spa",
@@ -95,19 +82,39 @@ router.get("/subs/:name/:id", isAuthenticated, async (req, res) => {
         type: "movie",
         gzip: true,
       });
-      
       const subs = rawSubs.data?.filter(
         (sub) => sub?.attributes?.feature_details.title === name
       );
-      console.log(subs);
-       
-      const file = await openSubtitles.download().download(subs[0].attributes.files[0].file_id, token);
-      console.log(file);       
       res.send(file);
     } catch (error) {
       console.error(error);
     }
   })();
+});
+
+router.get("/subtitulo/:id", isAuthenticated, async (req, res) => {
+  const id = req.params.id;
+  console.log(id);
+  try {
+    const login = await axios({
+      method: "POST",
+      headers: {
+        "Api-Key": "zc0UaUOf7OIsFhK9fBGJCbL5IkH98Ul7",
+        "Content-Type": "application/json",
+      },
+      data: { username: "gonreyna", password: "Orchendor1" },
+      url: "https://api.opensubtitles.com/api/v1/login",
+    });
+    console.log(login.data);
+    const { token } = login.data;
+    const file = await openSubtitles
+      .download()
+      .download(subs[0].attributes.files[0].file_id, token);
+    console.log(file);
+    res.send(file);
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 module.exports = router;
