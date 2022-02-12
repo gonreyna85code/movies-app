@@ -2,18 +2,19 @@ const express = require("express");
 const cors = require("cors");
 const passport = require("passport");
 const passportLocal = require("passport-local").Strategy;
-require("dotenv").config();
 const morgan = require("morgan");
 var session = require("express-session");
 const bodyParser = require("body-parser");
 const MongoStore = require("connect-mongo");
 const mongoose = require("mongoose");
-const app = express();
 const routes = require("./routes/routes");
 const auth = require("./routes/auth");
 const cookieParser = require("cookie-parser");
+const app = express();
+require("dotenv").config();
 
 console.log(process.env.PORT)
+
 app.name = "API";
 
 app.use(
