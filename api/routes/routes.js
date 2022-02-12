@@ -100,8 +100,8 @@ router.get("/subs/:name/:id", isAuthenticated, async (req, res) => {
       );
 
       const file = await openSubtitles.download().download(subs[0].id, token);
-
-      res.send(file);
+        console.log(file)
+      res.send(subs);
     } catch (error) {
       console.error(error);
     }
