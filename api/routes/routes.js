@@ -73,7 +73,20 @@ router.get("/subs/:name/:id", isAuthenticated, async (req, res) => {
     apiKey: "zc0UaUOf7OIsFhK9fBGJCbL5IkH98Ul7",
   });
   (async () => {
-    try {   
+    try {
+      const login = await axios({
+        method: "POST",
+        headers: {
+          "Api-Key": "zc0UaUOf7OIsFhK9fBGJCbL5IkH98Ul7",
+          "Content-Type": "application/json",
+        },
+        data: { username: "gonreyna", password: "Orchendor1" },
+        url: "https://api.opensubtitles.com/api/v1/login",
+      });
+      console.log(login.data);
+      const { token } = login.data;
+      const file = await openSubtitles.download().download(2864502, token);
+      console.log(file);
       const rawSubs = await openSubtitles.subtitles().search({
         imdbid: id.slice(2),
         sublanguageid: "spa",
@@ -87,26 +100,25 @@ router.get("/subs/:name/:id", isAuthenticated, async (req, res) => {
       const subs = rawSubs.data?.filter(
         (sub) => sub?.attributes?.feature_details.title === name
       );
+
       const subtitulo = await axios({
         method: "POST",
-        headers: {
+        header: {
           "Api-Key": "zc0UaUOf7OIsFhK9fBGJCbL5IkH98Ul7",
-          "User-Agent": 'TemporaryUserAgent',
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
-        data: {
+        data: { 
           file_id: 50310,
-          sub_format: "srt",
-          file_name: "50310",
-          in_fps: 0,
-          out_fps: 0,
-          timeshift: 0,
-          force_download: true,
-        },
+        sub_format: "string",
+        file_name: "string",
+        in_fps: 0,
+        out_fps: 0,
+        timeshift: 0,
+        force_download: true },
         url: "https://api.opensubtitles.com/api/v1/download",
       });
       console.log(subs[0].id);
-      console.log(subtitulo);
+        console.log(subtitulo)
       res.send(subtitulo);
     } catch (error) {
       console.error(error);
