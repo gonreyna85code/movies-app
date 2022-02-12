@@ -85,7 +85,7 @@ router.get("/subs/:name/:id", isAuthenticated, async (req, res) => {
       const subs = rawSubs.data?.filter(
         (sub) => sub?.attributes?.feature_details.title === name
       );
-      res.send(file);
+      res.send(subs);
     } catch (error) {
       console.error(error);
     }
