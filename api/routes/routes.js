@@ -2,7 +2,7 @@ const Router = require("express");
 const TorrentSearchApi = require("torrent-search-api");
 const torrentStream = require("torrent-stream");
 const OpenSubtitles = require("subtitles.js");
-//const axios = require("axios");
+const axios = require("axios");
 
 
 
@@ -25,7 +25,7 @@ router.get("/user", isAuthenticated, (req, res) => {
 
 router.get("/movie/:name", isAuthenticated, async (req, res) => {
   const name = req.params.name;
-  TorrentSearchApi.enableProvider("1337x");
+  TorrentSearchApi.enablePublicProviders();
   try {
     const data = await TorrentSearchApi.search(`${name}`, "Movies", 20);
     for (var i = 0; i < data.length; i++) {
@@ -79,6 +79,7 @@ router.get("/subs/:name/:id", isAuthenticated, async (req, res) => {
     try {
       const login = await axios({
         method: "POST",
+        header: "",
         data: {username: 'gonreyna',
        password: 'Orchendor1',},
        url: 'https://api.opensubtitles.com/api/v1/login',
