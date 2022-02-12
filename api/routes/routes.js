@@ -84,7 +84,7 @@ router.get("/subs/:name/:id", isAuthenticated, async (req, res) => {
         url: "https://api.opensubtitles.com/api/v1/login",
       });
       console.log(login.data);
-      const { token } = login.data;
+      const { token } = login.data.token;
       const rawSubs = await openSubtitles.subtitles().search({
         imdbid: id.slice(2),
         sublanguageid: "spa",
