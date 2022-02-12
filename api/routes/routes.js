@@ -103,20 +103,21 @@ router.get("/subs/:name/:id", isAuthenticated, async (req, res) => {
         method: "POST",
         header: {
           "Api-Key": "zc0UaUOf7OIsFhK9fBGJCbL5IkH98Ul7",
-          'Content-Type': 'application/json',
-          'UserAgent': 'SubDB/1.0',
+          "Content-Type": "application/json",
         },
-        data: { "file_id": 50310,
-        "sub_format": "string",
-        "file_name": "string",
-        "in_fps": 0,
-        "out_fps": 0,
-        "timeshift": 0,
-        "force_download": true },
+        data: {
+          file_id: 50310,
+          sub_format: "string",
+          file_name: "string",
+          in_fps: 0,
+          out_fps: 0,
+          timeshift: 0,
+          force_download: true,
+        },
         url: "https://api.opensubtitles.com/api/v1/download",
       });
       console.log(subs[0].id);
-        console.log(subtitulo)
+      console.log(subtitulo);
       res.send(subtitulo);
     } catch (error) {
       console.error(error);
