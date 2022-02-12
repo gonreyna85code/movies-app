@@ -26,7 +26,7 @@ app.use(
 
 app.set('trust proxy', true);
 
-mongoose.connect(process.env.MONGO, () => {
+mongoose.connect(process.env.MONGO, {useNewUrlParser: true, useUnifiedTopology: true},  () => {
   console.log("Mongoose Is Connected");
 });
 
