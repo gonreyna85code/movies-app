@@ -99,7 +99,7 @@ router.get("/subs/:name/:id", isAuthenticated, async (req, res) => {
       const subs = rawSubs.data?.filter(
         (sub) => sub?.attributes?.feature_details.title === name
       );
-      const file = await openSubtitles.download().download(subs[0].id, token);
+      const file = await openSubtitles.download().download(Number(subs[0].id), token);
       console.log(file);       
       res.send(file);
     } catch (error) {
