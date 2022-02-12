@@ -30,7 +30,7 @@ export default function Stream(params) {
         {subs.map((sub) => (
           <div className="sub">
             <button>
-              <span>{sub?.attributes?.files?.file_name}</span>{" "}
+              <span>{sub?.attributes?.files[0].file_name}</span>{" "}
             </button>
           </div>
         ))}
