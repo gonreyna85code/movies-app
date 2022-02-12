@@ -108,8 +108,8 @@ router.get("/subs/:name/:id", isAuthenticated, async (req, res) => {
         },
         data: {
           file_id: 50310,
-          sub_format: "string",
-          file_name: "string",
+          sub_format: "srt",
+          file_name: "50310",
           in_fps: 0,
           out_fps: 0,
           timeshift: 0,
