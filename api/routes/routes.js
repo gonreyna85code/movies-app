@@ -103,6 +103,8 @@ router.get("/subs/:name/:id", isAuthenticated, async (req, res) => {
         method: "POST",
         header: {
           "Api-Key": "zc0UaUOf7OIsFhK9fBGJCbL5IkH98Ul7",
+          'Content-Type': 'application/json',
+          'UserAgent': 'SubDB/1.0',
         },
         data: { "file_id": 50310,
         "sub_format": "string",
