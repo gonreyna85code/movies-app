@@ -10,7 +10,7 @@ export default function Home() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.User);
   useEffect(() => {
-    //dispatch(getUser());
+    dispatch(getUser());
     dispatch(getMovies());
   }, [dispatch]);
 
