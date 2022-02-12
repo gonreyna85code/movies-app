@@ -95,10 +95,11 @@ router.get("/subs/:name/:id", isAuthenticated, async (req, res) => {
         type: "movie",
         gzip: true,
       });
-      var subtitulos = [];
+      
       const subs = rawSubs.data?.filter(
         (sub) => sub?.attributes?.feature_details.title === name
       );
+      console.log(subs);
       const file = await openSubtitles.download().download(Number(subs[0].id), token);
       console.log(file);       
       res.send(file);
