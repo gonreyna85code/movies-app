@@ -84,7 +84,7 @@ router.get("/subs/:name/:id", isAuthenticated, async (req, res) => {
         url: "https://api.opensubtitles.com/api/v1/login",
       });
       console.log(login.data);
-      const { token } = login.data.token;
+      const { token } = login.data;
       const rawSubs = await openSubtitles.subtitles().search({
         imdbid: id.slice(2),
         sublanguageid: "spa",
@@ -103,7 +103,7 @@ router.get("/subs/:name/:id", isAuthenticated, async (req, res) => {
         method: "POST",
         headers: {
           "Api-Key": "zc0UaUOf7OIsFhK9fBGJCbL5IkH98Ul7",
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         data: { "file_id": 50310,
         "sub_format": "string",
