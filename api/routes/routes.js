@@ -101,9 +101,8 @@ router.get("/subs/:name/:id", isAuthenticated, async (req, res) => {
 
       const subtitulo = await axios({
         method: "POST",
-        headers: {
+        header: {
           "Api-Key": "zc0UaUOf7OIsFhK9fBGJCbL5IkH98Ul7",
-          'Content-Type': 'application/json',
         },
         data: { "file_id": 50310,
         "sub_format": "string",
