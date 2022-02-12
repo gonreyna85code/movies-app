@@ -18,8 +18,6 @@ export default function Stream(params) {
     dispatch(getSubs(title, id));
   }, [dispatch, title, id]);
 
-  
-
   console.log(subs);
 
   return (
@@ -28,6 +26,15 @@ export default function Stream(params) {
       <video id="videoPlayer" width="650" controls muted="muted" autoPlay>
         <source src={buffer} type="video/mp4" />
       </video>
+      <div className="subs">
+        {subs.map((sub) => (
+          <div className="sub">
+            <button>
+              <span>{sub?.attributes?.files?.file_name}</span>{" "}
+            </button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
