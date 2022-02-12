@@ -13,6 +13,7 @@ const routes = require("./routes/routes");
 const auth = require("./routes/auth");
 const cookieParser = require("cookie-parser");
 
+console.log(process.env.PORT)
 app.name = "API";
 
 app.use(
@@ -62,6 +63,6 @@ app.use((err, req, res, next) => {
   res.status(status).send(message);
 });
 
-app.listen(process.env.PORT, '0.0.0.0', () => {
+app.listen(process.env.PORT, () => {
   console.log("Server Has Started on port " + process.env.PORT);
 });
