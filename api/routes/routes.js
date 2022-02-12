@@ -4,9 +4,6 @@ const torrentStream = require("torrent-stream");
 const OpenSubtitles = require("subtitles.js");
 const axios = require("axios");
 
-
-
-
 const isAuthenticated = function (req, res, next) {
   console.log(req.user);
   if (req.isAuthenticated()) return next();
@@ -45,17 +42,17 @@ router.get("/video/:magnet", isAuthenticated, async (req, res) => {
     const engine = torrentStream(magnet);
     engine.on("ready", function () {
       engine.files.forEach(async function (file) {
-        if (file.name.endsWith(".mp4") && !file.name.includes('sample')) {
+        if (file.name.endsWith(".mp4") && !file.name.includes("sample")) {
           res.setHeader("Content-Type", "video/mp4");
           file.createReadStream().pipe(res);
           console.log("Streaming:", file.name);
         }
-        if (file.name.endsWith(".mkv") && !file.name.includes('sample')) {
+        if (file.name.endsWith(".mkv") && !file.name.includes("sample")) {
           res.setHeader("Content-Type", "video/mp4");
           file.createReadStream().pipe(res);
           console.log("Streaming:", file.name);
         }
-        if (file.name.endsWith(".avi") && !file.name.includes('sample')) {
+        if (file.name.endsWith(".avi") && !file.name.includes("sample")) {
           res.setHeader("Content-Type", "video/mp4");
           file.createReadStream().pipe(res);
           console.log("Streaming:", file.name);
@@ -71,7 +68,7 @@ router.get("/video/:magnet", isAuthenticated, async (req, res) => {
 router.get("/subs/:name/:id", isAuthenticated, async (req, res) => {
   const name = req.params.name;
   const id = req.params.id;
-  console.log(name + id);  
+  console.log(name + id);
   const openSubtitles = new OpenSubtitles({
     apiKey: "zc0UaUOf7OIsFhK9fBGJCbL5IkH98Ul7",
   });
@@ -80,16 +77,15 @@ router.get("/subs/:name/:id", isAuthenticated, async (req, res) => {
       const login = await axios({
         method: "POST",
         headers: {
-          'Api-Key': "zc0UaUOf7OIsFhK9fBGJCbL5IkH98Ul7",
-          'Content-Type': 'application/json',
-      },
-        data: {username: 'gonreyna',
-       password: 'Orchendor1',},
-       url: 'https://api.opensubtitles.com/api/v1/login',
+          "Api-Key": "zc0UaUOf7OIsFhK9fBGJCbL5IkH98Ul7",
+          "Content-Type": "application/json",
+        },
+        data: { username: "gonreyna", password: "Orchendor1" },
+        url: "https://api.opensubtitles.com/api/v1/login",
       });
-console.log(login.data)
-      const {token} = login.data;
-        const rawSubs = await openSubtitles.subtitles().search({
+      console.log(login.data);
+      const { token } = login.data;
+      const rawSubs = await openSubtitles.subtitles().search({
         imdbid: id.slice(2),
         sublanguageid: "spa",
         query: name,
@@ -102,23 +98,14 @@ console.log(login.data)
       const subs = rawSubs.data?.filter(
         (sub) => sub?.attributes?.feature_details.title === name
       );
-      for (let i = 0; i < subs.length; i++) {
-        const file = await openSubtitles.download().download(subs[i].id, token);
-        console.log(file);
-        subtitulos.push(file);
-      }
-      res.send(subtitulos);
-  
-      
+
+      const file = await openSubtitles.download().download(subs[0].id, token);
+
+      res.send(file);
     } catch (error) {
       console.error(error);
     }
   })();
-  
 });
 
 module.exports = router;
-
-
-
-
