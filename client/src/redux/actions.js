@@ -128,14 +128,14 @@ export function login(login) {
 export function getUser() {
   return async function (dispatch) {
     try {
-      const json = await axios({
-        method: "GET",
-        withCredentials: true,
-        Credentials: "includes",
-        url: "https://movion-back.herokuapp.com/user",
-      });
-      console.log(json.data);
-      return dispatch({ type: "GET_USER", payload: json.data });
+      // const json = await axios({
+      //   method: "GET",
+      //   withCredentials: true,
+      //   Credentials: "includes",
+      //   url: "https://movion-back.herokuapp.com/user",
+      // });
+      // console.log(json.data);
+      // return dispatch({ type: "GET_USER", payload: json.data });
     } catch (error) {
       console.log(error);
     }
