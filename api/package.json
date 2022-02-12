@@ -29,8 +29,6 @@
     "morgan": "^1.10.0",
     "node-fetch": "^2.6.7",
     "nodemon": "^2.0.15",
-    "npm": "^8.3.2",
-    "opensubtitles-api": "^5.1.2",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "subtitles.js": "^2.0.0",
