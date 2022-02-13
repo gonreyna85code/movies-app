@@ -112,9 +112,16 @@ router.get("/subtitulo/:id", isAuthenticated, async (req, res) => {
     console.log(login.data);
     const { token } = login.data;
     const file = await openSubtitles.download().download(id, token);
-    console.log(file);
-    const subtitulo = await file?.link.createReadStream()
-    var vtt = subsrt.convert(subtitulo, { format: "vtt", fps: 25 });
+    console.log(file.link);
+    const subtitulo = await axios({
+      method: "GET",
+      url: file.link,
+      responseType: "stream",
+    });
+    const data = subtitulo.data
+
+    
+    var vtt = subsrt.convert(data, { format: "vtt", fps: 25 });
     vtt.pipe(res);
   } catch (error) {
     console.log(error);
