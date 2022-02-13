@@ -95,6 +95,9 @@ router.get("/subs/:name/:id", isAuthenticated, async (req, res) => {
 router.get("/subtitulo/:id", isAuthenticated, async (req, res) => {
   const id = req.params.id;
   console.log(id);
+  const openSubtitles = new OpenSubtitles({
+    apiKey: "zc0UaUOf7OIsFhK9fBGJCbL5IkH98Ul7",
+  });
   try {
     const login = await axios({
       method: "POST",
@@ -107,9 +110,7 @@ router.get("/subtitulo/:id", isAuthenticated, async (req, res) => {
     });
     console.log(login.data);
     const { token } = login.data;
-    const file = await openSubtitles
-      .download()
-      .download(subs[0].attributes.files[0].file_id, token);
+    const file = await openSubtitles.download().download(subs[0].attributes.files[0].file_id, token);
     console.log(file);
     file.createReadStream().pipe(res);
   } catch (error) {
