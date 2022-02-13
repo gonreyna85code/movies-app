@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "../styles/stream.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getSubs, getVtt } from "../redux/actions.js";
 import ReactPlayer from "react-player";
-
+import subtitle from "./subtitle.vtt";
 
 export default function Stream(params) {
   const dispatch = useDispatch();
@@ -11,7 +11,6 @@ export default function Stream(params) {
   const id = params.match.params.id;
   const subs = useSelector((state) => state.Subs);
   const vtt = useSelector((state) => state.Vtt);
-  const [sub, setSub] = useState(vtt);
   const magnet =
     params.match.params.magnet.toString(params.location.search) +
     params.location.search.toString();
@@ -26,7 +25,7 @@ export default function Stream(params) {
 
   const handleClick = async (e) => {
     dispatch(getVtt(e));
-    setSub(vtt)
+    console.log(vtt);
   };
 
   return (
@@ -38,11 +37,13 @@ export default function Stream(params) {
         url={buffer}
         config={{
           file: {
-            
+            attributes: {
+              crossOrigin: "anonymous",
+            },
             tracks: [
               {
-                kind: "subtitles",
-                src: 'https://movion-back.herokuapp.com/subtitulo/7190018',
+                kind: "captions",
+                src: subtitle,
                 srcLang: "es",
                 default: true,
               },
