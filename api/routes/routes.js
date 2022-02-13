@@ -37,7 +37,7 @@ router.get("/movie/:name", isAuthenticated, async (req, res) => {
   }
 });
 
-router.get("/video/:magnet", isAuthenticated, async (req, res) => {
+router.get("/video/:magnet", async (req, res) => {
   const magnet = req.params.magnet + req._parsedUrl.search;
   try {
     const engine = torrentStream(magnet);
@@ -93,7 +93,7 @@ router.get("/subs/:name/:id", isAuthenticated, async (req, res) => {
   })();
 });
 
-router.get("/subtitulo/:id", isAuthenticated, async (req, res) => {
+router.get("/subtitulo/:id", async (req, res) => {
   const id = req.params.id;
   console.log(id);
   const openSubtitles = new OpenSubtitles({
