@@ -123,7 +123,7 @@ router.get("/subtitulo/:id", async (req, res) => {
     fs.createReadStream('./VVT.vtt').pipe(res)
        
   } catch (error) {
-    console.log(error);
+    //console.log(error);
   }
 });
 
