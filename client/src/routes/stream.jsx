@@ -36,10 +36,7 @@ export default function Stream(params) {
         controls={true}
         url={buffer}
         config={{
-          file: {
-            attributes: {
-              crossOrigin: "anonymous",
-            },
+          file: {            
             tracks: [
               {
                 kind: "captions",
