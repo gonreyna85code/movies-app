@@ -31,7 +31,7 @@ export default function Stream(params) {
   return (
     <div className="streamer">
       <h1>{title}</h1>
-      <video controls crossOrigin="anonymous">
+      <video controls crossOrigin="anonymous" width={650}>
         <source
           src={
             development ? local + `video/${magnet}` : heroku + `video/${magnet}`
