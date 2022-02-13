@@ -13,16 +13,27 @@ const cookieParser = require("cookie-parser");
 const app = express();
 require("dotenv").config();
 
-console.log(process.env.PORT)
-
 app.name = "API";
 
 app.use(
   cors({
-    origin: "https://movieon.vercel.app",
+    origin: ["http://localhost:3000","https://movieon.vercel.app"],
     credentials: true,
   })
 );
+
+// app.get("/", (req, res, next) => {
+//   headers["Access-Control-Allow-Origin"] = ["http://localhost:3000", "https://movieon.vercel.app"];
+//   headers["Access-Control-Allow-Headers"] =
+//     "Content-Type, Content-Length, Authorization, Accept, X-Requested-With";
+//   headers["Access-Contrl-Allow-Methods"] = "PUT, POST, GET, DELETE, OPTIONS";
+//   headers["Access-Control-Max-Age"] = "86400";
+//   res.writeHead(200, headers);
+//   if (req.method === "OPTIONS") {
+//     console.log("OPTIONS SUCCESS");
+//     res.end();
+//   }
+// });
 
 app.set('trust proxy', true);
 
@@ -42,11 +53,11 @@ app.use(
     path: "/",
     saveUninitialized: true,
     store: MongoStore.create({ mongoUrl: process.env.MONGO }),
-   cookie: {      
-      sameSite: 'none',
-       secure: true,
-        maxAge: 1000 * 60 * 60 * 24 * 7,
-     }, 
+  //  cookie: {      
+  //     sameSite: 'none',
+  //      secure: true,
+  //       maxAge: 1000 * 60 * 60 * 24 * 7,
+  //    }, 
   })
 );
 

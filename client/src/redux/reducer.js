@@ -1,4 +1,4 @@
-import { GET_MOVIES, GET_MOVIE, GET_SEARCH, GET_USER, GET_TORRENTS, DEL_TORRENT, GET_SUBS, GET_VTT } from "./actions";
+import { GET_MOVIES, GET_MOVIE, GET_SEARCH, GET_USER, GET_TORRENTS, DEL_TORRENT, GET_SUBS } from "./actions";
 
 const initialState = {
   Movies: [],
@@ -27,13 +27,7 @@ function rootReducer(state = initialState, action) {
       ...state, 
       Subs: action.payload,
     };
-  }
-  if (action.type === GET_VTT) {
-    return {
-      ...state, 
-      Vtt: action.payload,
-    };
-  }
+  }  
   if (action.type === DEL_TORRENT) {
     return {
       ...state,

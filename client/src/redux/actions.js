@@ -8,10 +8,15 @@ export const GET_USER = "GET_USER";
 export const GET_TORRENTS = "GET_TORRENTS";
 export const DEL_TORRENT = "DEL_TORRENT";
 export const GET_SUBS = "GET_SUBS";
-export const GET_VTT = "GET_VTT";
+require("dotenv").config();
 
+const development = process.env.NODE_ENV !== 'production';
 axios.defaults.withCrendentails = true;
 axios.defaults.Credentials = "includes";
+
+const local = "http://localhost:4000/"
+const heroku = "https://movion-back.herokuapp.com/"
+
 
 export function getMovies() {
   return async function (dispatch) {
@@ -33,7 +38,7 @@ export function getSubs(title, id) {
         method: "GET",
         withCredentials: true,
         Credentials: "includes",
-        url: `https://movion-back.herokuapp.com/subs/${title}/${id}`,
+        url: development ? local + `subs/${title}/${id}` : heroku + `subs/${title}/${id}`,        
       });
       console.log(json);
       return dispatch({ type: "GET_SUBS", payload: json.data });
@@ -63,27 +68,10 @@ export function getTorrents(title) {
         method: "GET",
         withCredentials: true,
         Credentials: "includes",
-        url: `https://movion-back.herokuapp.com/movie/${title}`,
+        url: development ? local + `movie/${title}` : heroku + `movie/${title}`,        
       });
       console.log(json.data);
       return dispatch({ type: "GET_TORRENTS", payload: json.data });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-}
-
-export function getVtt(id) {
-  return async function (dispatch) {
-    try {
-      let json = await axios({
-        method: "GET",
-        withCredentials: true,
-        Credentials: "includes",
-        url: `https://movion-back.herokuapp.com/subtitulo/${id}`,
-      });
-      console.log(json.data);
-      return dispatch({ type: "GET_VTT", payload: json.data });
     } catch (error) {
       console.log(error);
     }
@@ -114,7 +102,7 @@ export function register(register) {
         },
         withCredentials: true,
         Credentials: "includes",
-        url: "https://movion-back.herokuapp.com/register",
+        url: development ? local + "register" : heroku + "register",        
       });
       return dispatch({ type: "REGISTER", payload: json.data });
     } catch (error) {
@@ -123,6 +111,7 @@ export function register(register) {
   };
 }
 export function login(login) {
+  console.log('login');
   return async function (dispatch) {
     try {
       const json = await axios({
@@ -133,7 +122,8 @@ export function login(login) {
         },
         withCredentials: true,
         Credentials: "includes",
-        url: "https://movion-back.herokuapp.com/login",
+        url: development ? local + "login" : heroku + "login",
+        
       });
       console.log(json.data);
       return dispatch({ type: "LOGIN", payload: json.data });
@@ -150,7 +140,7 @@ export function getUser() {
         method: "GET",
         withCredentials: true,
         Credentials: "includes",
-        url: "https://movion-back.herokuapp.com/user",
+        url: development ? local + "user" : heroku + "user",
       });
       console.log(json.data);
       return dispatch({ type: "GET_USER", payload: json.data });
@@ -167,7 +157,7 @@ export function logout() {
         method: "GET",
         withCredentials: true,
         Credentials: "includes",
-        url: "https://movion-back.herokuapp.com/logout",
+        url: development ? local + "logout" : heroku + "logout",
       });
       console.log("Usuario no logueado");
       return dispatch({ type: "LOGOUT", payload: json.data });

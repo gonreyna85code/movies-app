@@ -1,20 +1,21 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/stream.css";
 import { useDispatch, useSelector } from "react-redux";
-import { getSubs, getVtt } from "../redux/actions.js";
-import subtitle from "./subtitle.vtt";
+import { getSubs } from "../redux/actions.js";
 
 export default function Stream(params) {
+  const development = process.env.NODE_ENV !== "production";
+  const local = "http://localhost:4000/";
+  const heroku = "https://movion-back.herokuapp.com/";
   const dispatch = useDispatch();
   const title = params.match.params.title;
   const id = params.match.params.id;
   const subs = useSelector((state) => state.Subs);
-  const vtt = useSelector((state) => state.Vtt);
+  const [subId, setSubId] = useState(null);
   const magnet =
     params.match.params.magnet.toString(params.location.search) +
     params.location.search.toString();
-  const buffer = `https://movion-back.herokuapp.com/video/${magnet}`;
-  console.log(buffer);
+  
 
   useEffect(() => {
     dispatch(getSubs(title, id));
@@ -23,18 +24,32 @@ export default function Stream(params) {
   console.log(subs);
 
   const handleClick = async (e) => {
-    dispatch(getVtt(e));
-    console.log(vtt);
+    setSubId(e);
+    console.log(e);
   };
 
   return (
     <div className="streamer">
       <h1>{title}</h1>
-      <video controls crossorigin="anonymous" >
-        <source src={`https://movion-back.herokuapp.com/video/${magnet}`} type="video/mp4" />        
-        <track label="English" kind="subtitles" srclang="en" src='  ' default></track>
+      <video controls crossorigin="anonymous">
+        <source
+          src={
+            development ? local + `video/${magnet}` : heroku + `video/${magnet}`
+          }
+          type="video/mp4"
+        />
+        <track
+          label="English"
+          kind="subtitles"
+          srclang="en"
+          src={
+            development
+              ? local + `subtitulo/${subId}`
+              : heroku + `subtitulo/${subId}`
+          }
+          default
+        ></track>
       </video>
-
 
       <div className="subs">
         {subs.map((sub) => (
