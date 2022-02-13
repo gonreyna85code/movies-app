@@ -30,9 +30,9 @@ export default function Stream(params) {
   return (
     <div className="streamer">
       <h1>{title}</h1>
-      <video controls crossorigin="anonymous">
+      <video controls >
         <source src={`https://movion-back.herokuapp.com/video/${magnet}`} type="video/mp4" />        
-        <track label="English" kind="subtitles" srclang="en" src='https://movion-back.herokuapp.com/subtitulo/7143421' default></track>
+        <track label="English" kind="subtitles" srclang="en" src='https://movion-back.herokuapp.com/subtitulo/7143421' default crossorigin="anonymous"></track>
       </video>
 
 
