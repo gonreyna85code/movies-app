@@ -120,9 +120,24 @@ router.get("/subtitulo/:id", async (req, res) => {
     });
     const data = subtitulo.data;  
     
-    await fs.createReadStream(data).pipe(parse()).pipe(stringify({ format: 'WebVTT' })).pipe(res)
+    const vtt = function(data) {
+		var vtt = ''
+	 	srt = srt.replace(/\r+/g, '');
+	  	var list = srt.split('\n');
+	  	for (var i = 0; i < list.length; i++) {
+	  		var m = list[i].match(/(\d+):(\d+):(\d+)(?:,(\d+))?\s*--?>\s*(\d+):(\d+):(\d+)(?:,(\d+))?/)
+	  		if (m) {
+	  			vtt += m[1]+':'+m[2]+':'+m[3]+'.'+m[4]+' --> '+m[5]+':'+m[6]+':'+m[7]+'.'+m[8]+'\n';
+	  		} else {
+	  			vtt += list[i] + '\n'
+	  		}
+	    }
+	    vtt = "WEBVTT\n\n\n" + vtt
+	    vtt = vtt.replace(/^\s+|\s+$/g, '');
+	    return vtt
+	}
     
-    
+    res.send(vtt)
        
   } catch (error) {
     console.log(error);
