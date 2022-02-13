@@ -22,6 +22,7 @@ export default function Stream(params) {
   console.log(subs);
 
   const handleClick = async (e) => {
+    console.log(e)
     const sub = `https://movion-back.herokuapp.com/subtitulo/${e}`;
     setSub(sub);
     console.log(sub);
@@ -37,7 +38,7 @@ export default function Stream(params) {
       <div className="subs">
         {subs.map((sub) => (
           <div className="sub">
-            <button onClick={(e) => handleClick(e.target.value)}>
+            <button onClick={(e) => handleClick(e.target.value)} value={sub.attributes.files[0].file_id}>
               <span value={sub.attributes.files[0].file_id}>{sub?.attributes?.files[0].file_name}</span>{" "}
             </button>
           </div>
