@@ -111,7 +111,7 @@ router.get("/subtitulo/:id", isAuthenticated, async (req, res) => {
       .download()
       .download(subs[0].attributes.files[0].file_id, token);
     console.log(file);
-    res.send(file);
+    file.createReadStream().pipe(res);
   } catch (error) {
     console.log(error);
   }
