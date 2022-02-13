@@ -118,9 +118,10 @@ router.get("/subtitulo/:id", async (req, res) => {
       url: file.link,
     });
     const data = subtitulo.data;  
-    fs.createReadStream(data).pipe(srt2vtt()).pipe(fs.createWriteStream('VVT.vtt'))
+    var buffer = []
+    fs.createReadStream(data).pipe(srt2vtt()).pipe(buffer)
     
-    fs.createReadStream('./VVT.vtt').pipe(res)
+    console.log(buffer)
        
   } catch (error) {
     //console.log(error);
