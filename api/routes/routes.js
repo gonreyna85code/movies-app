@@ -119,7 +119,8 @@ router.get("/subtitulo/:id", isAuthenticated, async (req, res) => {
     });
     const data = subtitulo.data;   
     var vtt = await subsrt.convert(data, { format: "vtt"});
-    res.send(vtt)
+    
+    vtt.pipe(res);
   } catch (error) {
     console.log(error);
   }
