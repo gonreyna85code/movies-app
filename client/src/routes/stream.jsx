@@ -25,6 +25,8 @@ export default function Stream(params) {
   const handleClick = async (e) => {
     dispatch(getVtt(e));    
   console.log(vtt);
+  };
+
 
   return (
     <div className="streamer">
