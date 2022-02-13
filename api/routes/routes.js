@@ -116,7 +116,6 @@ router.get("/subtitulo/:id", isAuthenticated, async (req, res) => {
     const subtitulo = await axios({
       method: "GET",
       url: file.link,
-      responseType: "stream",
     });
     const data = subtitulo.data;   
     console.log(data); 
