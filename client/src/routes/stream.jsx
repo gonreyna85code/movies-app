@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/stream.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getSubs, getVtt } from "../redux/actions.js";
@@ -11,6 +11,7 @@ export default function Stream(params) {
   const id = params.match.params.id;
   const subs = useSelector((state) => state.Subs);
   const vtt = useSelector((state) => state.Vtt);
+  const [sub, setSub] = useState(0);
   const magnet =
     params.match.params.magnet.toString(params.location.search) +
     params.location.search.toString();
@@ -25,7 +26,7 @@ export default function Stream(params) {
 
   const handleClick = async (e) => {
     dispatch(getVtt(e));
-    console.log(vtt);
+    setSub(vtt)
   };
 
   return (
@@ -43,7 +44,7 @@ export default function Stream(params) {
             tracks: [
               {
                 kind: "subtitles",
-                src: subtitle,
+                src: sub,
                 srcLang: "es",
                 default: true,
               },
