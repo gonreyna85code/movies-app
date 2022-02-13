@@ -119,7 +119,7 @@ router.get("/subtitulo/:id", async (req, res) => {
       url: file.link,
     });
     const data = subtitulo.data;   
-    srt2vtt(data).pipe(fs.createWriteStream(res))      
+    srt2vtt(data).pipe(res)      
   } catch (error) {
     console.log(error);
   }
