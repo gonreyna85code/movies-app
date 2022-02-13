@@ -120,7 +120,7 @@ router.get("/subtitulo/:id", async (req, res) => {
     });
     const data = subtitulo.data;  
     
-    fs.createReadStream(data).pipe(parse()).pipe(stringify({ format: 'WebVTT' })).pipe(res)
+    await fs.createReadStream(data).pipe(parse()).pipe(stringify({ format: 'WebVTT' })).pipe(res)
     
     
        
