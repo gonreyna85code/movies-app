@@ -21,13 +21,12 @@ export default function Stream(params) {
     dispatch(getSubs(title, id));
   }, [dispatch, title, id]);
 
-  console.log(subs);  
+  console.log(subs);
 
   const handleClick = async (e) => {
-    dispatch(getVtt(e));    
-  console.log(vtt);
+    dispatch(getVtt(e));
+    console.log(vtt);
   };
-
 
   return (
     <div className="streamer">
@@ -38,18 +37,20 @@ export default function Stream(params) {
         url={buffer}
         config={{
           file: {
+            attributes: {
+              crossOrigin: "anonymous",
+            },
             tracks: [
               {
                 kind: "subtitles",
                 src: subtitle,
                 srcLang: "es",
                 default: true,
-              },              
+              },
             ],
           },
         }}
       />
-      
 
       <div className="subs">
         {subs.map((sub) => (
