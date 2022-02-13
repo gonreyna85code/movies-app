@@ -6,6 +6,7 @@ const initialState = {
   User: {},
   Torrents: [],
   Subs: [],
+  Vtt: {},
 };
 
 function rootReducer(state = initialState, action) {
@@ -25,6 +26,12 @@ function rootReducer(state = initialState, action) {
     return {
       ...state, 
       Subs: action.payload,
+    };
+  }
+  if (action.type === GET_VTT) {
+    return {
+      ...state, 
+      Vtt: action.payload,
     };
   }
   if (action.type === DEL_TORRENT) {

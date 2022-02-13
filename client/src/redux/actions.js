@@ -8,7 +8,7 @@ export const GET_USER = "GET_USER";
 export const GET_TORRENTS = "GET_TORRENTS";
 export const DEL_TORRENT = "DEL_TORRENT";
 export const GET_SUBS = "GET_SUBS";
-
+export const GET_VTT = "GET_VTT";
 
 axios.defaults.withCrendentails = true;
 axios.defaults.Credentials = "includes";
@@ -72,6 +72,24 @@ export function getTorrents(title) {
     }
   };
 }
+
+export function getVtt(id) {
+  return async function (dispatch) {
+    try {
+      let json = await axios({
+        method: "GET",
+        withCredentials: true,
+        Credentials: "includes",
+        url: `https://movion-back.herokuapp.com/subtitulo/${id}`,
+      });
+      console.log(json.data);
+      return dispatch({ type: "GET_VTT", payload: json.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
 export function getSearch(name) {
   return async function (dispatch) {
     try {
