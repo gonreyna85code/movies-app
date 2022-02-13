@@ -1,4 +1,4 @@
-import { GET_MOVIES, GET_MOVIE, GET_SEARCH, GET_USER, GET_TORRENTS, DEL_TORRENT, GET_SUBS } from "./actions";
+import { GET_MOVIES, GET_MOVIE, GET_SEARCH, GET_USER, GET_TORRENTS, DEL_TORRENT, GET_SUBS, GET_VTT } from "./actions";
 
 const initialState = {
   Movies: [],
