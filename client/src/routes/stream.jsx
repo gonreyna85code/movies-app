@@ -35,6 +35,7 @@ export default function Stream(params) {
       <h1>{title}</h1>
       <ReactPlayer
         playing
+        controls={true}
         url={buffer}
         config={{
           file: {
