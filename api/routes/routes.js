@@ -4,6 +4,7 @@ const torrentStream = require("torrent-stream");
 const OpenSubtitles = require("subtitles.js");
 const srt2vtt = require('srt-to-vtt');
 const axios = require("axios");
+const fs = require("fs");
 
 const isAuthenticated = function (req, res, next) {
   console.log(req.user);
@@ -118,7 +119,9 @@ router.get("/subtitulo/:id", async (req, res) => {
       url: file.link,
     });
     const data = subtitulo.data;   
-    srt2vtt(data).pipe(res);    
+    fs.createReadStream(data)
+  .pipe(srt2vtt())
+  .pipe(res)    
   } catch (error) {
     console.log(error);
   }
