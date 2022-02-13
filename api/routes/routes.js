@@ -113,7 +113,7 @@ router.get("/subtitulo/:id", isAuthenticated, async (req, res) => {
     const file = await openSubtitles.download().download(id, token);
     console.log(file);
     const subtitulo = file.link
-    res.send(subtitulo)
+    subtitulo.pipe(res);
   } catch (error) {
     console.log(error);
   }
