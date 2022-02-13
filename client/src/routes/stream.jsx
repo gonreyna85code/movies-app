@@ -20,14 +20,10 @@ export default function Stream(params) {
     dispatch(getSubs(title, id));
   }, [dispatch, title, id]);
 
-  console.log(subs);
-
-  var caption = [];
+  console.log(subs);  
 
   const handleClick = async (e) => {
-    dispatch(getVtt(e));
-    caption = await vtt;
-  };
+    dispatch(getVtt(e));    
   console.log(vtt);
 
   return (
@@ -42,7 +38,7 @@ export default function Stream(params) {
             tracks: [
               {
                 kind: "subtitles",
-                src: caption,
+                src: vtt,
                 srcLang: "es",
                 default: true,
               },              
