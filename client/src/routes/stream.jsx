@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/stream.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getSubs } from "../redux/actions.js";
@@ -8,6 +8,7 @@ export default function Stream(params) {
   const title = params.match.params.title;
   const id = params.match.params.id;
   const subs = useSelector((state) => state.Subs);
+  const [sub, setSub] = useState(null);
   const magnet =
     params.match.params.magnet.toString(params.location.search) +
     params.location.search.toString();
@@ -20,6 +21,13 @@ export default function Stream(params) {
 
   console.log(subs);
 
+  const handleClick = async (e) => {
+    const sub = `https://movion-back.herokuapp.com/subtitulo/${e}`;
+    setSub(sub);
+    console.log(sub);
+  };
+  
+
   return (
     <div className="streamer">
       <h1>{title}</h1>
@@ -29,8 +37,8 @@ export default function Stream(params) {
       <div className="subs">
         {subs.map((sub) => (
           <div className="sub">
-            <button>
-              <span>{sub?.attributes?.files[0].file_name}</span>{" "}
+            <button onClick={(e) => handleClick(e.target.value)}>
+              <span value={sub.attributes.files[0].file_id}>{sub?.attributes?.files[0].file_name}</span>{" "}
             </button>
           </div>
         ))}
