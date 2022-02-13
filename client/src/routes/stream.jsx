@@ -11,7 +11,7 @@ export default function Stream(params) {
   const id = params.match.params.id;
   const subs = useSelector((state) => state.Subs);
   const vtt = useSelector((state) => state.Vtt);
-  const [sub, setSub] = useState(0);
+  const [sub, setSub] = useState(vtt);
   const magnet =
     params.match.params.magnet.toString(params.location.search) +
     params.location.search.toString();
@@ -42,7 +42,7 @@ export default function Stream(params) {
             tracks: [
               {
                 kind: "subtitles",
-                src: sub,
+                src: `https://movion-back.herokuapp.com/subtitulo/7190018`,
                 srcLang: "es",
                 default: true,
               },
