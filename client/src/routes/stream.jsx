@@ -3,6 +3,7 @@ import "../styles/stream.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getSubs, getVtt } from "../redux/actions.js";
 import ReactPlayer from "react-player";
+import subtitle from "./subtitle.vtt";
 
 export default function Stream(params) {
   const dispatch = useDispatch();
@@ -40,7 +41,7 @@ export default function Stream(params) {
             tracks: [
               {
                 kind: "subtitles",
-                src: vtt,
+                src: subtitle,
                 srcLang: "es",
                 default: true,
               },              
