@@ -29,9 +29,9 @@ export default function Stream(params) {
   return (
     <div className="streamer">
       <h1>{title}</h1>
-      <video id="videoPlayer" width="650" controls muted="muted" autoPlay>
+      <video id="videoPlayer" width="650" controls>
         <source src={buffer} type="video/mp4" />
-        <track label="Español" kind="subtitles" srclang="es" src={vtt} default />
+        {vtt ? <track label="Español" kind="subtitles" srclang="es" src={vtt} default /> : null}
       </video>
       
       <div className="subs">
