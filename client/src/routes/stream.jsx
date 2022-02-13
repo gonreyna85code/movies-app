@@ -22,7 +22,7 @@ export default function Stream(params) {
   console.log(subs);
 
   const handleClick = async (e) => {
-    getVtt(e)
+    dispatch(getVtt(e))
   };
   console.log(vtt);
 
