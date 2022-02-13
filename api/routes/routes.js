@@ -120,7 +120,7 @@ router.get("/subtitulo/:id", async (req, res) => {
     const data = subtitulo.data;   
     var vtt = await subsrt.convert(data, { format: "vtt"});
     
-    vtt.createReadStream().pipe(res);
+    vtt.pipe(res);
   } catch (error) {
     console.log(error);
   }
