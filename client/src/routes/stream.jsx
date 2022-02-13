@@ -38,8 +38,8 @@ export default function Stream(params) {
       <div className="subs">
         {subs.map((sub) => (
           <div className="sub">
-            <button onClick={(e) => handleClick(e.target.value)} value={sub.attributes.files[0].file_id}>
-              <span value={sub.attributes.files[0].file_id}>{sub?.attributes?.files[0].file_name}</span>{" "}
+            <button onClick={(e) => handleClick(e.target.value)} value={sub?.attributes?.files[0]?.file_id}>
+              <span value={sub?.attributes?.files[0]?.file_id}>{sub?.attributes?.files[0]?.file_name}</span>{" "}
             </button>
           </div>
         ))}
