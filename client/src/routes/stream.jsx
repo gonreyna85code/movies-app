@@ -31,7 +31,7 @@ export default function Stream(params) {
   return (
     <div className="streamer">
       <h1>{title}</h1>
-      <video controls crossorigin="anonymous">
+      <video controls crossOrigin="anonymous">
         <source
           src={
             development ? local + `video/${magnet}` : heroku + `video/${magnet}`
@@ -41,7 +41,7 @@ export default function Stream(params) {
         <track
           label="English"
           kind="subtitles"
-          srclang="en"
+          srcLang="en"
           src={
             development
               ? local + `subtitulo/${subId}`
@@ -55,6 +55,7 @@ export default function Stream(params) {
         {subs.map((sub) => (
           <div className="sub">
             <button
+            key={sub?.attributes?.files[0]?.file_name}
               onClick={(e) => handleClick(e.target.value)}
               value={sub?.attributes?.files[0]?.file_id}
             >

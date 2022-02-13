@@ -118,9 +118,9 @@ router.get("/subtitulo/:id", async (req, res) => {
       method: "GET",
       url: file.link,
     });
-    const data = subtitulo.data;  
+    var data = subtitulo.data;  
     
-    const vtt = function(data) {
+    const srt2vtt = function(srt) {
 		var vtt = ''
 	 	srt = srt.replace(/\r+/g, '');
 	  	var list = srt.split('\n');
@@ -133,11 +133,11 @@ router.get("/subtitulo/:id", async (req, res) => {
 	  		}
 	    }
 	    vtt = "WEBVTT\n\n\n" + vtt
-	    vtt = vtt.replace(/^\s+|\s+$/g, '');
+	    vtt = vtt.replace(/^\s+|\s+$/g, '');      
 	    return vtt
 	}
-    
-    res.send(vtt)
+    const vtt = srt2vtt(data);
+    res.send(vtt);
        
   } catch (error) {
     console.log(error);
