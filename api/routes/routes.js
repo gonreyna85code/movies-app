@@ -2,7 +2,7 @@ const Router = require("express");
 const TorrentSearchApi = require("torrent-search-api");
 const torrentStream = require("torrent-stream");
 const OpenSubtitles = require("subtitles.js");
-var subsrt = require('subsrt');
+const srt2vtt = require('srt-to-vtt');
 const axios = require("axios");
 
 const isAuthenticated = function (req, res, next) {
@@ -118,8 +118,7 @@ router.get("/subtitulo/:id", async (req, res) => {
       url: file.link,
     });
     const data = subtitulo.data;   
-    var vtt = await subsrt.convert(data, { format: "vtt", fps: 25 });   
-    res.send(vtt);
+    data.pipe(srt2vtt()).pipe(res);    
   } catch (error) {
     console.log(error);
   }
