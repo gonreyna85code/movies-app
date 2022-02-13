@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "../styles/stream.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getSubs, getVtt } from "../redux/actions.js";
+import ReactPlayer from "react-player";
 
 export default function Stream(params) {
   const dispatch = useDispatch();
@@ -24,24 +25,39 @@ export default function Stream(params) {
   var caption = [];
 
   const handleClick = async (e) => {
-    dispatch(getVtt(e))
+    dispatch(getVtt(e));
     caption = await vtt;
   };
   console.log(vtt);
 
-
   return (
     <div className="streamer">
       <h1>{title}</h1>
-      <video id="videoPlayer" width="650" controls>
-        <source src={buffer} type="video/mp4" />
-        <track label="Español" kind="subtitles" srclang="es" src={caption} default />
-      </video>
+      <ReactPlayer
+        playing
+        url={buffer}
+        config={{
+          file: {
+            tracks: [
+              {
+                kind: "subtitles",
+                src: caption,
+                srcLang: "es",
+                default: true,
+              },              
+            ],
+          },
+        }}
+      />
       
+
       <div className="subs">
         {subs.map((sub) => (
           <div className="sub">
-            <button onClick={(e) => handleClick(e.target.value)} value={sub?.attributes?.files[0]?.file_id}>
+            <button
+              onClick={(e) => handleClick(e.target.value)}
+              value={sub?.attributes?.files[0]?.file_id}
+            >
               {sub?.attributes?.files[0]?.file_name}
             </button>
           </div>
