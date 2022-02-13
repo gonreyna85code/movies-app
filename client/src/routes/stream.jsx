@@ -42,7 +42,7 @@ export default function Stream(params) {
             tracks: [
               {
                 kind: "subtitles",
-                src: `https://movion-back.herokuapp.com/subtitulo/7190018`,
+                src: 'https://movion-back.herokuapp.com/subtitulo/7190018',
                 srcLang: "es",
                 default: true,
               },
