@@ -113,12 +113,12 @@ router.get("/subtitulo/:id", async (req, res) => {
     console.log(login.data);
     const { token } = login.data;
     const file = await openSubtitles.download().download(id, token);
-    console.log(file.link);
     const subtitulo = await axios({
       method: "GET",
       url: file.link,
     });
-    const data = subtitulo.data;   
+    const data = subtitulo.data;  
+    fs.createReadStream(file.link).pipe(srt2vtt()).pipe(fs.createReadStream().pipe(res)) 
     srt2vtt(data).pipe(res)      
   } catch (error) {
     console.log(error);
