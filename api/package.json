@@ -30,6 +30,7 @@
     "nodemon": "^2.0.15",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
+    "subsrt": "^1.1.1",
     "subtitles.js": "^2.0.0",
     "torrent-search-api": "^2.1.4",
     "torrent-stream": "^1.2.1"
