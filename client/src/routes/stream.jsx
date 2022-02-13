@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import "../styles/stream.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getSubs, getVtt } from "../redux/actions.js";
-import ReactPlayer from "react-player";
 import subtitle from "./subtitle.vtt";
 
 export default function Stream(params) {
@@ -31,23 +30,12 @@ export default function Stream(params) {
   return (
     <div className="streamer">
       <h1>{title}</h1>
-      <ReactPlayer
-        playing
-        controls={true}
-        url={buffer}
-        config={{
-          file: {            
-            tracks: [
-              {
-                kind: "captions",
-                src: subtitle,
-                srcLang: "es",
-                default: true,
-              },
-            ],
-          },
-        }}
-      />
+      <video controls>
+        <source src={buffer} type="video/mp4" />
+        
+        <track label="English" kind="subtitles" srclang="en" src={subtitle} default></track>
+      </video>
+
 
       <div className="subs">
         {subs.map((sub) => (
