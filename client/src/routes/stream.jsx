@@ -35,7 +35,7 @@ export default function Stream(params) {
       <h1>{title}</h1>
       <video id="videoPlayer" width="650" controls>
         <source src={buffer} type="video/mp4" />
-        {vtt ? <track label="Español" kind="subtitles" srclang="es" src={caption} default /> : null}
+        <track label="Español" kind="subtitles" srclang="es" src={caption} default />
       </video>
       
       <div className="subs">
