@@ -48,9 +48,9 @@ export default function Stream(params) {
           type="video/mp4"
         />
         <track
-          label="English"
+          label="Spanish"
           kind="subtitles"
-          srcLang="en"
+          srcLang="es"
           src={
             development
               ? local + `subtitulo/${subId}`
