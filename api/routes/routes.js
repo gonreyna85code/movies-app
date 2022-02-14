@@ -106,6 +106,7 @@ router.get("/subs/:name/:id", isAuthenticated, async (req, res) => {
 
 router.get("/subtitulo/:id", async (req, res) => {
   const id = req.params.id;
+  if(id === null) return res.send("No Disponible");
   console.log(id);
   const openSubtitles = new OpenSubtitles({
     apiKey: "zc0UaUOf7OIsFhK9fBGJCbL5IkH98Ul7",
