@@ -53,7 +53,7 @@ router.get("/video/:magnet", async (req, res) => {
             "Content-Range",
             `bytes 0-${file.length}/${file.length}`
           );
-          res.setHeader("Cache-Control", "no-cache");
+          res.setHeader("Cache-Control", "public");
           file.createReadStream().pipe(res);
           console.log("Streaming:", file.name);
         }
@@ -65,7 +65,7 @@ router.get("/video/:magnet", async (req, res) => {
             "Content-Range",
             `bytes 0-${file.length}/${file.length}`
           );
-          res.setHeader("Cache-Control", "no-cache");
+          res.setHeader("Cache-Control", "public");
           file.createReadStream().pipe(res);
           console.log("Streaming:", file.name);
         }
@@ -77,7 +77,7 @@ router.get("/video/:magnet", async (req, res) => {
             "Content-Range",
             `bytes 0-${file.length}/${file.length}`
           );
-          res.setHeader("Cache-Control", "no-cache");
+          res.setHeader("Cache-Control", "public");
           file.createReadStream().pipe(res);
           console.log("Streaming:", file.name);
         }
