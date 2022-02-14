@@ -53,7 +53,7 @@ router.get("/video/:magnet", async (req, res) => {
             "Content-Range",
             `bytes 0-${file.length}/${file.length}`
           );
-          res.setHeader("Cache-Control", "public");
+          res.setHeader("Cache-Control", "no-cache");
           file.createReadStream().pipe(res);
           console.log("Streaming:", file.name);
         }
@@ -65,7 +65,7 @@ router.get("/video/:magnet", async (req, res) => {
             "Content-Range",
             `bytes 0-${file.length}/${file.length}`
           );
-          res.setHeader("Cache-Control", "public");
+          res.setHeader("Cache-Control", "no-cache");
           file.createReadStream().pipe(res);
           console.log("Streaming:", file.name);
         }
@@ -77,7 +77,7 @@ router.get("/video/:magnet", async (req, res) => {
             "Content-Range",
             `bytes 0-${file.length}/${file.length}`
           );
-          res.setHeader("Cache-Control", "public");
+          res.setHeader("Cache-Control", "no-cache");
           file.createReadStream().pipe(res);
           console.log("Streaming:", file.name);
         }
@@ -118,7 +118,6 @@ router.get("/subs/:name/:id", isAuthenticated, async (req, res) => {
 
 router.get("/subtitulo/:id", async (req, res) => {
   const id = req.params.id;
-  console.log(id);
   const openSubtitles = new OpenSubtitles({
     apiKey: "zc0UaUOf7OIsFhK9fBGJCbL5IkH98Ul7",
   });
