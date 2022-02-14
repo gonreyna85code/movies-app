@@ -45,26 +45,26 @@ router.get("/video/:magnet", async (req, res) => {
     const engine = torrentStream(magnet);
     engine.on("ready", function () {
       engine.files.forEach(async function (file) {
-        if (file.name.endsWith(".mp4") && !file.name.includes("sample")) {
-          res.setHeader("Content-Type", "video/mp4");          
+        if (file.name.endsWith(".mp4") && !file.name.startsWith("Sample")) {
+          res.setHeader("Content-Type", "video/mp4");
           res.setHeader("Content-Length", file.length);
-          res.setHeader("Accept-Ranges", "bytes");          
+          res.setHeader("Accept-Ranges", "bytes");
           res.setHeader("Cache-Control", "public");
           file.createReadStream().pipe(res);
           console.log("Streaming:", file.name);
         }
-        if (file.name.endsWith(".mkv") && !file.name.includes("sample")) {
-          res.setHeader("Content-Type", "video/mp4");          
+        if (file.name.endsWith(".mkv") && !file.name.startsWith("Sample")) {
+          res.setHeader("Content-Type", "video/mp4");
           res.setHeader("Content-Length", file.length);
-          res.setHeader("Accept-Ranges", "bytes");          
+          res.setHeader("Accept-Ranges", "bytes");
           res.setHeader("Cache-Control", "public");
           file.createReadStream().pipe(res);
           console.log("Streaming:", file.name);
         }
-        if (file.name.endsWith(".avi") && !file.name.includes("sample")) {
-          res.setHeader("Content-Type", "video/mp4");          
+        if (file.name.endsWith(".avi") && !file.name.startsWith("Sample")) {
+          res.setHeader("Content-Type", "video/mp4");
           res.setHeader("Content-Length", file.length);
-          res.setHeader("Accept-Ranges", "bytes");          
+          res.setHeader("Accept-Ranges", "bytes");
           res.setHeader("Cache-Control", "public");
           file.createReadStream().pipe(res);
           console.log("Streaming:", file.name);
@@ -106,51 +106,73 @@ router.get("/subs/:name/:id", isAuthenticated, async (req, res) => {
 
 router.get("/subtitulo/:id", async (req, res) => {
   const id = req.params.id;
-  if(id === null) return res.send("No Disponible");
   console.log(id);
   const openSubtitles = new OpenSubtitles({
     apiKey: "zc0UaUOf7OIsFhK9fBGJCbL5IkH98Ul7",
   });
-  try {
-    const login = await axios({
-      method: "POST",
-      headers: {
-        "Api-Key": "zc0UaUOf7OIsFhK9fBGJCbL5IkH98Ul7",
-        "Content-Type": "application/json",
-      },
-      data: { username: "gonreyna", password: "Orchendor1" },
-      url: "https://api.opensubtitles.com/api/v1/login",
-    });
-    console.log(login.data);
-    const { token } = login.data;
-    const file = await openSubtitles.download().download(id, token);
-    const subtitulo = await axios({
-      method: "GET",
-      url: file.link,
-    });
-    var data = subtitulo.data;  
-    
-    const srt2vtt = function(srt) {
-		var vtt = ''
-	 	srt = srt.replace(/\r+/g, '');
-	  	var list = srt.split('\n');
-	  	for (var i = 0; i < list.length; i++) {
-	  		var m = list[i].match(/(\d+):(\d+):(\d+)(?:,(\d+))?\s*--?>\s*(\d+):(\d+):(\d+)(?:,(\d+))?/)
-	  		if (m) {
-	  			vtt += m[1]+':'+m[2]+':'+m[3]+'.'+m[4]+' --> '+m[5]+':'+m[6]+':'+m[7]+'.'+m[8]+'\n';
-	  		} else {
-	  			vtt += list[i] + '\n'
-	  		}
-	    }
-	    vtt = "WEBVTT\n\n\n" + vtt
-	    vtt = vtt.replace(/^\s+|\s+$/g, '');      
-	    return vtt
-	}
-    const vtt = srt2vtt(data);
-    res.send(vtt);
-       
-  } catch (error) {
-    console.log(error);
+
+  if (id === 'null') {
+    return res.send("No Disponible");
+  } else {
+    try {
+      const login = await axios({
+        method: "POST",
+        headers: {
+          "Api-Key": "zc0UaUOf7OIsFhK9fBGJCbL5IkH98Ul7",
+          "Content-Type": "application/json",
+        },
+        data: { username: "gonreyna", password: "Orchendor1" },
+        url: "https://api.opensubtitles.com/api/v1/login",
+      });
+      console.log(login.data);
+      const { token } = login.data;
+      const file = await openSubtitles.download().download(id, token);
+      const subtitulo = await axios({
+        method: "GET",
+        url: file.link,
+      });
+      var data = subtitulo.data;
+
+      const srt2vtt = function (srt) {
+        var vtt = "";
+        srt = srt.replace(/\r+/g, "");
+        var list = srt.split("\n");
+        for (var i = 0; i < list.length; i++) {
+          var m = list[i].match(
+            /(\d+):(\d+):(\d+)(?:,(\d+))?\s*--?>\s*(\d+):(\d+):(\d+)(?:,(\d+))?/
+          );
+          if (m) {
+            vtt +=
+              m[1] +
+              ":" +
+              m[2] +
+              ":" +
+              m[3] +
+              "." +
+              m[4] +
+              " --> " +
+              m[5] +
+              ":" +
+              m[6] +
+              ":" +
+              m[7] +
+              "." +
+              m[8] +
+              "\n";
+          } else {
+            vtt += list[i] + "\n";
+          }
+        }
+        vtt = "WEBVTT\n\n\n" + vtt;
+        vtt = vtt.replace(/^\s+|\s+$/g, "");
+        return vtt;
+      };
+
+      const vtt = srt2vtt(data);
+      res.send(vtt);
+    } catch (error) {
+      console.log(error);
+    }
   }
 });
 
