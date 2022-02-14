@@ -8,7 +8,6 @@ const axios = require("axios");
 const fs = require("fs");
 
 const isAuthenticated = function (req, res, next) {
-  console.log(req.user);
   if (req.isAuthenticated()) return next();
   res.send("No Disponible");
 };
@@ -106,7 +105,6 @@ router.get("/subs/:name/:id", isAuthenticated, async (req, res) => {
 
 router.get("/subtitulo/:id", async (req, res) => {
   const id = req.params.id;
-  console.log(id);
   const openSubtitles = new OpenSubtitles({
     apiKey: "zc0UaUOf7OIsFhK9fBGJCbL5IkH98Ul7",
   });
@@ -124,7 +122,6 @@ router.get("/subtitulo/:id", async (req, res) => {
         data: { username: "gonreyna", password: "Orchendor1" },
         url: "https://api.opensubtitles.com/api/v1/login",
       });
-      console.log(login.data);
       const { token } = login.data;
       const file = await openSubtitles.download().download(id, token);
       const subtitulo = await axios({
