@@ -44,8 +44,7 @@ router.get("/video/:magnet", async (req, res) => {
   try {
     const engine = torrentStream(magnet);
     engine.on("ready", function () {
-      engine.files.forEach(async function (file) {
-        console.log(engine.files);
+      engine.files.forEach(async function (file) {        
         if (file.name.endsWith(".mp4") && !file.name.startsWith("Sample")) {
           res.setHeader("Content-Type", "video/mp4");
           res.setHeader(
