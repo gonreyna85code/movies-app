@@ -32,9 +32,9 @@ export default function Stream(params) {
 
 
   
-  
-
   const link = development ? local + `video/${magnet}` : heroku + `video/${magnet}`
+
+  
   
   
   
@@ -42,7 +42,7 @@ export default function Stream(params) {
   return (
     <div className="streamer">
       <h1>{title}</h1>
-      <video controls crossOrigin="anonymous" controlsList="nodownload" width={650}>
+      <video controls crossOrigin="anonymous"  width={650} preload="auto" >
         <source
           src={link}
           type="video/mp4"
