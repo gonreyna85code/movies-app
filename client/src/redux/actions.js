@@ -40,7 +40,7 @@ export function getSubs(title, id) {
         Credentials: "includes",
         url: development ? local + `subs/${title}/${id}` : heroku + `subs/${title}/${id}`,        
       });
-      console.log(json);
+      
       return dispatch({ type: "GET_SUBS", payload: json.data });
     } catch (error) {
       console.log(error);
@@ -54,7 +54,7 @@ export function getMovie(id) {
       let json = await axios.get(
         `https://api.themoviedb.org/3/movie/${id}?api_key=${API}`
       );
-      console.log(json.data);
+      
       return dispatch({ type: "GET_MOVIE", payload: json.data });
     } catch (error) {
       console.log(error);
@@ -70,7 +70,7 @@ export function getTorrents(title) {
         Credentials: "includes",
         url: development ? local + `movie/${title}` : heroku + `movie/${title}`,        
       });
-      console.log(json.data);
+      
       return dispatch({ type: "GET_TORRENTS", payload: json.data });
     } catch (error) {
       console.log(error);
@@ -125,7 +125,7 @@ export function login(login) {
         url: development ? local + "login" : heroku + "login",
         
       });
-      console.log(json.data);
+      
       return dispatch({ type: "LOGIN", payload: json.data });
     } catch (error) {
       console.log(error);
@@ -142,7 +142,7 @@ export function getUser() {
         Credentials: "includes",
         url: development ? local + "user" : heroku + "user",
       });
-      console.log(json.data);
+      
       return dispatch({ type: "GET_USER", payload: json.data });
     } catch (error) {
       console.log(error);

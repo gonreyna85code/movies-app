@@ -35,21 +35,19 @@ function rootReducer(state = initialState, action) {
     };
   }
   if (action.type === GET_TORRENTS) {
-    const torrents = action.payload.map((torrent) => {
-    for(let i = 0; i < action.payload.length; i++) {
-      if(action.payload[i].size.includes("GB")) {
-        action.payload[i].size = Number(action.payload[i].size.slice(0, -2)) * 1000;
-      }
-      if(action.payload[i].size.includes("MB")) {
-        action.payload[i].size = Number(action.payload[i].size.slice(0, -2));
-      }
-
-      
-
-    }
-    return torrent;
-  });
-    console.table(torrents)
+    const torrents = action.payload
+      for(let i = 0; i < action.payload.length; i++) {      
+      if(typeof torrents[i].size === 'string' && torrents[i].size.endsWith("GB") ){
+      torrents[i].size = torrents[i].size.slice(0, -3);
+      torrents[i].size  = Number(torrents[i].size)*1000}
+      if(typeof torrents[i].size === 'string' && torrents[i].size.endsWith("MB")){
+      torrents[i].size = torrents[i].size.slice(0, -3)
+      torrents[i].size  = Number(torrents[i].size)}     
+    } 
+    torrents.sort((a, b) => {
+      return a.size - b.size;
+    });
+    
     return {
       ...state,
       Torrents: action.payload,

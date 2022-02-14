@@ -13,11 +13,9 @@ import "../styles/detail.css";
 
 export default function Detail(props) {
   const id = props.match.params.id;
-  console.log(Number(id));
   const movie = useSelector((state) => state.Movie);
   const torrents = useSelector((state) => state.Torrents);
   const user = useSelector((state) => state.User);
-  console.log(Number(movie?.id));
   const image = "https://image.tmdb.org/t/p/w500" + movie?.poster_path;
   const dispatch = useDispatch();
   useEffect(() => {
@@ -75,7 +73,7 @@ export default function Detail(props) {
                 <h3>Click TORRENTS to search for downloads!</h3>
               ) : (
                 torrents?.map((e) => (
-                  <li>
+                  <li key={e.desc} >
                     {e.title} <br />
                     &emsp;&emsp;&emsp;
                     <a href={e.magnet}>
@@ -83,8 +81,7 @@ export default function Detail(props) {
                       Magnet Link
                     </button>
                     </a>
-                    <Link                
-                      key={e.id}
+                    {e.size < 3500 ? <Link         
                       to={`/video/${movie.original_title}/${movie.imdb_id}/${e.magnet}`}
                       target="_blank"
                       style={{ textDecoration: "none" }}
@@ -92,8 +89,8 @@ export default function Detail(props) {
                       &emsp;&emsp;<button>
                       Watch
                     </button>
-                    </Link>
-                    &emsp;{e.size}
+                    </Link> : null}
+                    &emsp;{e.size + "  MB"}
                   </li>
                 ))
               )}
