@@ -12,8 +12,7 @@ router.post("/login", (req, res, next) => {
     console.log('No existe');}
     else {
       req.logIn(user, { session: true }, (err) => {
-        if (err) throw err;
-        console.log(req.user);
+        if (err) throw err;    
         return res.send("Successfully Authenticated");
       });
     }

@@ -8,7 +8,6 @@ const axios = require("axios");
 const fs = require("fs");
 
 const isAuthenticated = function (req, res, next) {
-  console.log(req.user);
   if (req.isAuthenticated()) return next();
   res.send("No Disponible");
 };
@@ -128,7 +127,6 @@ router.get("/subtitulo/:id", async (req, res) => {
         data: { username: "gonreyna", password: "Orchendor1" },
         url: "https://api.opensubtitles.com/api/v1/login",
       });
-      console.log(login.data);
       const { token } = login.data;
       const file = await openSubtitles.download().download(id, token);
       const subtitulo = await axios({
@@ -136,7 +134,6 @@ router.get("/subtitulo/:id", async (req, res) => {
         url: file.link,
       });
       var data = subtitulo.data;
-
       const srt2vtt = function (srt) {
         var vtt = "";
         srt = srt.replace(/\r+/g, "");
