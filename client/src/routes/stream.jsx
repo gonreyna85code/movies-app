@@ -3,6 +3,8 @@ import "../styles/stream.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getSubs } from "../redux/actions.js";
 
+
+
 export default function Stream(params) {
   const development = process.env.NODE_ENV !== "production";
   const local = "http://localhost:4000/";
@@ -28,14 +30,21 @@ export default function Stream(params) {
     console.log(e);
   };
 
+
+  
+  
+
+  const link = development ? local + `video/${magnet}` : heroku + `video/${magnet}`
+  
+  
+  
+  
   return (
     <div className="streamer">
       <h1>{title}</h1>
-      <video controls crossOrigin="anonymous" width={650}>
+      <video controls crossOrigin="anonymous" width={650} preload="auto">
         <source
-          src={
-            development ? local + `video/${magnet}` : heroku + `video/${magnet}`
-          }
+          src={link}
           type="video/mp4"
         />
         <track
@@ -53,13 +62,12 @@ export default function Stream(params) {
 
       <div className="subs">
         {subs.map((sub) => (
-          <div className="sub">
+          <div className="sub" key={sub?.attributes?.files[0]?.file_name}>
             <button
-            key={sub?.attributes?.files[0]?.file_name}
+              
               onClick={(e) => handleClick(e.target.value)}
-              value={sub?.attributes?.files[0]?.file_id}
-            >
-              {sub?.attributes?.files[0]?.file_name}
+              value={sub?.attributes?.files[0]?.file_id}>
+              {sub?.attributes?.files[0]?.file_name === null ? "No name subtitle" : sub?.attributes?.files[0]?.file_name}
             </button>
           </div>
         ))}

@@ -10,6 +10,7 @@ const mongoose = require("mongoose");
 const routes = require("./routes/routes");
 const auth = require("./routes/auth");
 const cookieParser = require("cookie-parser");
+const development = process.env.NODE_ENV !== "production";
 const app = express();
 require("dotenv").config();
 
@@ -41,7 +42,7 @@ app.use(
     path: "/",
     saveUninitialized: true,
     store: MongoStore.create({ mongoUrl: process.env.MONGO }),
-   cookie: {      
+    cookie: {      
       sameSite: 'none',
        secure: true,
         maxAge: 1000 * 60 * 60 * 24 * 7,
