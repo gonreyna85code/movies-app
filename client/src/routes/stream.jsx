@@ -62,9 +62,8 @@ export default function Stream(params) {
 
       <div className="subs">
         {subs.map((sub) => (
-          <div className="sub" key={sub?.attributes?.files[0]?.file_name}>
-            <button
-              
+          <div className="sub" key={sub?.attributes?.files[0]?.file_id}>
+            <button              
               onClick={(e) => handleClick(e.target.value)}
               value={sub?.attributes?.files[0]?.file_id}>
               {sub?.attributes?.files[0]?.file_name === null ? "No name subtitle" : sub?.attributes?.files[0]?.file_name}
