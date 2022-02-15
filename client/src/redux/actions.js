@@ -24,6 +24,7 @@ export function getMovies() {
       const json = await axios.get(
         `https://api.themoviedb.org/3/trending/movie/week?api_key=${API}`
       );
+      typeof json.data === "string" ? console.log(json.data) : null;
       return dispatch({ type: "GET_MOVIES", payload: json.data.results });
     } catch (error) {
       console.log(error);
@@ -40,7 +41,7 @@ export function getSubs(title, id) {
         Credentials: "includes",
         url: development ? local + `subs/${title}/${id}` : heroku + `subs/${title}/${id}`,        
       });
-      
+      typeof json.data === "string" ? console.log(json.data) : null;
       return dispatch({ type: "GET_SUBS", payload: json.data });
     } catch (error) {
       console.log(error);
@@ -54,7 +55,7 @@ export function getMovie(id) {
       let json = await axios.get(
         `https://api.themoviedb.org/3/movie/${id}?api_key=${API}`
       );
-      
+      typeof json.data === "string" ? console.log(json.data) : null;
       return dispatch({ type: "GET_MOVIE", payload: json.data });
     } catch (error) {
       console.log(error);
@@ -69,8 +70,8 @@ export function getTorrents(title) {
         withCredentials: true,
         Credentials: "includes",
         url: development ? local + `movie/${title}` : heroku + `movie/${title}`,        
-      });
-      console.log(json.data)
+      });    
+      typeof json.data === "string" ? console.log(json.data) : null;
       return dispatch({ type: "GET_TORRENTS", payload: json.data });
     } catch (error) {
       console.log(error);
@@ -84,6 +85,7 @@ export function getSearch(name) {
       const json = await axios.get(
         `https://api.themoviedb.org/3/search/movie?api_key=${API}&language=en-US&query=${name}&page=1&include_adult=false`
       );
+      typeof json.data === "string" ? console.log(json.data) : null;
       return dispatch({ type: "GET_SEARCH", payload: json.data.results });
     } catch (error) {
       console.log(error);
@@ -104,6 +106,7 @@ export function register(register) {
         Credentials: "includes",
         url: development ? local + "register" : heroku + "register",        
       });
+      typeof json.data === "string" ? console.log(json.data) : null;
       return dispatch({ type: "REGISTER", payload: json.data });
     } catch (error) {
       console.log(error);
@@ -122,10 +125,9 @@ export function login(login) {
         },
         withCredentials: true,
         Credentials: "includes",
-        url: development ? local + "login" : heroku + "login",
-        
+        url: development ? local + "login" : heroku + "login",        
       });
-      
+      typeof json.data === "string" ? console.log(json.data) : null;
       return dispatch({ type: "LOGIN", payload: json.data });
     } catch (error) {
       console.log(error);
@@ -142,7 +144,7 @@ export function getUser() {
         Credentials: "includes",
         url: development ? local + "user" : heroku + "user",
       });
-      
+      typeof json.data === "string" ? console.log(json.data) : null;
       return dispatch({ type: "GET_USER", payload: json.data });
     } catch (error) {
       console.log(error);
@@ -159,7 +161,7 @@ export function logout() {
         Credentials: "includes",
         url: development ? local + "logout" : heroku + "logout",
       });
-      console.log("Usuario no logueado");
+      typeof json.data === "string" ? console.log(json.data) : null;
       return dispatch({ type: "LOGOUT", payload: json.data });
     } catch (error) {
       console.log(error);

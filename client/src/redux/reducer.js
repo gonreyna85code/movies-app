@@ -72,8 +72,7 @@ function rootReducer(state = initialState, action) {
         });
         return action.payload;
       }
-    };
-    console.log(torrent())
+    };    
     return {
       ...state,
       Torrents: torrent(),
