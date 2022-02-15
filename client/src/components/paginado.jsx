@@ -29,7 +29,7 @@ export default function Paginado() {
   useEffect(() => {
     first_Page();
   }, [movies]);
-  console.log(movies)
+  
 
   const list = movies.slice(currentPage, currentPage + 10);
   return (

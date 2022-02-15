@@ -70,7 +70,7 @@ export function getTorrents(title) {
         Credentials: "includes",
         url: development ? local + `movie/${title}` : heroku + `movie/${title}`,        
       });
-      
+      console.log(json.data)
       return dispatch({ type: "GET_TORRENTS", payload: json.data });
     } catch (error) {
       console.log(error);
