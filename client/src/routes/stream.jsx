@@ -44,7 +44,7 @@ export default function Stream(params) {
       <h1>{title}</h1>
       <video controls crossOrigin="anonymous" controlsList="nodownload" width={650} >
         <source
-          src={link}
+          src={development ? local + `video/${magnet}` : heroku + `video/${magnet}`}
           type="video/mp4"
         />
         <track
