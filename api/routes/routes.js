@@ -52,8 +52,7 @@ router.get("/video/:magnet", async (req, res) => {
           res.setHeader(
             "Content-Disposition",
             `attachment; filename="${file.name}"`
-          );
-          res.setHeader("Content-Length", file.length);
+          );          
           res.setHeader("Accept-Ranges", "bytes");
           res.setHeader(
             "Content-Range",
