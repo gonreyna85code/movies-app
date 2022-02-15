@@ -42,7 +42,7 @@ export default function Stream(params) {
   return (
     <div className="streamer">
       <h1>{title}</h1>
-      <video controls crossOrigin="anonymous" controlsList="nodownload" width={650} preload="auto" autobuffer>
+      <video controls crossOrigin="anonymous" controlsList="nodownload" width={650} preload="metadata" autobuffer="true">
         <source
           src={link}
           type="video/mp4"
