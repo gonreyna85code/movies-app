@@ -2,8 +2,6 @@ const Router = require("express");
 const TorrentSearchApi = require("torrent-search-api");
 const torrentStream = require("torrent-stream");
 const OpenSubtitles = require("subtitles.js");
-const parse = require("subtitle");
-const stringify = require("subtitle");
 const axios = require("axios");
 const fs = require("fs");
 
