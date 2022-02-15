@@ -4,7 +4,7 @@
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
-  height: 115vh;
+  min-height: 110vh;
   padding-top: 5px;
   padding-bottom: 35px;
   background-color: black;
