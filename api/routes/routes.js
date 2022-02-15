@@ -43,33 +43,23 @@ router.get("/video/:magnet", async (req, res) => {
   try {
     const engine = torrentStream(magnet);
     engine.on("ready", function () {
-      engine.files.forEach(async function (file) {        
-        if (file.name.endsWith(".mp4") && !file.name.startsWith("Sample")) {
+      engine.files.forEach(async function (file) {
+        if (
+          (!file.name.startsWith("Sample") && file.name.endsWith(".mp4")) ||
+          file.name.endsWith(".mkv") ||
+          file.name.endsWith(".avi")
+        ) {
           res.setHeader("Content-Type", "video/mp4");
-          res.setHeader("Content-Disposition", `attachment; filename="${file.name}"`);
+          res.setHeader(
+            "Content-Disposition",
+            `attachment; filename="${file.name}"`
+          );
           res.setHeader("Content-Length", file.length);
           res.setHeader("Accept-Ranges", "bytes");
-          res.setHeader("Content-Range", `bytes 0-${file.length}/${file.length}`);
-          res.setHeader("Cache-Control", "public");
-          file.createReadStream().pipe(res);
-          console.log("Streaming:", file.name);
-        }
-        if (file.name.endsWith(".mkv") && !file.name.startsWith("Sample")) {
-          res.setHeader("Content-Type", "video/mp4");
-          res.setHeader("Content-Disposition", `attachment; filename="${file.name}"`);
-          res.setHeader("Content-Length", file.length);
-          res.setHeader("Accept-Ranges", "bytes");
-          res.setHeader("Content-Range", `bytes 0-${file.length}/${file.length}`);
-          res.setHeader("Cache-Control", "public");
-          file.createReadStream().pipe(res);
-          console.log("Streaming:", file.name);
-        }
-        if (file.name.endsWith(".avi") && !file.name.startsWith("Sample")) {
-          res.setHeader("Content-Type", "video/mp4");
-          res.setHeader("Content-Disposition", `attachment; filename="${file.name}"`);
-          res.setHeader("Content-Length", file.length);
-          res.setHeader("Accept-Ranges", "bytes");
-          res.setHeader("Content-Range", `bytes 0-${file.length}/${file.length}`);
+          res.setHeader(
+            "Content-Range",
+            `bytes 0-${file.length}/${file.length}`
+          );
           res.setHeader("Cache-Control", "public");
           file.createReadStream().pipe(res);
           console.log("Streaming:", file.name);
