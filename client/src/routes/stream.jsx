@@ -42,7 +42,7 @@ export default function Stream(params) {
   return (
     <div className="streamer">
       <h1>{title}</h1>
-      <video controls crossOrigin="anonymous" controlsList="nodownload" width={650} >
+      <video controls crossOrigin="anonymous" controlsList="nodownload" width={650} autoPlay={true}>
         <source
           src={development ? local + `video/${magnet}` : heroku + `video/${magnet}`}
           type="video/mp4"

@@ -50,10 +50,10 @@ router.get("/video/:magnet", async (req, res) => {
         ) {
           res.setTimeout(10000);
           res.setHeader("Content-Type", "video/mp4");
-          //  res.setHeader(
-          //    "Content-Disposition",
-          //    `attachment; filename="${file.name}"`
-          //  );          
+           res.setHeader(
+             "Content-Disposition",
+             `attachment; filename="${file.name}"`
+           );          
           res.setHeader("Content-Length", file.length);
           res.setHeader("Accept-Ranges", "bytes");
           res.setHeader(
@@ -61,7 +61,7 @@ router.get("/video/:magnet", async (req, res) => {
            `bytes 0-${file.length}/${file.length}`
           );
           // res.setHeader("Cache-Control", "public");
-          file.createReadStream().pipe(res);
+          file.createReadStream({ highWaterMark: 8 }).pipe(res);
           console.log("Streaming:", file.name);
         }
       });
