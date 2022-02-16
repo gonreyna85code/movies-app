@@ -12,6 +12,7 @@ export default function Stream(params) {
   const dispatch = useDispatch();
   const title = params.match.params.title;
   const id = params.match.params.id;
+  const poster = "https://image.tmdb.org/t/p/w500/" + params.match.params.poster;
   const subs = useSelector((state) => state.Subs);
   const [subId, setSubId] = useState(null);
   const magnet =
@@ -42,7 +43,7 @@ export default function Stream(params) {
   return (
     <div className="streamer">
       <h1>{title}</h1>
-      <video controls crossOrigin="anonymous" controlsList="nodownload" width={650} preload='none' autoPlay={true}>
+      <video controls crossOrigin="anonymous" controlsList="nodownload" width={650} height={400} preload='none' autoPlay={true} poster={poster}>
         <source
           src={development ? local + `video/${magnet}` : heroku + `video/${magnet}`}
           type="video/mp4"

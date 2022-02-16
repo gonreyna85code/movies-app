@@ -17,6 +17,7 @@ export default function Detail(props) {
   const torrents = useSelector((state) => state.Torrents);
   const user = useSelector((state) => state.User);
   const image = "https://image.tmdb.org/t/p/w500" + movie?.poster_path;
+  console.log(image)
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getMovie(id));
@@ -82,7 +83,7 @@ export default function Detail(props) {
                     </button>
                     </a>
                     {e.size < 3500 ? <Link         
-                      to={`/video/${movie.original_title}/${movie.imdb_id}/${e.magnet}`}
+                      to={`/video/${movie.original_title}/${movie.imdb_id}${movie?.poster_path}/${e.magnet}`}
                       target="_blank"
                       style={{ textDecoration: "none" }}
                     >
