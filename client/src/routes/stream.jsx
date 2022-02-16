@@ -32,7 +32,7 @@ export default function Stream(params) {
 
 
   
-  const link = development ? local + `video/${magnet}` : heroku + `video/${magnet}`
+  
 
   
   
@@ -42,7 +42,7 @@ export default function Stream(params) {
   return (
     <div className="streamer">
       <h1>{title}</h1>
-      <video controls crossOrigin="anonymous" controlsList="nodownload" width={650} preload='none' autoPlay={true}>
+      <video controls crossOrigin="anonymous" controlsList="nodownload" width={650} preload='auto' autoPlay={true}>
         <source
           src={development ? local + `video/${magnet}` : heroku + `video/${magnet}`}
           type="video/mp4"
@@ -58,6 +58,7 @@ export default function Stream(params) {
           }
           default
         ></track>
+        Your browser does not support this video file.
       </video>
 
       <div className="subs">
