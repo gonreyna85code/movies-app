@@ -40,7 +40,7 @@ export default function Stream(params) {
           controlsList="nodownload"
           width={650}
           height={400}
-          preload="none"
+          preload="auto"
           autoPlay={true}
           poster={poster}
         >
