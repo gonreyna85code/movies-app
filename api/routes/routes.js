@@ -58,9 +58,9 @@ router.get("/video/:magnet", async (req, res) => {
           res.setHeader("Accept-Ranges", "bytes");
           res.setHeader(
            "Content-Range",
-           `bytes 0-${file.length}/${file.length}`
+           `bytes 0-${file.length}/*`
           );
-          // res.setHeader("Cache-Control", "public");
+           res.setHeader("Cache-Control", "no-cache");
           const CHUNK_SIZE = 10000000; // 10MB
           file.createReadStream({ highWaterMark: CHUNK_SIZE }).pipe(res);
           console.log("Streaming:", file.name);
