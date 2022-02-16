@@ -1,12 +1,42 @@
 .streamer{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    justify-content: center;
-    min-height: 110vh;
+    justify-content: space-evenly;
+    min-height: 100vh;
     background-color: black;
     color: #fff;
     font-size: 1.5em;
     font-weight: bold;
     text-align: center;  
+}
+
+.stream-but{
+    margin-top: 8px;
+    margin-bottom: 8px;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px black;
+    padding-bottom: 0px;
+    width: 190px;
+    height: 40px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.video-player{
+    display: flex;
+    flex-direction: column;
+    align-self: start;
+    margin-top: 10vh;
+}
+
+.subs{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    
 }

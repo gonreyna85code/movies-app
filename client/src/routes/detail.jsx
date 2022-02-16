@@ -78,7 +78,7 @@ export default function Detail(props) {
                     {e.title} <br />
                     &emsp;&emsp;&emsp;
                     <a href={e.magnet}>
-                    <button>
+                    <button className="magnet-but">
                       Magnet Link
                     </button>
                     </a>
@@ -87,7 +87,7 @@ export default function Detail(props) {
                       target="_blank"
                       style={{ textDecoration: "none" }}
                     >
-                      &emsp;&emsp;<button>
+                      &emsp;&emsp;<button className="watch-but">
                       Watch
                     </button>
                     </Link> : null}
