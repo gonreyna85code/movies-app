@@ -67,11 +67,11 @@ export default function Detail(props) {
                 <h3>Login to get Premium functions</h3>
               ) : torrents === "Not Found" ? (
                 <h3>
-                  Some error ocurred wile searching for torrents, click the
-                  TORRENTS button to search again!
+                  Some error ocurred wile searching for movies, click the
+                  SEARCH button to search again!
                 </h3>
               ) : torrents.length === 0 ? (
-                <h3>Click TORRENTS to search for downloads!</h3>
+                <h3>Click SEARCH to search for downloads!</h3>
               ) : (
                 torrents?.map((e) => (
                   <li key={e.desc} >
@@ -97,7 +97,7 @@ export default function Detail(props) {
               )}
             </div>
             <button className="det-but" onClick={handleClick}>
-              TORRENTS
+              SEARCH
             </button>
             <Link to="/">
               <button className="det-but">RETURN HOME</button>
